@@ -1,0 +1,52 @@
+{
+  "idle": {
+    "fps": 24,
+    "frames": 153,
+    "loop": true
+  },
+  "idle2": {
+    "fps": 24,
+    "frames": 208,
+    "loop": false
+  },
+  "walk": {
+    "fps": 24,
+    "frames": 31,
+    "loop": true
+  },
+  "run": {
+    "fps": 24,
+    "frames": 29,
+    "loop": true
+  },
+  "react": {
+    "fps": 24,
+    "frames": 38,
+    "loop": false
+  },
+  "react2": {
+    "fps": 24,
+    "frames": 44,
+    "loop": false
+  },
+  "trick": {
+    "fps": 24,
+    "frames": 63,
+    "loop": false
+  },
+  "trick2": {
+    "fps": 24,
+    "frames": 80,
+    "loop": false
+  },
+  "sleep": {
+    "fps": 24,
+    "frames": 269,
+    "loop": true
+  },
+  "feed": {
+    "fps": 24,
+    "frames": 192,
+    "loop": false
+  }
+}

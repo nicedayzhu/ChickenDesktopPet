@@ -1,0 +1,25 @@
+# Local SDK, package and IDE state
+/.dotnet/
+/.nuget/
+/.vs/
+*.user
+*.suo
+
+# Build and publish outputs
+**/bin/
+**/obj/
+/dist/
+/dist3d/
+/dist3d-*/
+/*.zip
+/*.zip.tmp
+*.pdb
+*.log
+
+# Extracted CS2 resources and generated 2D frames
+/assets/
+/Pet/Assets/Sprites/*/
+/Pet/Assets/Sprites/*.png
+/research/
+/tools/
+/preview_*.png
