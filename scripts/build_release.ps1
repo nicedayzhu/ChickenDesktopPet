@@ -3,8 +3,7 @@ $ErrorActionPreference = 'Stop'
 $root = [System.IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
 $project = Join-Path $root 'Pet3D\ChickenDesktopPet3D.csproj'
 $output = Join-Path $root 'dist3d'
-$package = Join-Path $root 'ChickenDesktopPet3D-win-x64.zip'
-$temporaryPackage = Join-Path $root 'ChickenDesktopPet3D-win-x64.zip.tmp'
+$executable = Join-Path $output 'ChickenDesktopPet3D.exe'
 $env:NUGET_PACKAGES = Join-Path $root '.nuget\packages'
 
 $running = Get-Process ChickenDesktopPet3D -ErrorAction SilentlyContinue |
@@ -16,25 +15,18 @@ if ($running) {
 dotnet restore $project --configfile (Join-Path $root 'Pet3D\NuGet.Config')
 if ($LASTEXITCODE -ne 0) { throw 'NuGet restore failed.' }
 
-dotnet publish $project -c Release --self-contained false --no-restore -o $output
+dotnet publish $project -c Release -r win-x64 --self-contained false --no-restore -o $output
 if ($LASTEXITCODE -ne 0) { throw 'dotnet publish failed.' }
 
-& (Join-Path $PSScriptRoot 'prune_dist3d.ps1') -Output $output
-
-Add-Type -AssemblyName System.IO.Compression
-if (Test-Path -LiteralPath $temporaryPackage) {
-    throw "Temporary package already exists: $temporaryPackage"
+if (-not (Test-Path -LiteralPath $executable -PathType Leaf)) {
+    throw "Single-file executable is missing: $executable"
 }
-try {
-    [System.IO.Compression.ZipFile]::CreateFromDirectory(
-        $output, $temporaryPackage, [System.IO.Compression.CompressionLevel]::Optimal, $false)
-    [System.IO.File]::Move($temporaryPackage, $package, $true)
+foreach ($symbols in Get-ChildItem -LiteralPath $output -File -Filter '*.pdb') {
+    [System.IO.File]::Delete($symbols.FullName)
 }
-finally {
-    if (Test-Path -LiteralPath $temporaryPackage) {
-        [System.IO.File]::Delete($temporaryPackage)
-    }
+$unexpected = @(Get-ChildItem -LiteralPath $output -Force | Where-Object Name -ne 'ChickenDesktopPet3D.exe')
+if ($unexpected.Count -gt 0) {
+    throw "Unexpected files in release directory: $($unexpected.Name -join ', ')"
 }
 
 Write-Host "Published: $output"
-Write-Host "Package:   $package"

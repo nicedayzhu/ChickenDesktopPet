@@ -139,7 +139,8 @@ internal sealed class ChickRenderer : IDisposable
             renderer.LoadRendererResources();
             renderer.Scene.ShowToolsMaterials = true;
 
-            using (var stream = File.OpenRead(Path.Combine(AppContext.BaseDirectory, "Assets", "industrial_sunset_puresky.vtex_c")))
+            using (var stream = typeof(ChickRenderer).Assembly.GetManifestResourceStream("ChickLighting")
+                ?? throw new InvalidDataException("未找到内置环境光照资源"))
             using (var environment = new Resource { FileName = "vrf_default_cubemap.vtex_c" })
             {
                 environment.Read(stream);

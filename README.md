@@ -4,7 +4,7 @@
 
 ## 运行
 
-从本机发布目录 `dist3d/` 启动 `ChickenDesktopPet3D.exe`。需要 Windows 10/11 x64、已安装的 CS2 和 [.NET 10 Desktop Runtime](https://dotnet.microsoft.com/download/dotnet/10.0)。首次加载约需数秒。若自动定位游戏失败，将 `CHICK_CS2_VPK` 设为 `pak01_dir.vpk` 的绝对路径。
+从本机发布目录 `dist3d/` 启动 `ChickenDesktopPet3D.exe`。发布目录只有这一个文件，可以直接复制给另一台符合要求的电脑。需要 Windows 10/11 x64、已安装的 CS2 和 [.NET 10 Desktop Runtime](https://dotnet.microsoft.com/download/dotnet/10.0)。首次加载约需数秒。若自动定位游戏失败，将 `CHICK_CS2_VPK` 设为 `pak01_dir.vpk` 的绝对路径。
 
 - 单击回应，双击表演，拖动移动，滚轮旋转视角。
 - 右键小鸡或托盘图标可喂食、睡觉、散步、调整大小、置顶和启用省电模式。
@@ -20,7 +20,7 @@
 ./scripts/build_release.ps1
 ```
 
-脚本构建 `Pet3D/ChickenDesktopPet3D.csproj`，将 Windows x64 程序发布到 `dist3d/`，并生成 `ChickenDesktopPet3D-win-x64.zip`。本地 `.nuget/`、`bin/`、`obj/`、`dist3d/` 和压缩包均由 Git 忽略。`Pet3D/NuGet.Config` 同时配置了本地缓存和 nuget.org。
+脚本构建 `Pet3D/ChickenDesktopPet3D.csproj`，将 Windows x64 单文件程序发布到 `dist3d/`，并检查该目录只含一个 EXE。程序所需的托盘图标、环境光照贴图及 ValveResourceFormat 许可文本已嵌入 EXE；首次运行时 .NET 会在用户临时目录提取原生运行库。本地 `.nuget/`、`bin/`、`obj/` 和 `dist3d/` 均由 Git 忽略。`Pet3D/NuGet.Config` 同时配置了本地缓存和 nuget.org。
 
 Visual Studio 解决方案同时包含 `Pet3D/` 和历史 2D 项目 `Pet/`。2D 版播放烘焙帧图；源码和制作脚本保留，但帧图以及提取出的 CS2 模型、贴图不纳入 Git。若要运行 2D 版，需自行准备 `Pet/Assets/Sprites/`；相关提取与渲染脚本在 `scripts/`。
 

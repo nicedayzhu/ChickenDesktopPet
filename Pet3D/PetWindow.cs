@@ -112,7 +112,8 @@ internal sealed class PetWindow : Window
 
         tray = new Forms.NotifyIcon
         {
-            Icon = new System.Drawing.Icon(Path.Combine(AppContext.BaseDirectory, "Assets", "chick.ico")),
+            Icon = System.Drawing.Icon.ExtractAssociatedIcon(Environment.ProcessPath
+                ?? throw new InvalidOperationException("无法获取程序图标")),
             Text = "CS2 小鸡桌宠 · 实时 3D",
             Visible = true,
         };
@@ -338,8 +339,17 @@ internal sealed class PetWindow : Window
         Add("视角右转", () => RotateCamera(30));
         menu.Items.Add(new Separator());
         Add("Powered by Source 2 Viewer / VRF", () => System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo("https://s2v.app") { UseShellExecute = true }));
+        Add("开源许可", ShowLicense);
         Add("退出", Close);
         return menu;
+    }
+
+    private void ShowLicense()
+    {
+        using var stream = typeof(PetWindow).Assembly.GetManifestResourceStream("ValveResourceFormatLicense")
+            ?? throw new InvalidDataException("未找到内置开源许可");
+        using var reader = new StreamReader(stream);
+        System.Windows.MessageBox.Show(this, reader.ReadToEnd(), "ValveResourceFormat 开源许可", MessageBoxButton.OK, MessageBoxImage.Information);
     }
 
     private void ResizePet(int amount)

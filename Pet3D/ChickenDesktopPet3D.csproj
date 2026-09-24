@@ -8,14 +8,17 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <SelfContained>false</SelfContained>
+    <PublishSingleFile>true</PublishSingleFile>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="ValveResourceFormat.Renderer" Version="20.0.6980" />
     <PackageReference Include="OpenTK.Windowing.Desktop" Version="4.9.4" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\industrial_sunset_puresky.vtex_c" CopyToOutputDirectory="PreserveNewest" />
-    <Content Include="Assets\chick.ico" CopyToOutputDirectory="PreserveNewest" />
-    <Content Include="LICENSE-ValveResourceFormat.txt" CopyToOutputDirectory="PreserveNewest" />
+    <EmbeddedResource Include="Assets\industrial_sunset_puresky.vtex_c" LogicalName="ChickLighting" />
+    <EmbeddedResource Include="LICENSE-ValveResourceFormat.txt" LogicalName="ValveResourceFormatLicense" />
   </ItemGroup>
 </Project>
