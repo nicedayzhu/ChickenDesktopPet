@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ApplicationIcon>Assets\chick.ico</ApplicationIcon>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="ValveResourceFormat.Renderer" Version="20.0.6980" />
+    <PackageReference Include="OpenTK.Windowing.Desktop" Version="4.9.4" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\industrial_sunset_puresky.vtex_c" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="Assets\chick.ico" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="LICENSE-ValveResourceFormat.txt" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+</Project>
