@@ -27,6 +27,7 @@ internal sealed class ChickRenderer : IDisposable
 
     private readonly ConcurrentQueue<(string Name, bool Loop)> requests = new();
     private readonly ConcurrentQueue<float> orbitRequests = new();
+    private readonly ConcurrentQueue<string> appearanceRequests = new();
     private volatile bool stopRequested;
     private int pendingFrame;
 
@@ -34,10 +35,15 @@ internal sealed class ChickRenderer : IDisposable
 
     public event Action<byte[]>? FrameReady;
     public event Action<Exception>? Failed;
+    public event Action<IReadOnlyList<PetAppearance>>? AppearancesReady;
+    public event Action<PetAppearance, IReadOnlyCollection<string>>? AppearanceChanged;
+    public event Action<string, Exception>? AppearanceFailed;
 
     public void Play(string name, bool loop = false) => requests.Enqueue((name, loop));
 
     public void Orbit(float degrees) => orbitRequests.Enqueue(degrees);
+
+    public void SelectAppearance(string id) => appearanceRequests.Enqueue(id);
 
     public void FrameConsumed() => Interlocked.Exchange(ref pendingFrame, 0);
 
@@ -97,6 +103,9 @@ internal sealed class ChickRenderer : IDisposable
         private Framebuffer? output;
         private TextRenderer? textRenderer;
         private ModelSceneNode? chick;
+        private PetCatalog? catalog;
+        private PetAppearance? appearance;
+        private Dictionary<string, string> actionClips = new(StringComparer.Ordinal);
         private Vector3 cameraCenter;
         private float cameraOffset;
         private float yaw = MathF.Atan2(.75f, 1f);
@@ -146,26 +155,18 @@ internal sealed class ChickRenderer : IDisposable
                 environment.Read(stream);
                 ValveResourceFormat.Renderer.Renderer.LoadDefaultLighting(renderer.Scene, environment);
             }
-            using var modelResource = loader.LoadFileCompiled("models/chicken/chick.vmdl")
-                ?? throw new FileNotFoundException("CS2 VPK 中没有 models/chicken/chick.vmdl_c");
-            var model = modelResource.DataBlock as Model
-                ?? throw new InvalidDataException("小鸡模型资源无法读取");
-            chick = new ModelSceneNode(renderer.Scene, model, isWorldPreview: true);
-            // The game's default edge strength is tuned for an opaque viewport. At desktop-pet
-            // size it exposes individual feather cards; stronger coverage smooths their edges.
-            foreach (var material in chick.RenderableMeshes.SelectMany(mesh => mesh.DrawCallsOpaque)
-                .Select(draw => draw.Material).Where(material => material.IsAlphaTest).Distinct())
-                material.FloatParams["g_flAntiAliasedEdgeStrength"] = 0.85f;
-            var selectedAnimations = new List<Animation>();
-            foreach (var clipName in ClipNames)
+            catalog = new PetCatalog(package, loader);
+            if (catalog.Appearances.Count == 0)
+                throw new FileNotFoundException("CS2 VPK 中没有可用的鸡宠物模型");
+            owner.AppearancesReady?.Invoke(catalog.Appearances);
+            var initialId = PetCatalog.DefaultAppearanceId;
+            while (owner.appearanceRequests.TryDequeue(out var requestedId)) initialId = requestedId;
+            if (!TrySwitchAppearance(initialId))
             {
-                using var clipResource = loader.LoadFileCompiled(clipName);
-                if (clipResource?.DataBlock is AnimationClip clip)
-                    selectedAnimations.Add(new ClipAnimation(clip));
+                var fallback = catalog.Find(PetCatalog.DefaultAppearanceId) ?? catalog.Appearances[0];
+                if (!TrySwitchAppearance(fallback.Id))
+                    throw new InvalidDataException("无法加载默认鸡宠物模型");
             }
-            chick.AddAnimations(selectedAnimations);
-            ErrorLog.Trace($"loaded {selectedAnimations.Count} selected clips");
-            renderer.Scene.Add(chick, true);
             renderer.Scene.PostProcessInfo.AddPostProcessVolume(new ScenePostProcessVolume(renderer.Scene)
             {
                 // Bloom spreads light beyond the feathers into the transparent
@@ -174,50 +175,129 @@ internal sealed class ChickRenderer : IDisposable
                 IsMaster = true,
             });
             renderer.Scene.Initialize();
-
-            var bounds = chick.BoundingBox;
-            cameraCenter = bounds.Center;
-            cameraOffset = Math.Max(bounds.Size.X, Math.Max(bounds.Size.Y, bounds.Size.Z)) * 0.9f;
             renderer.Camera.SetViewportSize(Resolution, Resolution);
             UpdateCamera();
-            SetAction("idle", true);
             ErrorLog.Trace("scene loaded");
         }
 
-        private static string? Clip(string name) => name switch
-        {
-            "idle" => "animation/anims/chicken/world/chick_idle01.vnmclip",
-            "idle2" => "animation/anims/chicken/world/chick_idle02.vnmclip",
-            "squat" => "animation/anims/chicken/world/chick_squat_loop04.vnmclip",
-            "walk" => "animation/anims/chicken/world/chick_walk.vnmclip",
-            "react" => "animation/anims/chicken/world/chick_react01.vnmclip",
-            "react2" => "animation/anims/chicken/world/chick_react02.vnmclip",
-            "trick" => "animation/anims/chicken/world/chick_trick01.vnmclip",
-            "trick2" => "animation/anims/chicken/world/chick_trick03.vnmclip",
-            "feed" => "animation/anims/chicken/ui/chickbaby_feed02.vnmclip",
-            "sleep" => "animation/anims/chicken/world/chick_sleep_loop01.vnmclip",
-            _ => null,
-        };
+        private static readonly string[] ActionNames =
+            ["idle", "idle2", "squat", "walk", "react", "react2", "trick", "trick2", "feed", "sleep"];
 
-        private static readonly string[] ClipNames =
-        [
-            "animation/anims/chicken/world/chick_idle01.vnmclip",
-            "animation/anims/chicken/world/chick_idle02.vnmclip",
-            "animation/anims/chicken/world/chick_squat_loop04.vnmclip",
-            "animation/anims/chicken/world/chick_walk.vnmclip",
-            "animation/anims/chicken/world/chick_react01.vnmclip",
-            "animation/anims/chicken/world/chick_react02.vnmclip",
-            "animation/anims/chicken/world/chick_trick01.vnmclip",
-            "animation/anims/chicken/world/chick_trick03.vnmclip",
-            "animation/anims/chicken/ui/chickbaby_feed02.vnmclip",
-            "animation/anims/chicken/world/chick_sleep_loop01.vnmclip",
-        ];
+        private bool TrySwitchAppearance(string id)
+        {
+            var selected = catalog?.Find(id);
+            if (renderer is null || catalog is null || selected is null)
+            {
+                owner.AppearanceFailed?.Invoke(id, new FileNotFoundException($"当前 CS2 版本没有宠物外观 {id}"));
+                return false;
+            }
+            if (appearance?.Id == selected.Id) return true;
+
+            ModelSceneNode? next = null;
+            try
+            {
+                if (appearance?.ModelId == selected.ModelId && chick is not null)
+                {
+                    chick.SetMaterialGroup(selected.Skin ?? "default");
+                    SmoothFeatherEdges(chick);
+                    appearance = selected;
+                    owner.AppearanceChanged?.Invoke(selected, actionClips.Keys.ToArray());
+                    return true;
+                }
+
+                using var resource = loader.LoadFileCompiled(selected.ModelPath)
+                    ?? throw new FileNotFoundException("模型资源已从 CS2 中移除", selected.ModelPath);
+                if (resource.DataBlock is not Model model)
+                    throw new InvalidDataException($"模型资源无法读取：{selected.ModelPath}");
+                next = new ModelSceneNode(renderer.Scene, model, skin: selected.Skin, isWorldPreview: true);
+                if (!next.HasMeshes)
+                    throw new InvalidDataException($"模型没有可绘制网格：{selected.ModelPath}");
+                SmoothFeatherEdges(next);
+                var nextClips = LoadActions(next, selected);
+
+                renderer.Scene.Add(next, true);
+                var previous = chick;
+                chick = next;
+                next = null;
+                appearance = selected;
+                actionClips = nextClips;
+                if (previous is not null)
+                {
+                    renderer.Scene.Remove(previous, true);
+                    previous.Delete();
+                }
+
+                var bounds = chick.BoundingBox;
+                cameraCenter = bounds.Center;
+                cameraOffset = Math.Max(bounds.Size.X, Math.Max(bounds.Size.Y, bounds.Size.Z)) * 0.9f;
+                UpdateCamera();
+                SetAction("idle", true);
+                ErrorLog.Trace($"selected {selected.Id}: {actionClips.Count} actions");
+                owner.AppearanceChanged?.Invoke(selected, actionClips.Keys.ToArray());
+                return true;
+            }
+            catch (Exception ex)
+            {
+                next?.Delete();
+                ErrorLog.Write(new InvalidDataException($"无法切换到外观 {id}", ex));
+                owner.AppearanceFailed?.Invoke(id, ex);
+                return false;
+            }
+        }
+
+        private static void SmoothFeatherEdges(ModelSceneNode node)
+        {
+            // Alpha-tested feather cards need stronger coverage in a transparent window.
+            foreach (var material in node.RenderableMeshes.SelectMany(mesh => mesh.DrawCallsOpaque)
+                .Select(draw => draw.Material).Where(material => material.IsAlphaTest).Distinct())
+                material.FloatParams["g_flAntiAliasedEdgeStrength"] = 0.85f;
+        }
+
+        private Dictionary<string, string> LoadActions(ModelSceneNode node, PetAppearance selected)
+        {
+            var result = new Dictionary<string, string>(StringComparer.Ordinal);
+            foreach (var action in ActionNames)
+            {
+                foreach (var path in catalog!.ClipCandidates(selected, action))
+                {
+                    try
+                    {
+                        using var resource = loader.LoadFileCompiled(path);
+                        if (resource?.DataBlock is not AnimationClip clip) continue;
+                        Animation animation = new ClipAnimation(clip);
+                        if (!node.AnimationController.IsPlayable(animation)) continue;
+                        if (!node.Animations.ContainsKey(animation.Name)) node.AddAnimations([animation]);
+                        result[action] = animation.Name;
+                        break;
+                    }
+                    catch (Exception ex) { ErrorLog.Trace($"skipped animation {path}: {ex.Message}"); }
+                }
+            }
+
+            if (!result.ContainsKey("idle"))
+            {
+                var embeddedIdle = node.Animations.FirstOrDefault(item =>
+                    item.Key.Contains("idle", StringComparison.OrdinalIgnoreCase));
+                if (embeddedIdle.Key is not null) result["idle"] = embeddedIdle.Key;
+            }
+            if (selected.Kind == PetKind.Egg && !result.ContainsKey("trick"))
+            {
+                var hatch = node.Animations.FirstOrDefault(item =>
+                    item.Key.Contains("hatch", StringComparison.OrdinalIgnoreCase));
+                if (hatch.Key is not null) result["trick"] = hatch.Key;
+            }
+            return result;
+        }
 
         private void SetAction(string name, bool loop)
         {
             if (chick is null) return;
-            var clip = Clip(name);
-            if (clip is null || !chick.Animations.TryGetValue(clip, out Animation? animation)) return;
+            if (!actionClips.TryGetValue(name, out var clip) ||
+                !chick.Animations.TryGetValue(clip, out Animation? animation))
+            {
+                if (name == "idle") { currentAction = "idle"; actionEndsAt = double.PositiveInfinity; }
+                return;
+            }
             currentAction = name;
             chick.SetAnimationByName(clip, 0.16f);
             actionEndsAt = loop ? double.PositiveInfinity : clock.Elapsed.TotalSeconds + Math.Max(animation.Duration, 0.5f);
@@ -230,6 +310,9 @@ internal sealed class ChickRenderer : IDisposable
             if (owner.stopRequested) { Close(); return; }
             if (renderer is null || textRenderer is null) return;
 
+            string? nextAppearance = null;
+            while (owner.appearanceRequests.TryDequeue(out var requestedAppearance)) nextAppearance = requestedAppearance;
+            if (nextAppearance is not null) TrySwitchAppearance(nextAppearance);
             while (owner.requests.TryDequeue(out var request))
                 SetAction(request.Name, request.Loop);
             while (owner.orbitRequests.TryDequeue(out var degrees))
@@ -263,7 +346,7 @@ internal sealed class ChickRenderer : IDisposable
             if (renderedFrames == 0) ErrorLog.Trace("first render");
             if (renderer is null || main is null || output is null) return;
             renderedFrames++;
-            var divisor = owner.LowPower
+            var divisor = appearance?.Kind == PetKind.Static ? 4 : owner.LowPower
                 ? (currentAction is "idle" or "idle2" or "sleep" ? 4 : 2)
                 : (currentAction is "idle" or "idle2" or "sleep" ? 2 : 1);
             if (renderedFrames % divisor != 0) return;

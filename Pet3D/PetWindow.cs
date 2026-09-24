@@ -29,6 +29,7 @@ internal sealed class PetWindow : Window
         public bool Roam { get; set; } = true;
         public bool LowPower { get; set; }
         public float CameraAngle { get; set; } = 30;
+        public string AppearanceId { get; set; } = PetCatalog.DefaultAppearanceId;
     }
 
     private readonly string settingsPath = Environment.GetEnvironmentVariable("CHICK_SETTINGS_PATH") ??
@@ -44,6 +45,9 @@ internal sealed class PetWindow : Window
     private readonly System.Diagnostics.Stopwatch clock = System.Diagnostics.Stopwatch.StartNew();
     private readonly Random random = new();
     private readonly Forms.NotifyIcon tray;
+    private IReadOnlyList<PetAppearance> appearances = [];
+    private PetAppearance? selectedAppearance;
+    private HashSet<string> availableActions = new(StringComparer.Ordinal);
     private byte[]? hitFrame;
     private string current = "idle";
     private double actionStarted;
@@ -124,6 +128,27 @@ internal sealed class PetWindow : Window
         });
 
         renderer.FrameReady += OnFrame;
+        renderer.AppearancesReady += models => Dispatcher.BeginInvoke(() =>
+        {
+            if (!closing) appearances = models;
+        });
+        renderer.AppearanceChanged += (model, actions) => Dispatcher.BeginInvoke(() =>
+        {
+            if (closing) return;
+            selectedAppearance = model;
+            availableActions = new HashSet<string>(actions, StringComparer.Ordinal);
+            settings.AppearanceId = model.Id;
+            current = "idle";
+            walkRemaining = 0;
+            Title = $"CS2 鸡桌宠 · {model.GroupLabel}";
+            SaveSettings();
+        });
+        renderer.AppearanceFailed += (id, error) => Dispatcher.BeginInvoke(() =>
+        {
+            if (closing || selectedAppearance is null) return;
+            System.Windows.MessageBox.Show(this, $"无法切换到 {id}：{error.Message}",
+                "宠物外观不可用", MessageBoxButton.OK, MessageBoxImage.Warning);
+        });
         renderer.Failed += ex => Dispatcher.BeginInvoke(() =>
         {
             if (closing) return;
@@ -132,6 +157,7 @@ internal sealed class PetWindow : Window
         });
         renderer.LowPower = settings.LowPower;
         if (settings.CameraAngle != 0) renderer.Orbit(settings.CameraAngle);
+        renderer.SelectAppearance(settings.AppearanceId ?? PetCatalog.DefaultAppearanceId);
         ErrorLog.Trace("WPF window constructed");
         ScheduleRoam();
         timer.Tick += (_, _) => Tick();
@@ -228,9 +254,16 @@ internal sealed class PetWindow : Window
 
     private void Play(string name)
     {
+        if (!availableActions.Contains(name)) return;
         current = name;
         actionStarted = clock.Elapsed.TotalSeconds;
         renderer.Play(name, name is "idle" or "idle2" or "squat" or "walk" or "sleep");
+    }
+
+    private void PlayOneOf(params string[] choices)
+    {
+        var playable = choices.Where(availableActions.Contains).ToArray();
+        if (playable.Length > 0) Play(playable[random.Next(playable.Length)]);
     }
 
     private void Tick()
@@ -260,7 +293,7 @@ internal sealed class PetWindow : Window
         {
             if (now - actionStarted > 4.5) Play("idle");
         }
-        else if (settings.Roam && current == "idle" && now >= nextRoam)
+        else if (settings.Roam && availableActions.Contains("walk") && current == "idle" && now >= nextRoam)
         {
             walkDirection = random.Next(2) == 0 ? -1 : 1;
             image.RenderTransform = new ScaleTransform(walkDirection, 1);
@@ -268,7 +301,7 @@ internal sealed class PetWindow : Window
             Play("walk");
             ScheduleRoam();
         }
-        else if (current == "idle" && now - actionStarted > 12 && random.NextDouble() < dt * .04)
+        else if (current == "idle" && availableActions.Contains("idle2") && now - actionStarted > 12 && random.NextDouble() < dt * .04)
             Play("idle2");
         else if (current == "idle2" && now - actionStarted > 8)
             Play("idle");
@@ -283,7 +316,7 @@ internal sealed class PetWindow : Window
         if (e.ClickCount >= 2)
         {
             walkRemaining = 0;
-            Play(random.Next(2) == 0 ? "trick" : "trick2");
+            PlayOneOf("trick", "trick2");
             e.Handled = true;
         }
     }
@@ -305,7 +338,7 @@ internal sealed class PetWindow : Window
         if (!dragging && e.ClickCount == 1)
         {
             walkRemaining = 0;
-            Play(random.Next(2) == 0 ? "react" : "react2");
+            PlayOneOf("react", "react2");
         }
         dragging = false;
     }
@@ -319,18 +352,44 @@ internal sealed class PetWindow : Window
     private ContextMenu BuildMenu()
     {
         var menu = new ContextMenu { Placement = PlacementMode.MousePoint };
-        void Add(string text, Action action)
+        MenuItem Add(string text, Action action)
         {
             var item = new MenuItem { Header = text };
             item.Click += (_, _) => action();
             menu.Items.Add(item);
+            return item;
         }
-        Add("喂食", () => { walkRemaining = 0; Play("feed"); });
-        Add("表演", () => { walkRemaining = 0; Play(random.Next(2) == 0 ? "trick" : "trick2"); });
-        Add("睡觉", () => { walkRemaining = 0; Play("sleep"); });
-        Add("叫醒", () => Play("react"));
+
+        var appearanceMenu = new MenuItem { Header = "选择宠物" };
+        foreach (var group in appearances.GroupBy(item => item.ModelId))
+        {
+            var groupItem = new MenuItem { Header = group.First().GroupLabel };
+            foreach (var appearance in group)
+            {
+                var option = new MenuItem
+                {
+                    Header = appearance.Label,
+                    IsCheckable = true,
+                    IsChecked = selectedAppearance?.Id == appearance.Id,
+                };
+                option.Click += (_, _) => renderer.SelectAppearance(appearance.Id);
+                groupItem.Items.Add(option);
+            }
+            appearanceMenu.Items.Add(groupItem);
+        }
+        appearanceMenu.IsEnabled = appearances.Count > 0;
+        menu.Items.Add(appearanceMenu);
         menu.Items.Add(new Separator());
-        Add(settings.Roam ? "停止散步" : "允许散步", () => { settings.Roam = !settings.Roam; walkRemaining = 0; Play("idle"); SaveSettings(); });
+
+        Add("喂食", () => { walkRemaining = 0; Play("feed"); }).IsEnabled = availableActions.Contains("feed");
+        Add("表演", () => { walkRemaining = 0; PlayOneOf("trick", "trick2"); }).IsEnabled =
+            availableActions.Contains("trick") || availableActions.Contains("trick2");
+        Add("睡觉", () => { walkRemaining = 0; Play("sleep"); }).IsEnabled = availableActions.Contains("sleep");
+        Add("叫醒", () => PlayOneOf("react", "react2")).IsEnabled =
+            availableActions.Contains("react") || availableActions.Contains("react2");
+        menu.Items.Add(new Separator());
+        Add(settings.Roam ? "停止散步" : "允许散步", () => { settings.Roam = !settings.Roam; walkRemaining = 0; Play("idle"); SaveSettings(); })
+            .IsEnabled = availableActions.Contains("walk");
         Add(settings.LowPower ? "关闭省电模式" : "开启省电模式", () => { settings.LowPower = !settings.LowPower; renderer.LowPower = settings.LowPower; SaveSettings(); });
         Add(Topmost ? "取消置顶" : "始终置顶", () => { Topmost = !Topmost; SaveSettings(); });
         Add("缩小", () => ResizePet(-32));
@@ -338,19 +397,51 @@ internal sealed class PetWindow : Window
         Add("视角左转", () => RotateCamera(-30));
         Add("视角右转", () => RotateCamera(30));
         menu.Items.Add(new Separator());
+        Add("作者：niceday_zhu · GitHub", () => OpenUrl("https://github.com/nicedayzhu"));
         Add("Powered by Source 2 Viewer / VRF", () => System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo("https://s2v.app") { UseShellExecute = true }));
-        Add("开源许可", ShowLicense);
+        Add("开源许可与第三方声明", ShowLicense);
         Add("退出", Close);
         return menu;
     }
 
     private void ShowLicense()
     {
-        using var stream = typeof(PetWindow).Assembly.GetManifestResourceStream("ValveResourceFormatLicense")
-            ?? throw new InvalidDataException("未找到内置开源许可");
-        using var reader = new StreamReader(stream);
-        System.Windows.MessageBox.Show(this, reader.ReadToEnd(), "ValveResourceFormat 开源许可", MessageBoxButton.OK, MessageBoxImage.Information);
+        static string ReadResource(string name)
+        {
+            using var stream = typeof(PetWindow).Assembly.GetManifestResourceStream(name)
+                ?? throw new InvalidDataException($"未找到内置文档：{name}");
+            using var reader = new StreamReader(stream);
+            return reader.ReadToEnd();
+        }
+
+        var details = $"CS2 鸡桌宠 · 作者 niceday_zhu\nhttps://github.com/nicedayzhu\n\n"
+            + ReadResource("ProjectLicense") + "\n\n"
+            + ReadResource("ThirdPartyNotices") + "\n\n"
+            + "ValveResourceFormat 许可原文\n\n" + ReadResource("ValveResourceFormatLicense");
+        var dialog = new Window
+        {
+            Title = "开源许可与第三方声明",
+            Owner = this,
+            Width = 660,
+            Height = 560,
+            MinWidth = 420,
+            MinHeight = 320,
+            WindowStartupLocation = WindowStartupLocation.CenterOwner,
+            Content = new System.Windows.Controls.TextBox
+            {
+                Text = details,
+                IsReadOnly = true,
+                TextWrapping = TextWrapping.Wrap,
+                VerticalScrollBarVisibility = ScrollBarVisibility.Auto,
+                HorizontalScrollBarVisibility = ScrollBarVisibility.Auto,
+                Padding = new Thickness(16),
+            },
+        };
+        dialog.ShowDialog();
     }
+
+    private static void OpenUrl(string url) => System.Diagnostics.Process.Start(
+        new System.Diagnostics.ProcessStartInfo(url) { UseShellExecute = true });
 
     private void ResizePet(int amount)
     {

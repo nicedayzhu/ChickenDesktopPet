@@ -1,6 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
+    <Authors>niceday_zhu</Authors>
+    <Product>CS2 鸡桌宠</Product>
+    <Description>使用本机 CS2 资源的实时 3D 桌面宠物</Description>
+    <Copyright>Copyright (c) 2026 niceday_zhu</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <TargetFramework>net10.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
     <UseWindowsForms>true</UseWindowsForms>
@@ -20,5 +25,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Assets\industrial_sunset_puresky.vtex_c" LogicalName="ChickLighting" />
     <EmbeddedResource Include="LICENSE-ValveResourceFormat.txt" LogicalName="ValveResourceFormatLicense" />
+    <EmbeddedResource Include="..\LICENSE" LogicalName="ProjectLicense" />
+    <EmbeddedResource Include="..\THIRD_PARTY_NOTICES.md" LogicalName="ThirdPartyNotices" />
   </ItemGroup>
 </Project>
