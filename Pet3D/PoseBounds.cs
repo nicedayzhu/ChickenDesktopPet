@@ -4,6 +4,7 @@ using ValveResourceFormat.Blocks;
 using ValveResourceFormat.IO;
 using ValveResourceFormat.Renderer;
 using ValveResourceFormat.ResourceTypes;
+using ValveResourceFormat.ResourceTypes.ModelAnimation;
 
 namespace ChickenDesktopPet3D;
 
@@ -93,6 +94,74 @@ internal sealed class PoseBounds
                 max = Vector3.Max(max, corner);
             }
         }
+        if (pointCount == 0)
+        {
+            for (var i = 0; i < 8; i++)
+                points[pointCount++] = new Vector3((i & 1) == 0 ? fallback.Min.X : fallback.Max.X,
+                    (i & 2) == 0 ? fallback.Min.Y : fallback.Max.Y, (i & 4) == 0 ? fallback.Min.Z : fallback.Max.Z);
+        }
         return min.X <= max.X ? new AABB(min, max) : fallback;
+    }
+
+    // Fit the complete animation set before displaying the model. The closed-form
+    // projection covers every yaw angle, so rotating cannot change its scale.
+    public (Vector3 Center, float Distance) MeasureFraming(AnimationController controller, Animation[] animations,
+        AABB fallback, Vector3 center, float fieldOfView, bool recenter)
+    {
+        var tangent = MathF.Tan(fieldOfView * .5f) * .88f;
+        var c = 1 / MathF.Sqrt(1 + .32f * .32f);
+        var s = .32f * c;
+        var distance = .1f;
+        var minimum = new Vector3(float.MaxValue);
+        var maximum = new Vector3(float.MinValue);
+        var collecting = recenter;
+        void IncludePose()
+        {
+            Get(controller, fallback);
+            foreach (var point in FramingPoints)
+            {
+                if (collecting)
+                {
+                    minimum = Vector3.Min(minimum, point);
+                    maximum = Vector3.Max(maximum, point);
+                    continue;
+                }
+                var p = point - center;
+                var radius = MathF.Sqrt(p.X * p.X + p.Y * p.Y);
+                distance = Math.Max(distance, s * p.Z + radius * MathF.Sqrt(c * c + 1 / (tangent * tangent)));
+                distance = Math.Max(distance, p.Z * (s + c / tangent) + radius * Math.Abs(c - s / tangent));
+                distance = Math.Max(distance, p.Z * (s - c / tangent) + radius * Math.Abs(c + s / tangent));
+            }
+        }
+        var wasLooping = controller.Looping;
+        try
+        {
+            controller.Looping = false;
+            for (var pass = 0; pass < (recenter ? 2 : 1); pass++)
+            {
+                controller.SetAnimation(null);
+                IncludePose();
+                foreach (var animation in animations)
+                {
+                    controller.SetAnimation(animation);
+                    var samples = Math.Clamp((int)Math.Ceiling(animation.Duration * 60), 1, 3600);
+                    for (var sample = 0; sample <= samples; sample++)
+                    {
+                        controller.Time = animation.Duration * sample / samples;
+                        controller.Update(0);
+                        IncludePose();
+                    }
+                }
+                if (collecting && minimum.X <= maximum.X) center = (minimum + maximum) * .5f;
+                collecting = false;
+            }
+        }
+        finally
+        {
+            controller.SetAnimation(null);
+            controller.Update(0);
+            controller.Looping = wasLooping;
+        }
+        return (center, distance);
     }
 }

@@ -21,6 +21,7 @@ internal static class FramingRegression
         var clipped = 0;
         var failed = false;
         var total = 0;
+        (System.Numerics.Vector3 Center, float Distance) lockedFraming = default;
         using var timeout = new System.Threading.Timer(_ =>
         {
             failed = true; Console.Error.WriteLine("FAIL framing timeout"); renderer.Dispose();
@@ -49,6 +50,13 @@ internal static class FramingRegression
             try
             {
                 frames++; total++;
+                if (frames == 3) lockedFraming = renderer.CameraFraming;
+                if (frames > 3 && (System.Numerics.Vector3.Distance(lockedFraming.Center, renderer.CameraFraming.Center) > .001f ||
+                    Math.Abs(lockedFraming.Distance - renderer.CameraFraming.Distance) > .001f))
+                {
+                    failed = true;
+                    throw new InvalidOperationException("Camera changed scale or target during animation");
+                }
                 renderer.Orbit(6);
                 var edgePixels = 0;
                 const int size = ChickRenderer.Resolution;

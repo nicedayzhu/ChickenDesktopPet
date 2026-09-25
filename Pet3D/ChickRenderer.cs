@@ -32,6 +32,7 @@ internal sealed class ChickRenderer : IDisposable
     private int pendingFrame;
 
     public volatile bool LowPower;
+    internal (Vector3 Center, float Distance) CameraFraming { get; private set; }
 
     public event Action<byte[]>? FrameReady;
     public event Action<Exception>? Failed;
@@ -108,9 +109,8 @@ internal sealed class ChickRenderer : IDisposable
         private PetAppearance? appearance;
         private Dictionary<string, string> actionClips = new(StringComparer.Ordinal);
         private Vector3 cameraCenter;
-        private Vector3 baseCenter;
-        private Vector3 baseHalfSize;
-        private PoseBounds? poseBounds;
+        private (Vector3 Center, float Distance) defaultFraming;
+        private readonly Dictionary<string, (Vector3 Center, float Distance)> actionFraming = new();
         private float cameraOffset;
         private float yaw = MathF.Atan2(.75f, 1f);
         private float targetYaw = MathF.Atan2(.75f, 1f);
@@ -236,7 +236,6 @@ internal sealed class ChickRenderer : IDisposable
                 renderer.Scene.Add(next, true);
                 var previous = chick;
                 chick = next;
-                poseBounds = nextBounds;
                 next = null;
                 appearance = selected;
                 actionClips = nextClips;
@@ -249,9 +248,20 @@ internal sealed class ChickRenderer : IDisposable
 
                 var bounds = chick.BoundingBox;
                 cameraCenter = bounds.Center;
-                baseCenter = bounds.Center;
-                baseHalfSize = bounds.Size * .5f;
-                cameraOffset = 0;
+                cameraOffset = Math.Max(bounds.Size.X, Math.Max(bounds.Size.Y, bounds.Size.Z)) * 3;
+                defaultFraming = (cameraCenter, cameraOffset);
+                actionFraming.Clear();
+                if (nextBounds is not null)
+                {
+                    var everyday = actionClips.Where(x => x.Key is not ("feed" or "trick" or "trick2"))
+                        .Select(x => chick.Animations[x.Value]).Distinct().ToArray();
+                    defaultFraming = nextBounds.MeasureFraming(chick.AnimationController,
+                        everyday, bounds, cameraCenter, renderer.Camera.GetFOV(), false);
+                    foreach (var action in actionClips.Where(x => x.Key is "feed" or "trick" or "trick2"))
+                        actionFraming[action.Key] = nextBounds.MeasureFraming(chick.AnimationController,
+                            [chick.Animations[action.Value]], bounds, cameraCenter, renderer.Camera.GetFOV(), true);
+                    (cameraCenter, cameraOffset) = defaultFraming;
+                }
                 UpdateCamera();
                 SetAction("idle", true);
                 ErrorLog.Trace($"selected {selected.Id}: {actionClips.Count} actions");
@@ -342,6 +352,7 @@ internal sealed class ChickRenderer : IDisposable
             {
                 if (name == "idle")
                 {
+                    (cameraCenter, cameraOffset) = defaultFraming;
                     chick.SetAnimation(null);
                     currentAction = "idle";
                     actionEndsAt = double.PositiveInfinity;
@@ -350,6 +361,7 @@ internal sealed class ChickRenderer : IDisposable
                 return;
             }
             currentAction = name;
+            (cameraCenter, cameraOffset) = actionFraming.GetValueOrDefault(name, defaultFraming);
             chick.AnimationController.Looping = loop;
             chick.SetAnimationByName(clip, 0.16f);
             actionEndsAt = loop ? double.PositiveInfinity : clock.Elapsed.TotalSeconds + Math.Max(animation.Duration, 0.5f);
@@ -381,43 +393,15 @@ internal sealed class ChickRenderer : IDisposable
                 TextRenderer = textRenderer,
                 Timestep = (float)Math.Min(args.Time, .05),
             });
-            UpdateCamera((float)Math.Min(args.Time, .05));
-            // The camera follows this tick's pose. Refresh culling after moving
-            // it, rather than rendering with the previous tick's view matrix.
+            UpdateCamera();
+            // Refresh culling after orbiting so draw calls use the current view.
             renderer.Scene.CollectSceneDrawCalls(renderer.Camera, renderer.Camera.ViewFrustum);
         }
 
-        private void UpdateCamera(float dt = 0)
+        private void UpdateCamera()
         {
             if (renderer is null || chick is null) return;
-            var bounds = poseBounds?.Get(chick.AnimationController, chick.BoundingBox) ?? chick.BoundingBox;
-            var min = Vector3.Min(baseCenter - baseHalfSize, bounds.Center - bounds.Size * .5f);
-            var max = Vector3.Max(baseCenter + baseHalfSize, bounds.Center + bounds.Size * .5f);
-            var center = (min + max) * .5f;
-            cameraCenter = dt == 0 ? center : Vector3.Lerp(cameraCenter, center, 1 - MathF.Exp(-dt * 6));
             var outward = Vector3.Normalize(new Vector3(MathF.Cos(yaw), MathF.Sin(yaw), .32f));
-            var right = Vector3.Normalize(Vector3.Cross(-outward, Vector3.UnitZ));
-            var up = Vector3.Cross(right, -outward);
-            var tanFov = MathF.Tan(renderer.Camera.GetFOV() * .5f);
-            float DistanceFor(float screenFraction)
-            {
-                var distance = .1f;
-                var points = poseBounds is null ? ReadOnlySpan<Vector3>.Empty : poseBounds.FramingPoints;
-                for (var i = 0; i < (points.Length > 0 ? points.Length : 8); i++)
-                {
-                    var corner = (points.Length > 0 ? points[i] : new Vector3((i & 1) == 0 ? min.X : max.X,
-                        (i & 2) == 0 ? min.Y : max.Y, (i & 4) == 0 ? min.Z : max.Z)) - cameraCenter;
-                    var extent = Math.Max(Math.Abs(Vector3.Dot(corner, right)), Math.Abs(Vector3.Dot(corner, up)));
-                    distance = Math.Max(distance, Vector3.Dot(corner, outward) + extent / (tanFov * screenFraction));
-                }
-                return distance;
-            }
-            // Follow the current animated bounds, zoom out quickly and return
-            // slowly. The hard safety margin prevents clipping during fast jumps.
-            var desired = DistanceFor(.88f);
-            var rate = desired > cameraOffset ? 12f : 1.5f;
-            cameraOffset = dt == 0 ? desired : cameraOffset + (desired - cameraOffset) * (1 - MathF.Exp(-dt * rate));
-            cameraOffset = Math.Max(cameraOffset, DistanceFor(.96f));
             renderer.Camera.SetLocation(cameraCenter + outward * cameraOffset);
             renderer.Camera.LookAt(cameraCenter);
             renderer.Camera.RecalculateMatrices();
@@ -474,6 +458,7 @@ internal sealed class ChickRenderer : IDisposable
                         pixels[i + 2] = Math.Min(pixels[i + 2], alpha);
                     }
                 }
+                owner.CameraFraming = (cameraCenter, Vector3.Distance(renderer.Camera.Location, cameraCenter));
                 if (owner.FrameReady is { } onFrame) onFrame(pixels);
                 else owner.FrameConsumed();
             }
