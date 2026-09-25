@@ -98,6 +98,7 @@ internal sealed class ChickRenderer : IDisposable
         private readonly RendererContext context;
         private readonly Stopwatch clock = Stopwatch.StartNew();
         private readonly byte[] pixels = new byte[Resolution * Resolution * 4];
+        private readonly byte[] compositedPixels = new byte[Resolution * Resolution * 4];
         private ValveResourceFormat.Renderer.Renderer? renderer;
         private Framebuffer? main;
         private Framebuffer? output;
@@ -209,11 +210,17 @@ internal sealed class ChickRenderer : IDisposable
                     ?? throw new FileNotFoundException("模型资源已从 CS2 中移除", selected.ModelPath);
                 if (resource.DataBlock is not Model model)
                     throw new InvalidDataException($"模型资源无法读取：{selected.ModelPath}");
-                next = new ModelSceneNode(renderer.Scene, model, skin: selected.Skin, isWorldPreview: true);
+                next = new ModelSceneNode(renderer.Scene, model, skin: selected.Skin, isWorldPreview: false);
                 if (!next.HasMeshes)
                     throw new InvalidDataException($"模型没有可绘制网格：{selected.ModelPath}");
                 SmoothFeatherEdges(next);
                 var nextClips = LoadActions(next, selected);
+                // The renderer initializes bone buffers while loading the model's
+                // referenced animation set. Keep only the clips this pet can use.
+                var playableClips = nextClips.Values.ToHashSet(StringComparer.Ordinal);
+                foreach (var name in next.Animations.Keys.Where(name => !playableClips.Contains(name)).ToArray())
+                    next.Animations.Remove(name);
+                ErrorLog.Trace($"animation state {selected.Id}: {next.Animations.Count} clips, skinning={next.IsAnimated}");
 
                 renderer.Scene.Add(next, true);
                 var previous = chick;
@@ -250,7 +257,11 @@ internal sealed class ChickRenderer : IDisposable
             // Alpha-tested feather cards need stronger coverage in a transparent window.
             foreach (var material in node.RenderableMeshes.SelectMany(mesh => mesh.DrawCallsOpaque)
                 .Select(draw => draw.Material).Where(material => material.IsAlphaTest).Distinct())
+            {
                 material.FloatParams["g_flAntiAliasedEdgeStrength"] = 0.85f;
+                if (material.FloatParams.ContainsKey("g_flSheenScale"))
+                    material.FloatParams["g_flSheenScale"] = 1.5f;
+            }
         }
 
         private Dictionary<string, string> LoadActions(ModelSceneNode node, PetAppearance selected)
@@ -365,25 +376,74 @@ internal sealed class ChickRenderer : IDisposable
                 GL.ReadBuffer(ReadBufferMode.ColorAttachment0);
                 fixed (byte* address = pixels)
                     GL.ReadPixels(0, 0, Resolution, Resolution, PixelFormat.Bgra, PixelType.UnsignedByte, (nint)address);
+                // Source 2's alpha-to-coverage feather cards leave partial alpha
+                // throughout the body. On a bright desktop it shows up as a mesh
+                // of glowing gaps. Repair only interior pixels and retain the
+                // original two-pixel soft silhouette and thin feather tips.
+                System.Buffer.BlockCopy(pixels, 0, compositedPixels, 0, pixels.Length);
+                const int edge = 2;
+                const byte coverage = 40;
+                for (var y = edge; y < Resolution - edge; y++)
+                {
+                    for (var x = edge; x < Resolution - edge; x++)
+                    {
+                        var position = y * Resolution + x;
+                        var pixel = position * 4;
+                        var alpha = pixels[pixel + 3];
+                        if (alpha <= coverage || alpha == 255 ||
+                            pixels[(position - edge) * 4 + 3] <= coverage ||
+                            pixels[(position + edge) * 4 + 3] <= coverage ||
+                            pixels[(position - edge * Resolution) * 4 + 3] <= coverage ||
+                            pixels[(position + edge * Resolution) * 4 + 3] <= coverage ||
+                            pixels[(position - edge * Resolution - edge) * 4 + 3] <= coverage ||
+                            pixels[(position - edge * Resolution + edge) * 4 + 3] <= coverage ||
+                            pixels[(position + edge * Resolution - edge) * 4 + 3] <= coverage ||
+                            pixels[(position + edge * Resolution + edge) * 4 + 3] <= coverage)
+                            continue;
+
+                        var blue = 0;
+                        var green = 0;
+                        var red = 0;
+                        var sumAlpha = 0;
+                        for (var oy = -2; oy <= 2; oy++)
+                        {
+                            for (var ox = -2; ox <= 2; ox++)
+                            {
+                                var neighbor = ((y + oy) * Resolution + x + ox) * 4;
+                                var neighborAlpha = pixels[neighbor + 3];
+                                if (neighborAlpha <= 150) continue;
+                                blue += pixels[neighbor];
+                                green += pixels[neighbor + 1];
+                                red += pixels[neighbor + 2];
+                                sumAlpha += neighborAlpha;
+                            }
+                        }
+                        if (sumAlpha == 0) continue;
+                        compositedPixels[pixel] = (byte)Math.Min(255, blue * 255 / sumAlpha);
+                        compositedPixels[pixel + 1] = (byte)Math.Min(255, green * 255 / sumAlpha);
+                        compositedPixels[pixel + 2] = (byte)Math.Min(255, red * 255 / sumAlpha);
+                        compositedPixels[pixel + 3] = 255;
+                    }
+                }
                 // WPF's Pbgra32 layered window requires every RGB channel to be
                 // no brighter than alpha. Source 2 postprocessing leaves color in
                 // fully transparent pixels; the desktop compositor can show it as
                 // a faint square glow against dark wallpaper.
-                for (var i = 0; i < pixels.Length; i += 4)
+                for (var i = 0; i < compositedPixels.Length; i += 4)
                 {
-                    var alpha = pixels[i + 3];
+                    var alpha = compositedPixels[i + 3];
                     if (alpha == 0)
                     {
-                        pixels[i] = pixels[i + 1] = pixels[i + 2] = 0;
+                        compositedPixels[i] = compositedPixels[i + 1] = compositedPixels[i + 2] = 0;
                     }
                     else if (alpha < 255)
                     {
-                        pixels[i] = Math.Min(pixels[i], alpha);
-                        pixels[i + 1] = Math.Min(pixels[i + 1], alpha);
-                        pixels[i + 2] = Math.Min(pixels[i + 2], alpha);
+                        compositedPixels[i] = Math.Min(compositedPixels[i], alpha);
+                        compositedPixels[i + 1] = Math.Min(compositedPixels[i + 1], alpha);
+                        compositedPixels[i + 2] = Math.Min(compositedPixels[i + 2], alpha);
                     }
                 }
-                if (owner.FrameReady is { } onFrame) onFrame(pixels);
+                if (owner.FrameReady is { } onFrame) onFrame(compositedPixels);
                 else owner.FrameConsumed();
             }
             catch
