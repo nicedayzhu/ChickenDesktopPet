@@ -98,7 +98,6 @@ internal sealed class ChickRenderer : IDisposable
         private readonly RendererContext context;
         private readonly Stopwatch clock = Stopwatch.StartNew();
         private readonly byte[] pixels = new byte[Resolution * Resolution * 4];
-        private readonly byte[] compositedPixels = new byte[Resolution * Resolution * 4];
         private ValveResourceFormat.Renderer.Renderer? renderer;
         private Framebuffer? main;
         private Framebuffer? output;
@@ -259,8 +258,6 @@ internal sealed class ChickRenderer : IDisposable
                 .Select(draw => draw.Material).Where(material => material.IsAlphaTest).Distinct())
             {
                 material.FloatParams["g_flAntiAliasedEdgeStrength"] = 0.85f;
-                if (material.FloatParams.ContainsKey("g_flSheenScale"))
-                    material.FloatParams["g_flSheenScale"] = 1.5f;
             }
         }
 
@@ -369,81 +366,40 @@ internal sealed class ChickRenderer : IDisposable
                 main.Bind(FramebufferTarget.Framebuffer);
                 GL.ClearColor(0, 0, 0, 0);
                 GL.Clear(main.ClearMask);
-                renderer.DrawMainScene();
+                // Alpha-to-coverage already turns fur opacity into sample coverage.
+                // Store opaque alpha in each surviving MSAA sample, so foreground
+                // feathers cannot punch translucent seams through the body below.
+                // Preserve normal alpha blending for any future translucent model.
+                var coverageOnly = chick is not null &&
+                    chick.RenderableMeshes.All(mesh => mesh.DrawCallsBlended.Count == 0);
+                if (coverageOnly) GL.Enable(EnableCap.SampleAlphaToOne);
+                try { renderer.DrawMainScene(); }
+                finally { GL.Disable(EnableCap.SampleAlphaToOne); }
                 output.BindAndClear();
                 renderer.PostprocessRender(main, output, flipY: true);
                 output.Bind(FramebufferTarget.ReadFramebuffer);
                 GL.ReadBuffer(ReadBufferMode.ColorAttachment0);
                 fixed (byte* address = pixels)
                     GL.ReadPixels(0, 0, Resolution, Resolution, PixelFormat.Bgra, PixelType.UnsignedByte, (nint)address);
-                // Source 2's alpha-to-coverage feather cards leave partial alpha
-                // throughout the body. On a bright desktop it shows up as a mesh
-                // of glowing gaps. Repair only interior pixels and retain the
-                // original two-pixel soft silhouette and thin feather tips.
-                System.Buffer.BlockCopy(pixels, 0, compositedPixels, 0, pixels.Length);
-                const int edge = 2;
-                const byte coverage = 40;
-                for (var y = edge; y < Resolution - edge; y++)
-                {
-                    for (var x = edge; x < Resolution - edge; x++)
-                    {
-                        var position = y * Resolution + x;
-                        var pixel = position * 4;
-                        var alpha = pixels[pixel + 3];
-                        if (alpha <= coverage || alpha == 255 ||
-                            pixels[(position - edge) * 4 + 3] <= coverage ||
-                            pixels[(position + edge) * 4 + 3] <= coverage ||
-                            pixels[(position - edge * Resolution) * 4 + 3] <= coverage ||
-                            pixels[(position + edge * Resolution) * 4 + 3] <= coverage ||
-                            pixels[(position - edge * Resolution - edge) * 4 + 3] <= coverage ||
-                            pixels[(position - edge * Resolution + edge) * 4 + 3] <= coverage ||
-                            pixels[(position + edge * Resolution - edge) * 4 + 3] <= coverage ||
-                            pixels[(position + edge * Resolution + edge) * 4 + 3] <= coverage)
-                            continue;
-
-                        var blue = 0;
-                        var green = 0;
-                        var red = 0;
-                        var sumAlpha = 0;
-                        for (var oy = -2; oy <= 2; oy++)
-                        {
-                            for (var ox = -2; ox <= 2; ox++)
-                            {
-                                var neighbor = ((y + oy) * Resolution + x + ox) * 4;
-                                var neighborAlpha = pixels[neighbor + 3];
-                                if (neighborAlpha <= 150) continue;
-                                blue += pixels[neighbor];
-                                green += pixels[neighbor + 1];
-                                red += pixels[neighbor + 2];
-                                sumAlpha += neighborAlpha;
-                            }
-                        }
-                        if (sumAlpha == 0) continue;
-                        compositedPixels[pixel] = (byte)Math.Min(255, blue * 255 / sumAlpha);
-                        compositedPixels[pixel + 1] = (byte)Math.Min(255, green * 255 / sumAlpha);
-                        compositedPixels[pixel + 2] = (byte)Math.Min(255, red * 255 / sumAlpha);
-                        compositedPixels[pixel + 3] = 255;
-                    }
-                }
                 // WPF's Pbgra32 layered window requires every RGB channel to be
                 // no brighter than alpha. Source 2 postprocessing leaves color in
                 // fully transparent pixels; the desktop compositor can show it as
                 // a faint square glow against dark wallpaper.
-                for (var i = 0; i < compositedPixels.Length; i += 4)
+                for (var i = 0; i < pixels.Length; i += 4)
                 {
-                    var alpha = compositedPixels[i + 3];
+                    var alpha = pixels[i + 3];
                     if (alpha == 0)
                     {
-                        compositedPixels[i] = compositedPixels[i + 1] = compositedPixels[i + 2] = 0;
+                        pixels[i] = pixels[i + 1] = pixels[i + 2] = 0;
                     }
                     else if (alpha < 255)
                     {
-                        compositedPixels[i] = Math.Min(compositedPixels[i], alpha);
-                        compositedPixels[i + 1] = Math.Min(compositedPixels[i + 1], alpha);
-                        compositedPixels[i + 2] = Math.Min(compositedPixels[i + 2], alpha);
+                        pixels[i] = Math.Min(pixels[i], alpha);
+                        pixels[i + 1] = Math.Min(pixels[i + 1], alpha);
+                        pixels[i + 2] = Math.Min(pixels[i + 2], alpha);
                     }
                 }
-                if (owner.FrameReady is { } onFrame) onFrame(compositedPixels);
+                if (owner.FrameReady is { } onFrame) onFrame(pixels);
                 else owner.FrameConsumed();
             }
             catch
