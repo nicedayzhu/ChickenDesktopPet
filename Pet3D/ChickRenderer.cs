@@ -231,6 +231,7 @@ internal sealed class ChickRenderer : IDisposable
                 {
                     renderer.Scene.Remove(previous, true);
                     previous.Delete();
+                    RefreshLightingBindings();
                 }
 
                 var bounds = chick.BoundingBox;
@@ -249,6 +250,27 @@ internal sealed class ChickRenderer : IDisposable
                 owner.AppearanceFailed?.Invoke(id, ex);
                 return false;
             }
+        }
+
+        private void RefreshLightingBindings()
+        {
+            var scene = renderer!.Scene;
+            // Add/Remove only mark the octree dirty. Unlike Initialize(), the
+            // regular scene update does not bind lighting to newly added nodes.
+            // Rebuild spatial queries first, then assign the same lighting as at
+            // startup before the next update uploads per-instance visibility.
+            scene.UpdateOctrees();
+            foreach (var node in scene.AllNodes)
+            {
+                node.EnvMaps.Clear();
+                node.LightProbeBinding = null;
+            }
+            scene.CalculateLightProbeBindings();
+            scene.CalculateEnvironmentMaps();
+            scene.UpdateBuffers();
+            // UpdateOctrees cleared this flag, but the instance buffers still
+            // need rebuilding with the new node IDs and lighting bindings.
+            scene.DynamicOctree.Dirty = true;
         }
 
         private static void SmoothFeatherEdges(ModelSceneNode node)
