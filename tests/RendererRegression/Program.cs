@@ -9,11 +9,13 @@ internal static class Program
     [STAThread]
     private static int Main(string[] args)
     {
+        if (args.FirstOrDefault() == "--framing") return FramingRegression.Run(args.Skip(1).FirstOrDefault());
+        if (args.FirstOrDefault() == "--toolbar") return ToolbarPreview.Run(args.Skip(1).FirstOrDefault());
         var directory = Path.GetFullPath(args.FirstOrDefault() ?? "research/switch-regression");
         Directory.CreateDirectory(directory);
         string[] sequence = ["chick", "chicken", "chick", "chicken_polish", "chick",
             "chicken_silkie", "chick", "chicken:1", "chicken:2", "chicken", "chick",
-            "egg_pristine", "chick", "chicken_roasted", "chick"];
+            "egg_pristine", "chick"];
         using var renderer = new ChickRenderer();
         var step = 0;
         var frames = 0;

@@ -28,6 +28,7 @@ internal sealed class PetWindow : Window
         public bool AlwaysOnTop { get; set; } = true;
         public bool Roam { get; set; } = true;
         public bool LowPower { get; set; }
+        public bool ShowQuickActions { get; set; } = true;
         public float CameraAngle { get; set; } = 30;
         public string AppearanceId { get; set; } = PetCatalog.DefaultAppearanceId;
     }
@@ -41,6 +42,10 @@ internal sealed class PetWindow : Window
     private readonly WriteableBitmap bitmap = new(ChickRenderer.Resolution, ChickRenderer.Resolution, 96, 96, PixelFormats.Pbgra32, null);
     private readonly Image image = new() { Stretch = Stretch.Fill, RenderTransformOrigin = new Point(.5, .5) };
     private readonly Grid layout = new();
+    private readonly QuickActionBar quickActions = new();
+    private double hoverStarted = -1;
+    private double lastHover;
+    private bool menuOpen;
     private readonly DispatcherTimer timer = new(DispatcherPriority.Background) { Interval = TimeSpan.FromMilliseconds(16) };
     private readonly System.Diagnostics.Stopwatch clock = System.Diagnostics.Stopwatch.StartNew();
     private readonly Random random = new();
@@ -105,6 +110,8 @@ internal sealed class PetWindow : Window
             IsHitTestVisible = false,
         });
         layout.Children.Add(image);
+        layout.Children.Add(quickActions);
+        quickActions.ActionRequested += RunQuickAction;
         Content = layout;
 
         image.MouseLeftButtonDown += OnMouseDown;
@@ -112,6 +119,12 @@ internal sealed class PetWindow : Window
         image.MouseMove += OnMouseMove;
         image.MouseRightButtonUp += (_, _) => OpenMenu();
         image.MouseWheel += (_, e) => { RotateCamera(e.Delta > 0 ? 15 : -15); e.Handled = true; };
+        image.MouseDown += (_, e) =>
+        {
+            if (e.ChangedButton != MouseButton.Middle) return;
+            RunQuickAction("feed");
+            e.Handled = true;
+        };
         SourceInitialized += (_, _) => ((HwndSource)PresentationSource.FromVisual(this)).AddHook(HitTestHook);
 
         tray = new Forms.NotifyIcon
@@ -137,11 +150,18 @@ internal sealed class PetWindow : Window
             if (closing) return;
             selectedAppearance = model;
             availableActions = new HashSet<string>(actions, StringComparer.Ordinal);
+            quickActions.SetActions(availableActions, model.Kind == PetKind.Egg);
             settings.AppearanceId = model.Id;
             current = "idle";
             walkRemaining = 0;
             Title = $"CS2 鸡桌宠 · {model.GroupLabel}";
             SaveSettings();
+        });
+        renderer.ActionChanged += action => Dispatcher.BeginInvoke(() =>
+        {
+            if (closing) return;
+            current = action;
+            actionStarted = clock.Elapsed.TotalSeconds;
         });
         renderer.AppearanceFailed += (id, error) => Dispatcher.BeginInvoke(() =>
         {
@@ -239,17 +259,111 @@ internal sealed class PetWindow : Window
         if (msg != 0x84 || hitFrame is null) return 0;
         var packed = lParam.ToInt64();
         var point = PointFromScreen(new Point((short)(packed & 0xffff), (short)((packed >> 16) & 0xffff)));
-        var x = (int)(point.X * ChickRenderer.Resolution / ActualWidth);
-        var y = (int)(point.Y * ChickRenderer.Resolution / ActualHeight);
-        if (image.RenderTransform is ScaleTransform { ScaleX: < 0 })
-            x = ChickRenderer.Resolution - 1 - x;
-        if (x < 0 || y < 0 || x >= ChickRenderer.Resolution || y >= ChickRenderer.Resolution ||
-            hitFrame[(y * ChickRenderer.Resolution + x) * 4 + 3] < 18)
+        if (IsQuickActionArea(point)) return 0;
+        if (!IsPetPixel(point))
         {
             handled = true;
             return -1;
         }
         return 0;
+    }
+
+    private bool IsPetPixel(Point point)
+    {
+        if (hitFrame is null || ActualWidth <= 0 || ActualHeight <= 0) return false;
+        var x = (int)(point.X * ChickRenderer.Resolution / ActualWidth);
+        var y = (int)(point.Y * ChickRenderer.Resolution / ActualHeight);
+        if (image.RenderTransform is ScaleTransform { ScaleX: < 0 })
+            x = ChickRenderer.Resolution - 1 - x;
+        return point.X >= 0 && point.Y >= 0 && x >= 0 && y >= 0 && x < ChickRenderer.Resolution && y < ChickRenderer.Resolution &&
+            hitFrame[(y * ChickRenderer.Resolution + x) * 4 + 3] >= 18;
+    }
+
+    private bool IsQuickActionArea(Point point)
+    {
+        if (!quickActions.IsVisible) return false;
+        var origin = quickActions.TranslatePoint(new Point(), this);
+        // Keep a short transparent corridor between the pet and its buttons,
+        // so moving to the strip does not dismiss it or click the desktop.
+        var area = new Rect(origin.X - 8, origin.Y - 40, quickActions.ActualWidth + 16, quickActions.ActualHeight + 80);
+        return area.Contains(point);
+    }
+
+    private void RunQuickAction(string action)
+    {
+        walkRemaining = 0;
+        ScheduleRoam();
+        switch (action)
+        {
+            case "trick": PlayOneOf("trick", "trick2"); break;
+            case "wake":
+                if (availableActions.Contains("react") || availableActions.Contains("react2")) PlayOneOf("react", "react2");
+                else Play("idle");
+                break;
+            default: Play(action); break;
+        }
+    }
+
+    private void UpdateQuickActions(double now)
+    {
+        if (!settings.ShowQuickActions || !quickActions.HasActions || dragging || menuOpen)
+        {
+            quickActions.Visibility = Visibility.Collapsed;
+            hoverStarted = -1;
+            return;
+        }
+        var cursor = Forms.Cursor.Position;
+        var point = PointFromScreen(new Point(cursor.X, cursor.Y));
+        if (IsPetPixel(point) || IsQuickActionArea(point))
+        {
+            if (hoverStarted < 0) hoverStarted = now;
+            lastHover = now;
+            if (now - hoverStarted >= .45)
+            {
+                if (quickActions.Visibility != Visibility.Visible)
+                {
+                    quickActions.Visibility = Visibility.Visible;
+                    PositionQuickActions();
+                }
+                if (current == "walk") { walkRemaining = 0; Play("idle"); }
+            }
+        }
+        else
+        {
+            hoverStarted = -1;
+            if (now - lastHover > .65) quickActions.Visibility = Visibility.Collapsed;
+        }
+    }
+
+    private void PositionQuickActions()
+    {
+        quickActions.Margin = new Thickness(0);
+        quickActions.Measure(new System.Windows.Size(double.PositiveInfinity, double.PositiveInfinity));
+        var size = quickActions.DesiredSize;
+        var screen = Forms.Screen.FromHandle(new WindowInteropHelper(this).Handle).WorkingArea;
+        var upper = PointFromScreen(new Point(screen.Left, screen.Top));
+        var lower = PointFromScreen(new Point(screen.Right, screen.Bottom));
+        // A partly off-screen window may have less room than the strip itself.
+        // Nudge only as much as needed to keep every button reachable.
+        var shiftX = Math.Max(0, upper.X - (Width - size.Width - 16)) - Math.Max(0, size.Width + 16 - lower.X);
+        var shiftY = Math.Max(0, upper.Y - (Height - size.Height - 16)) - Math.Max(0, size.Height + 16 - lower.Y);
+        if (shiftX != 0 || shiftY != 0)
+        {
+            Left += shiftX;
+            Top += shiftY;
+            upper = PointFromScreen(new Point(screen.Left, screen.Top));
+            lower = PointFromScreen(new Point(screen.Right, screen.Bottom));
+            SaveSettings();
+        }
+        var minX = Math.Max(8, upper.X + 8);
+        var maxX = Math.Max(minX, Math.Min(Width, lower.X) - size.Width - 8);
+        var x = Math.Clamp((Width - size.Width) / 2, minX, maxX);
+        var y = Height - size.Height - 12;
+        // Use the upper side when the window extends below the work area.
+        if (y + size.Height > lower.Y - 8) y = Math.Max(12, upper.Y + 8);
+        quickActions.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+        quickActions.VerticalAlignment = System.Windows.VerticalAlignment.Top;
+        quickActions.Margin = new Thickness(x, y, 0, 0);
     }
 
     private void Play(string name)
@@ -269,6 +383,7 @@ internal sealed class PetWindow : Window
     private void Tick()
     {
         var now = clock.Elapsed.TotalSeconds;
+        UpdateQuickActions(now);
         if (now >= nextFpsSample)
         {
             if (Environment.GetEnvironmentVariable("CHICK_FPS_LOG") is { Length: > 0 } logPath)
@@ -289,11 +404,7 @@ internal sealed class PetWindow : Window
             walkRemaining -= step;
             if (walkRemaining < .01) { walkRemaining = 0; Play("idle"); SaveSettings(); }
         }
-        else if (current is "react" or "react2" or "trick" or "trick2" or "feed")
-        {
-            if (now - actionStarted > 4.5) Play("idle");
-        }
-        else if (settings.Roam && availableActions.Contains("walk") && current == "idle" && now >= nextRoam)
+        else if (settings.Roam && !quickActions.IsVisible && availableActions.Contains("walk") && current == "idle" && now >= nextRoam)
         {
             walkDirection = random.Next(2) == 0 ? -1 : 1;
             image.RenderTransform = new ScaleTransform(walkDirection, 1);
@@ -327,6 +438,8 @@ internal sealed class PetWindow : Window
         var point = e.GetPosition(this);
         if (Math.Abs(point.X - pressPoint.X) + Math.Abs(point.Y - pressPoint.Y) < 8) return;
         dragging = true;
+        quickActions.Visibility = Visibility.Collapsed;
+        hoverStarted = -1;
         walkRemaining = 0;
         try { DragMove(); }
         catch (InvalidOperationException) { }
@@ -346,7 +459,11 @@ internal sealed class PetWindow : Window
     private void OpenMenu()
     {
         Activate();
-        BuildMenu().IsOpen = true;
+        quickActions.Visibility = Visibility.Collapsed;
+        menuOpen = true;
+        var menu = BuildMenu();
+        menu.Closed += (_, _) => { menuOpen = false; hoverStarted = -1; };
+        menu.IsOpen = true;
     }
 
     private ContextMenu BuildMenu()
@@ -397,6 +514,12 @@ internal sealed class PetWindow : Window
         Add("视角左转", () => RotateCamera(-30));
         Add("视角右转", () => RotateCamera(30));
         menu.Items.Add(new Separator());
+        Add(settings.ShowQuickActions ? "隐藏悬停互动栏" : "显示悬停互动栏", () =>
+        {
+            settings.ShowQuickActions = !settings.ShowQuickActions;
+            quickActions.Visibility = Visibility.Collapsed;
+            SaveSettings();
+        });
         Add("作者：niceday_zhu · GitHub", () => OpenUrl("https://github.com/nicedayzhu"));
         Add("Powered by Source 2 Viewer / VRF", () => System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo("https://s2v.app") { UseShellExecute = true }));
         Add("开源许可与第三方声明", ShowLicense);
@@ -446,6 +569,7 @@ internal sealed class PetWindow : Window
     private void ResizePet(int amount)
     {
         Width = Height = Math.Clamp(Width + amount, 240, 480);
+        quickActions.Visibility = Visibility.Collapsed;
         SaveSettings();
     }
 

@@ -10,3 +10,14 @@ dotnet run --project tests/RendererRegression/RendererRegression.csproj -c Relea
 ```
 
 每一步的真实透明渲染帧保存到指定目录，便于检查绒毛、光照和透明边缘。默认输出在 Git 忽略的 `research/` 下。测试不会修改用户桌宠设置。
+
+## 旋转取景与快捷互动
+
+```powershell
+dotnet run --project tests/RendererRegression/RendererRegression.csproj -c Release --no-restore -- --framing
+dotnet run --project tests/RendererRegression/RendererRegression.csproj -c Release --no-restore -- --toolbar
+```
+
+`--framing` 连续旋转小鸡、普通鸡、波兰鸡、丝羽鸡、破壳蛋和完整蛋，并播放可用的待机、表演、喂食和睡觉动作。逐帧检查外侧 4 像素是否存在不透明内容，保存每个动作的末帧及首次失败帧，并检查目录中已排除烤鸡。该检查覆盖当前游戏资源，不能替代对未来新动画的目视检查。
+
+`--toolbar` 渲染互动栏预览，验证按钮动作分发，以及蛋/静态外观不显示不可用动作。

@@ -36,7 +36,7 @@ internal sealed class PetCatalog
                 .OrderBy(entry => SortOrder(entry.FileName)).ThenBy(entry => entry.FileName, StringComparer.Ordinal))
             {
                 var id = entry.FileName;
-                if (id.StartsWith("feather_", StringComparison.Ordinal) ||
+                if (id == "chicken_roasted" || id.StartsWith("feather_", StringComparison.Ordinal) ||
                     id.EndsWith("_animset", StringComparison.Ordinal))
                     continue;
 
@@ -140,7 +140,6 @@ internal sealed class PetCatalog
         "chicken_silkie" => 3,
         "chicknegg" => 4,
         "egg_pristine" => 5,
-        "chicken_roasted" => 6,
         _ => 100,
     };
 
@@ -152,10 +151,8 @@ internal sealed class PetCatalog
         "chicken_silkie" => "丝羽鸡",
         "chicknegg" => "破壳蛋",
         "egg_pristine" => "完整鸡蛋（静态）",
-        "chicken_roasted" => "烤鸡（静态）",
         _ => id.Replace('_', ' '),
     };
 
-    private static string SkinName(string id, string skin) => id == "chicken_roasted" && skin == "silkie"
-        ? "丝羽烤鸡" : $"羽色 {skin}";
+    private static string SkinName(string id, string skin) => $"羽色 {skin}";
 }
