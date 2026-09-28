@@ -137,7 +137,10 @@ internal sealed class InspectWindow : Window
         photoCanvas.MouseMove += (_, e) =>
         {
             if (dragPoint is not { } previous || e.LeftButton != MouseButtonState.Pressed) return;
-            var next = e.GetPosition(photoCanvas); OrbitRequested?.Invoke((float)(next.X - previous.X) * .5f); dragPoint = next; e.Handled = true;
+            var next = e.GetPosition(photoCanvas);
+            // Camera orbit is opposite to the model's apparent rotation.
+            OrbitRequested?.Invoke((float)(previous.X - next.X) * .5f);
+            dragPoint = next; e.Handled = true;
         };
         photoCanvas.MouseLeftButtonUp += (_, e) => { dragPoint = null; photoCanvas.ReleaseMouseCapture(); e.Handled = true; };
         photoCanvas.LostMouseCapture += (_, _) => dragPoint = null;
@@ -145,8 +148,8 @@ internal sealed class InspectWindow : Window
         stage.MouseLeftButtonDown += (_, e) => { if (!e.Handled) MoveWindow(e); };
 
         var camera = new StackPanel { Orientation = Orientation.Horizontal, HorizontalAlignment = HorizontalAlignment.Center };
-        camera.Children.Add(CreateIcon("left", "向左旋转", () => OrbitRequested?.Invoke(-15), 34));
-        camera.Children.Add(CreateIcon("right", "向右旋转", () => OrbitRequested?.Invoke(15), 34));
+        camera.Children.Add(CreateIcon("left", "向左旋转", () => OrbitRequested?.Invoke(15), 34));
+        camera.Children.Add(CreateIcon("right", "向右旋转", () => OrbitRequested?.Invoke(-15), 34));
         camera.Children.Add(CreateIcon("reset", "恢复初始视角", () => { SetZoom(1); ResetViewRequested?.Invoke(); }, 34));
         camera.Children.Add(Divider());
         zoomOut = CreateIcon("camera_zoom_out", "拉远 · 滚轮向下", () => SetZoom(zoom - .1f), 34);
