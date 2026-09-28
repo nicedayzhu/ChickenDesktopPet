@@ -61,13 +61,20 @@ internal static class ToolbarPreview
             inspect.Show(); inspect.UpdateLayout();
             Save((FrameworkElement)inspect.Content, Path.Combine(directory, "inspector.png"));
             var flags = BindingFlags.Instance | BindingFlags.NonPublic;
+            VerifyInspector(inspect, sample, flags);
             var backgrounds = (ComboBox)typeof(InspectWindow).GetField("backgrounds", flags)!.GetValue(inspect)!;
+            typeof(InspectWindow).GetMethod("SelectPanel", flags)!.Invoke(inspect, new object[] { 1 });
+            inspect.UpdateLayout(); Save((FrameworkElement)inspect.Content, Path.Combine(directory, "inspector-photo.png"));
+            inspect.Width = 820; inspect.Height = 620; inspect.UpdateLayout();
+            Save((FrameworkElement)inspect.Content, Path.Combine(directory, "inspector-small.png"));
+            inspect.Width = 1080; inspect.Height = 800; inspect.UpdateLayout();
             backgrounds.SelectedIndex = 3;
             var transparent = inspect.CapturePhoto();
             var bytes = new byte[512 * 512 * 4]; transparent.CopyPixels(bytes, 512 * 4, 0);
             if (bytes[3] != 0 || !bytes.Where((_, i) => i % 4 == 3).Any(value => value > 240)) return 1;
             var file = library.SaveAsync(transparent, "chick", "小鸡", "透明 PNG").GetAwaiter().GetResult();
             backgrounds.SelectedIndex = 1;
+            inspect.UpdateLayout(); Save((FrameworkElement)inspect.Content, Path.Combine(directory, "inspector-light.png"));
             var solid = inspect.CapturePhoto(); solid.CopyPixels(bytes, 512 * 4, 0);
             if (bytes[3] != 255 || !File.Exists(file) || library.ReadRecent().Count == 0) return 1;
             var saveName = (Button)typeof(InspectWindow).GetField("saveName", flags)!.GetValue(inspect)!;
@@ -118,6 +125,48 @@ internal static class ToolbarPreview
         Console.WriteLine("PASS official assets, named UI actions, sleep/wake, egg actions, photos, naming, and 8 screen-edge placements");
         return 0;
     }
+
+    private static void VerifyInspector(InspectWindow inspect, BitmapSource sample, BindingFlags flags)
+    {
+        var pixels = new byte[512 * 512 * 4]; sample.CopyPixels(pixels, 512 * 4, 0);
+        var opaque = Enumerable.Range(0, 512 * 512).First(i => pixels[i * 4 + 3] > 240);
+        if (inspect.HitsPet(new Point(0, 0)) || !inspect.HitsPet(new Point(opaque % 512, opaque / 512)))
+            throw new Exception("Model orbit and empty window drag surfaces overlap");
+        var lastZoom = 1f; inspect.ZoomRequested += value => lastZoom = value;
+        var zoomOut = (Button)typeof(InspectWindow).GetField("zoomOut", flags)!.GetValue(inspect)!;
+        var zoomIn = (Button)typeof(InspectWindow).GetField("zoomIn", flags)!.GetValue(inspect)!;
+        zoomOut.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+        if (Math.Abs(lastZoom - .9f) > .001) throw new Exception("Zoom out did not decrease magnification");
+        zoomIn.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+        if (Math.Abs(lastZoom - 1f) > .001) throw new Exception("Zoom in did not increase magnification");
+        typeof(InspectWindow).GetMethod("SetZoom", flags)!.Invoke(inspect, new object[] { .1f });
+        if (zoomOut.IsEnabled || !zoomIn.IsEnabled) throw new Exception("Lower zoom limit has wrong controls");
+        typeof(InspectWindow).GetMethod("SetZoom", flags)!.Invoke(inspect, new object[] { 3f });
+        if (!zoomOut.IsEnabled || zoomIn.IsEnabled) throw new Exception("Upper zoom limit has wrong controls");
+        typeof(InspectWindow).GetMethod("SetZoom", flags)!.Invoke(inspect, new object[] { 1f });
+        var hwnd = new System.Windows.Interop.WindowInteropHelper(inspect).Handle;
+        var title = inspect.PointToScreen(new Point(130, 40));
+        if (NativeHit(hwnd, title) != 2) throw new Exception("Title does not expose a native window drag surface");
+        if (!GetClientRect(hwnd, out var client) || !GetWindowRect(hwnd, out var window) ||
+            Math.Abs((window.Bottom - window.Top) - (client.Bottom - client.Top)) > 2)
+            throw new Exception("Native frame still consumes space above the client area");
+        Console.WriteLine("PASS native caption dragging, full client frame, model hit area, zoom directions and limits");
+    }
+
+    private static long NativeHit(nint hwnd, Point point)
+    {
+        var packed = unchecked((int)(((ushort)(int)point.Y << 16) | (ushort)(int)point.X));
+        return SendMessage(hwnd, 0x0084, 0, (nint)packed).ToInt64();
+    }
+
+    [System.Runtime.InteropServices.DllImport("user32.dll")]
+    private static extern nint SendMessage(nint hwnd, uint message, nint wParam, nint lParam);
+    [System.Runtime.InteropServices.StructLayout(System.Runtime.InteropServices.LayoutKind.Sequential)]
+    private struct NativeRect { public int Left, Top, Right, Bottom; }
+    [System.Runtime.InteropServices.DllImport("user32.dll")]
+    private static extern bool GetClientRect(nint hwnd, out NativeRect rect);
+    [System.Runtime.InteropServices.DllImport("user32.dll")]
+    private static extern bool GetWindowRect(nint hwnd, out NativeRect rect);
 
     private static void Pump()
     {
