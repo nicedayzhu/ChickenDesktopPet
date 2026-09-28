@@ -95,6 +95,17 @@ internal static class ToolbarPreview
             ((DispatcherTimer)typeof(PetWindow).GetField("timer", flags)!.GetValue(window)!).Stop();
             var strip = (QuickActionBar)typeof(PetWindow).GetField("quickActions", flags)!.GetValue(window)!;
             var popup = (Popup)typeof(PetWindow).GetField("actionPopup", flags)!.GetValue(window)!;
+            typeof(PetWindow).GetField("appearances", flags)!.SetValue(window, catalog.Appearances);
+            typeof(PetWindow).GetField("selectedAppearance", flags)!.SetValue(window, catalog.Find("chick"));
+            typeof(PetWindow).GetField("availableActions", flags)!.SetValue(window, available);
+            var menu = (ContextMenu)typeof(PetWindow).GetMethod("BuildMenu", flags)!.Invoke(window, null)!;
+            menu.Placement = PlacementMode.AbsolutePoint; menu.HorizontalOffset = 32; menu.VerticalOffset = 32;
+            menu.IsOpen = true; Pump(); menu.UpdateLayout(); Save(menu, Path.Combine(directory, "context-menu.png"));
+            var desktopMenu = menu.Items.OfType<MenuItem>().First(item => (string)item.Header == "桌面设置");
+            desktopMenu.IsSubmenuOpen = true; Pump();
+            var settingsPopup = (Popup)desktopMenu.Template.FindName("PART_Popup", desktopMenu);
+            Save((FrameworkElement)settingsPopup.Child, Path.Combine(directory, "desktop-settings-menu.png"));
+            menu.IsOpen = false;
             strip.SetActions(available, false); strip.Opacity = 0;
             foreach (var size in new[] { 240, 480 })
             {

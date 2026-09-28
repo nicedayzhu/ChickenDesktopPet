@@ -577,76 +577,100 @@ internal sealed class PetWindow : Window
 
     private ContextMenu BuildMenu()
     {
-        var menu = new ContextMenu { Placement = PlacementMode.MousePoint };
+        var menu = new ContextMenu { Placement = PlacementMode.MousePoint, MinWidth = 220 };
         PanoramaTheme.Apply(menu);
-        MenuItem Add(string text, Action action)
+        MenuItem Add(ItemsControl parent, string text, Action action)
         {
             var item = new MenuItem { Header = text };
-            item.Click += (_, _) => action();
-            menu.Items.Add(item);
+            item.Click += (_, _) => action(); parent.Items.Add(item);
             return item;
         }
+        MenuItem Group(ItemsControl parent, string text)
+        {
+            var item = new MenuItem { Header = text }; parent.Items.Add(item); return item;
+        }
+        MenuItem Toggle(ItemsControl parent, string text, bool value, Action<bool> changed)
+        {
+            var item = new MenuItem { Header = text, IsCheckable = true, IsChecked = value, StaysOpenOnClick = true };
+            item.Click += (_, _) => changed(item.IsChecked); parent.Items.Add(item); return item;
+        }
 
-        var appearanceMenu = new MenuItem { Header = "选择宠物" };
+        Add(menu, "检视与摄影棚", () => OpenInspector()).IsEnabled = selectedAppearance is not null;
+        var appearanceMenu = Group(menu, "选择宠物");
+        void AppearanceOption(ItemsControl parent, PetAppearance appearance, string label)
+        {
+            var option = Add(parent, label, () => renderer.SelectAppearance(appearance.Id));
+            option.IsCheckable = true; option.IsChecked = selectedAppearance?.Id == appearance.Id;
+        }
         foreach (var group in appearances.GroupBy(item => item.ModelId))
         {
-            var groupItem = new MenuItem { Header = group.First().GroupLabel };
-            foreach (var appearance in group)
+            var variants = group.ToArray();
+            if (variants.Length == 1) AppearanceOption(appearanceMenu, variants[0], variants[0].GroupLabel);
+            else
             {
-                var option = new MenuItem
-                {
-                    Header = appearance.Label,
-                    IsCheckable = true,
-                    IsChecked = selectedAppearance?.Id == appearance.Id,
-                };
-                option.Click += (_, _) => renderer.SelectAppearance(appearance.Id);
-                groupItem.Items.Add(option);
+                var breed = Group(appearanceMenu, variants[0].GroupLabel);
+                foreach (var appearance in variants) AppearanceOption(breed, appearance, appearance.Label);
             }
-            appearanceMenu.Items.Add(groupItem);
         }
         appearanceMenu.IsEnabled = appearances.Count > 0;
-        menu.Items.Add(appearanceMenu);
-        Add("检视与摄影棚", () => OpenInspector());
-        Add("拍照", () => OpenInspector(true));
-        Add("照片库", () => new PhotoLibraryWindow(photos) { Owner = inspector is null ? this : inspector,
+
+        var interaction = Group(menu, "互动");
+        interaction.IsEnabled = selectedAppearance is not null && selectedAppearance.Kind != PetKind.Static && availableActions.Count > 0;
+        var hatch = selectedAppearance?.Kind == PetKind.Egg;
+        var busy = !PetActions.Loops(current);
+        Add(interaction, hatch ? "破壳" : "喂食", () => RunQuickAction(hatch ? "trick" : "feed")).IsEnabled =
+            !busy && (hatch ? availableActions.Contains("trick") || availableActions.Contains("trick2") : availableActions.Contains("feed"));
+        if (!hatch)
+            Add(interaction, "随机表演", () => RunQuickAction("trick")).IsEnabled =
+                !busy && (availableActions.Contains("trick") || availableActions.Contains("trick2"));
+        var sleeping = current == "sleep";
+        Add(interaction, sleeping ? "叫醒" : "睡觉", () => RunQuickAction(sleeping ? "wake" : "sleep")).IsEnabled =
+            !busy && (sleeping ? availableActions.Contains("idle") || availableActions.Contains("react") || availableActions.Contains("react2")
+                : availableActions.Contains("sleep"));
+        if (selectedAppearance?.Kind == PetKind.Chicken)
+        {
+            var named = Group(interaction, "选择动作");
+            foreach (var activity in activities)
+            {
+                var item = Add(named, activity.Label, () => RunQuickAction(activity.Id));
+                item.Icon = icons.Create(activity.Icon, 20); item.IsEnabled = !busy && availableActions.Contains(activity.Id);
+            }
+        }
+        interaction.Items.Add(new Separator());
+        Add(interaction, "停止当前动作", () => RunQuickAction("idle")).IsEnabled = current != "idle" && availableActions.Contains("idle");
+
+        var photographs = Group(menu, "照片");
+        Add(photographs, "拍照", () => OpenInspector(true)).IsEnabled = selectedAppearance is not null;
+        Add(photographs, "照片库", () => new PhotoLibraryWindow(photos) { Owner = inspector is null ? this : inspector,
             WindowStartupLocation = WindowStartupLocation.CenterScreen }.ShowDialog());
         menu.Items.Add(new Separator());
 
-        Add("喂食", () => { walkRemaining = 0; Play("feed"); }).IsEnabled = availableActions.Contains("feed");
-        Add("表演", () => { walkRemaining = 0; PlayOneOf("trick", "trick2"); }).IsEnabled =
-            availableActions.Contains("trick") || availableActions.Contains("trick2");
-        var named = new MenuItem { Header = "选择动作", IsEnabled = selectedAppearance?.Kind == PetKind.Chicken };
-        foreach (var activity in activities)
+        var desktop = Group(menu, "桌面设置");
+        Toggle(desktop, "自动散步", settings.Roam, value =>
         {
-            var item = new MenuItem { Header = activity.Label, Icon = icons.Create(activity.Icon, 20),
-                IsEnabled = availableActions.Contains(activity.Id) };
-            item.Click += (_, _) => RunQuickAction(activity.Id);
-            named.Items.Add(item);
-        }
-        menu.Items.Add(named);
-        Add("睡觉", () => { walkRemaining = 0; Play("sleep"); }).IsEnabled = availableActions.Contains("sleep");
-        Add("叫醒", () => PlayOneOf("react", "react2")).IsEnabled =
-            availableActions.Contains("react") || availableActions.Contains("react2");
-        menu.Items.Add(new Separator());
-        Add(settings.Roam ? "停止散步" : "允许散步", () => { settings.Roam = !settings.Roam; walkRemaining = 0; Play("idle"); SaveSettings(); })
-            .IsEnabled = availableActions.Contains("walk");
-        Add(settings.LowPower ? "关闭省电模式" : "开启省电模式", () => { settings.LowPower = !settings.LowPower; renderer.LowPower = settings.LowPower; SaveSettings(); });
-        Add(Topmost ? "取消置顶" : "始终置顶", () => { Topmost = !Topmost; SaveSettings(); });
-        Add("缩小", () => ResizePet(-32));
-        Add("放大", () => ResizePet(32));
-        Add("视角左转", () => RotateCamera(-30));
-        Add("视角右转", () => RotateCamera(30));
-        menu.Items.Add(new Separator());
-        Add(settings.ShowQuickActions ? "隐藏悬停互动栏" : "显示悬停互动栏", () =>
+            settings.Roam = value;
+            if (!value) { walkRemaining = 0; if (current == "walk") Play("idle"); }
+            ScheduleRoam(); SaveSettings();
+        }).IsEnabled = availableActions.Contains("walk");
+        Toggle(desktop, "省电模式", settings.LowPower, value => { settings.LowPower = value; renderer.LowPower = value; SaveSettings(); });
+        Toggle(desktop, "始终置顶", Topmost, value => { Topmost = value; SaveSettings(); });
+        Toggle(desktop, "悬停互动栏", settings.ShowQuickActions, value =>
         {
-            settings.ShowQuickActions = !settings.ShowQuickActions;
-            HideQuickActions();
-            SaveSettings();
+            settings.ShowQuickActions = value; HideQuickActions(); SaveSettings();
         });
-        Add("作者：niceday_zhu · GitHub", () => OpenUrl("https://github.com/nicedayzhu"));
-        Add("Powered by Source 2 Viewer / VRF", () => System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo("https://s2v.app") { UseShellExecute = true }));
-        Add("开源许可与第三方声明", ShowLicense);
-        Add("退出", Close);
+        desktop.Items.Add(new Separator());
+        var shrink = Add(desktop, "缩小桌宠", () => ResizePet(-32));
+        var grow = Add(desktop, "放大桌宠", () => ResizePet(32));
+        shrink.IsEnabled = Width > 240; grow.IsEnabled = Width < 480;
+        Add(desktop, "向左旋转", () => RotateCamera(30));
+        Add(desktop, "向右旋转", () => RotateCamera(-30));
+
+        var about = Group(menu, "关于");
+        Add(about, "作者：niceday_zhu · GitHub", () => OpenUrl("https://github.com/nicedayzhu"));
+        Add(about, "Powered by Source 2 Viewer / VRF", () => OpenUrl("https://s2v.app"));
+        Add(about, "开源许可与第三方声明", ShowLicense);
+        menu.Items.Add(new Separator());
+        Add(menu, "退出", Close);
         return menu;
     }
 
@@ -667,7 +691,7 @@ internal sealed class PetWindow : Window
         var dialog = new Window
         {
             Title = "开源许可与第三方声明",
-            Owner = this,
+            Owner = inspector is null ? this : inspector,
             Width = 660,
             Height = 560,
             MinWidth = 420,
