@@ -684,7 +684,8 @@ internal sealed class PetWindow : Window
             return reader.ReadToEnd();
         }
 
-        var details = $"CS2 鸡桌宠 · 作者 niceday_zhu\nhttps://github.com/nicedayzhu\n\n"
+        var version = typeof(PetWindow).Assembly.GetName().Version?.ToString(3) ?? "unknown";
+        var details = $"CS2 鸡桌宠 v{version} · 作者 niceday_zhu\nhttps://github.com/nicedayzhu\n\n"
             + ReadResource("ProjectLicense") + "\n\n"
             + ReadResource("ThirdPartyNotices") + "\n\n"
             + "ValveResourceFormat 许可原文\n\n" + ReadResource("ValveResourceFormatLicense");

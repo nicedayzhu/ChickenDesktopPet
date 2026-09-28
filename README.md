@@ -4,7 +4,7 @@
 
 ## 运行
 
-从本机发布目录 `dist3d/` 启动 `ChickenDesktopPet3D.exe`。发布目录只有这一个文件，可以直接复制给另一台符合要求的电脑。需要 Windows 10/11 x64、已安装的 CS2 和 [.NET 10 Desktop Runtime](https://dotnet.microsoft.com/download/dotnet/10.0)。首次加载约需数秒。若自动定位游戏失败，将 `CHICK_CS2_VPK` 设为 `pak01_dir.vpk` 的绝对路径。
+从 [GitHub Releases](https://github.com/nicedayzhu/ChickenDesktopPet/releases/latest) 下载 Windows x64 压缩包，解压后启动 `ChickenDesktopPet3D.exe`。当前版本为 **v1.1.0**，更新内容见 [发布说明](docs/releases/v1.1.0.md)。本机构建输出位于 `dist3d/`，发布目录只有这一个文件，可以直接复制给另一台符合要求的电脑。需要 Windows 10/11 x64、已安装的 CS2 和 [.NET 10 Desktop Runtime](https://dotnet.microsoft.com/download/dotnet/10.0)。首次加载约需数秒。若自动定位游戏失败，将 `CHICK_CS2_VPK` 设为 `pak01_dir.vpk` 的绝对路径。
 
 - 单击回应，双击表演，中键喂食，拖动移动，滚轮旋转视角。
 - 鼠标停留约半秒出现官方风格互动栏：喂食、动作、睡觉/叫醒、检视、拍照。展开“动作”可选择坐下、惊慌、摇尾、跳舞、跳跃、踢腿、飞翔；不兼容的入口会禁用并提供提示。移开后自动收起，可在右键菜单中关闭互动栏。

@@ -3,6 +3,7 @@
     <OutputType>WinExe</OutputType>
     <Authors>niceday_zhu</Authors>
     <Product>CS2 鸡桌宠</Product>
+    <Version>1.1.0</Version>
     <Description>使用本机 CS2 资源的实时 3D 桌面宠物</Description>
     <Copyright>Copyright (c) 2026 niceday_zhu</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
