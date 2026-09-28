@@ -28,11 +28,14 @@ internal sealed class ChickRenderer : IDisposable
     private readonly ConcurrentQueue<(string Name, bool Loop)> requests = new();
     private readonly ConcurrentQueue<float> orbitRequests = new();
     private readonly ConcurrentQueue<string> appearanceRequests = new();
+    private readonly ConcurrentQueue<float> zoomRequests = new();
     private volatile bool stopRequested;
     private int pendingFrame;
 
     public volatile bool LowPower;
+    public volatile bool InspectionMode;
     internal (Vector3 Center, float Distance) CameraFraming { get; private set; }
+    internal IReadOnlyDictionary<string, float> ActionDurations { get; private set; } = new Dictionary<string, float>();
 
     public event Action<byte[]>? FrameReady;
     public event Action<Exception>? Failed;
@@ -40,12 +43,15 @@ internal sealed class ChickRenderer : IDisposable
     public event Action<PetAppearance, IReadOnlyCollection<string>>? AppearanceChanged;
     public event Action<string, Exception>? AppearanceFailed;
     public event Action<string>? ActionChanged;
+    public event Action<PetUiResources>? UiResourcesReady;
 
     public void Play(string name, bool loop = false) => requests.Enqueue((name, loop));
 
     public void Orbit(float degrees) => orbitRequests.Enqueue(degrees);
 
     public void SelectAppearance(string id) => appearanceRequests.Enqueue(id);
+
+    public void SetZoom(float zoom) => zoomRequests.Enqueue(Math.Clamp(zoom, .7f, 1.45f));
 
     public void FrameConsumed() => Interlocked.Exchange(ref pendingFrame, 0);
 
@@ -114,6 +120,7 @@ internal sealed class ChickRenderer : IDisposable
         private float cameraOffset;
         private float yaw = MathF.Atan2(.75f, 1f);
         private float targetYaw = MathF.Atan2(.75f, 1f);
+        private float viewZoom = 1;
         private string currentAction = "idle";
         private double actionEndsAt = double.PositiveInfinity;
         private int renderedFrames;
@@ -164,7 +171,9 @@ internal sealed class ChickRenderer : IDisposable
                 environment.Read(stream);
                 ValveResourceFormat.Renderer.Renderer.LoadDefaultLighting(renderer.Scene, environment);
             }
-            catalog = new PetCatalog(package, loader);
+            var uiResources = PetUiResources.Load(package, loader);
+            catalog = new PetCatalog(package, loader, uiResources);
+            owner.UiResourcesReady?.Invoke(uiResources);
             if (catalog.Appearances.Count == 0)
                 throw new FileNotFoundException("CS2 VPK 中没有可用的鸡宠物模型");
             owner.AppearancesReady?.Invoke(catalog.Appearances);
@@ -210,6 +219,7 @@ internal sealed class ChickRenderer : IDisposable
                     chick.SetMaterialGroup(selected.Skin ?? "default");
                     SmoothFeatherEdges(chick);
                     appearance = selected;
+                    SetAction("idle", true);
                     owner.AppearanceChanged?.Invoke(selected, actionClips.Keys.ToArray());
                     return true;
                 }
@@ -239,6 +249,7 @@ internal sealed class ChickRenderer : IDisposable
                 next = null;
                 appearance = selected;
                 actionClips = nextClips;
+                owner.ActionDurations = nextClips.ToDictionary(item => item.Key, item => chick.Animations[item.Value].Duration, StringComparer.Ordinal);
                 if (previous is not null)
                 {
                     renderer.Scene.Remove(previous, true);
@@ -253,11 +264,11 @@ internal sealed class ChickRenderer : IDisposable
                 actionFraming.Clear();
                 if (nextBounds is not null)
                 {
-                    var everyday = actionClips.Where(x => x.Key is not ("feed" or "trick" or "trick2"))
+                    var everyday = actionClips.Where(x => !PetActions.HasSeparateFraming(x.Key))
                         .Select(x => chick.Animations[x.Value]).Distinct().ToArray();
                     defaultFraming = nextBounds.MeasureFraming(chick.AnimationController,
                         everyday, bounds, cameraCenter, renderer.Camera.GetFOV(), false);
-                    foreach (var action in actionClips.Where(x => x.Key is "feed" or "trick" or "trick2"))
+                    foreach (var action in actionClips.Where(x => PetActions.HasSeparateFraming(x.Key)))
                         actionFraming[action.Key] = nextBounds.MeasureFraming(chick.AnimationController,
                             [chick.Animations[action.Value]], bounds, cameraCenter, renderer.Camera.GetFOV(), true);
                     (cameraCenter, cameraOffset) = defaultFraming;
@@ -311,7 +322,7 @@ internal sealed class ChickRenderer : IDisposable
         private Dictionary<string, string> LoadActions(ModelSceneNode node, PetAppearance selected)
         {
             var result = new Dictionary<string, string>(StringComparer.Ordinal);
-            foreach (var action in ActionNames)
+            foreach (var action in ActionNames.Concat(catalog!.Activities.Select(activity => activity.Id)).Distinct(StringComparer.Ordinal))
             {
                 foreach (var path in catalog!.ClipCandidates(selected, action))
                 {
@@ -382,6 +393,7 @@ internal sealed class ChickRenderer : IDisposable
                 SetAction(request.Name, request.Loop);
             while (owner.orbitRequests.TryDequeue(out var degrees))
                 targetYaw += MathF.PI * degrees / 180f;
+            while (owner.zoomRequests.TryDequeue(out var zoom)) viewZoom = zoom;
             var cameraBlend = 1f - MathF.Exp(-(float)Math.Min(args.Time, .05) * 8f);
             yaw += (targetYaw - yaw) * cameraBlend;
             if (clock.Elapsed.TotalSeconds >= actionEndsAt)
@@ -402,7 +414,7 @@ internal sealed class ChickRenderer : IDisposable
         {
             if (renderer is null || chick is null) return;
             var outward = Vector3.Normalize(new Vector3(MathF.Cos(yaw), MathF.Sin(yaw), .32f));
-            renderer.Camera.SetLocation(cameraCenter + outward * cameraOffset);
+            renderer.Camera.SetLocation(cameraCenter + outward * cameraOffset / viewZoom);
             renderer.Camera.LookAt(cameraCenter);
             renderer.Camera.RecalculateMatrices();
         }
@@ -413,7 +425,7 @@ internal sealed class ChickRenderer : IDisposable
             if (renderedFrames == 0) ErrorLog.Trace("first render");
             if (renderer is null || main is null || output is null) return;
             renderedFrames++;
-            var divisor = appearance?.Kind == PetKind.Static ? 4 : owner.LowPower
+            var divisor = appearance?.Kind == PetKind.Static ? 4 : owner.InspectionMode && !owner.LowPower ? 1 : owner.LowPower
                 ? (currentAction is "idle" or "idle2" or "sleep" ? 4 : 2)
                 : (currentAction is "idle" or "idle2" or "sleep" ? 2 : 1);
             if (renderedFrames % divisor != 0) return;

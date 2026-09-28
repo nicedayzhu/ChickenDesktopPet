@@ -19,6 +19,8 @@
     <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
   </PropertyGroup>
   <ItemGroup>
+    <Using Remove="System.Drawing" />
+    <Using Remove="System.Windows.Forms" />
     <InternalsVisibleTo Include="ChickenDesktopPet3D.RendererRegression" />
     <PackageReference Include="ValveResourceFormat.Renderer" Version="20.0.6980" />
     <PackageReference Include="OpenTK.Windowing.Desktop" Version="4.9.4" />

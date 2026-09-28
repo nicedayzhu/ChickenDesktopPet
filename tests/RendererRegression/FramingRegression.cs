@@ -25,7 +25,7 @@ internal static class FramingRegression
         using var timeout = new System.Threading.Timer(_ =>
         {
             failed = true; Console.Error.WriteLine("FAIL framing timeout"); renderer.Dispose();
-        }, null, TimeSpan.FromSeconds(150), System.Threading.Timeout.InfiniteTimeSpan);
+        }, null, TimeSpan.FromSeconds(450), System.Threading.Timeout.InfiniteTimeSpan);
         void BeginAction()
         {
             frames = clipped = 0;
@@ -38,7 +38,7 @@ internal static class FramingRegression
         };
         renderer.AppearanceChanged += (_, available) =>
         {
-            actions = new[] { "idle", "trick", "feed", "sleep" }.Where(available.Contains).ToList();
+            actions = new[] { "idle", "trick", "feed", "sleep", "sit", "panic", "wag", "moonwalk", "jump", "kick", "fly" }.Where(available.Contains).ToList();
             if (actions.Count == 0) actions.Add("idle");
             action = 0;
             BeginAction();
@@ -78,7 +78,8 @@ internal static class FramingRegression
                     if (++clipped == 1) Save("clipped");
                     failed = true;
                 }
-                if (clock.Elapsed.TotalSeconds - started < (actions[action] == "trick" ? 8 : 3)) return;
+                var duration = PetActions.Loops(actions[action]) ? 3 : Math.Max(3, renderer.ActionDurations.GetValueOrDefault(actions[action]) + .3);
+                if (clock.Elapsed.TotalSeconds - started < duration) return;
                 Save("final");
                 Console.WriteLine($"{models[model]} {actions[action]}: {frames} frames, clipped={clipped}");
                 if (++action < actions.Count) BeginAction();

@@ -11,6 +11,7 @@ internal static class Program
     {
         if (args.FirstOrDefault() == "--framing") return FramingRegression.Run(args.Skip(1).FirstOrDefault());
         if (args.FirstOrDefault() == "--toolbar") return ToolbarPreview.Run(args.Skip(1).FirstOrDefault());
+        if (args.FirstOrDefault() == "--ui-live") return UiLiveRegression.Run(args.Skip(1).FirstOrDefault());
         var directory = Path.GetFullPath(args.FirstOrDefault() ?? "research/switch-regression");
         Directory.CreateDirectory(directory);
         string[] sequence = ["chick", "chicken", "chick", "chicken_polish", "chick",

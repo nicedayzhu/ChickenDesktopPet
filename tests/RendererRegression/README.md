@@ -16,10 +16,13 @@ dotnet run --project tests/RendererRegression/RendererRegression.csproj -c Relea
 ```powershell
 dotnet run --project tests/RendererRegression/RendererRegression.csproj -c Release --no-restore -- --framing
 dotnet run --project tests/RendererRegression/RendererRegression.csproj -c Release --no-restore -- --toolbar
+dotnet run --project tests/RendererRegression/RendererRegression.csproj -c Release --no-restore -- --ui-live
 ```
 
-`--framing` 连续旋转小鸡、普通鸡、波兰鸡、丝羽鸡、破壳蛋和完整蛋，并播放可用的待机、表演、喂食和睡觉动作。逐帧检查外侧 4 像素是否存在不透明内容，保存每个动作的末帧及首次失败帧，并检查目录中已排除烤鸡。该检查覆盖当前游戏资源，不能替代对未来新动画的目视检查。
+`--framing` 连续旋转小鸡、普通鸡、波兰鸡、丝羽鸡、破壳蛋和完整蛋，并播放可用的待机、表演、喂食、睡觉和七种具名动作。每种一次性动作至少覆盖完整资源时长。逐帧检查外侧 4 像素是否存在不透明内容，保存末帧和首次失败帧，并检查目录中已排除烤鸡。该检查覆盖当前游戏资源，不能替代对未来新动画的目视检查。
 
 `--framing` 同时断言每段动作播放期间相机距离和目标点恒定，旋转也不能引发自动缩放。
 
-`--toolbar` 渲染互动栏预览，验证按钮动作分发，以及蛋/静态外观不显示不可用动作。
+`--toolbar` 从本机 VPK 读取官方动作与图标，生成实时小鸡帧及新界面截图，验证动作分发、播放状态、睡觉/叫醒、蛋的破壳入口、命名、透明/实底照片及八个屏幕边缘位置。无需提前准备截图。
+
+`--ui-live` 在生产桌宠窗口与实时渲染器之间检查完整流程：打开检视、命名、切换品种/羽色、缩放、返回小鸡、拍照、关闭并重开检视，以及本地名称持久化。截图和测试设置保存在 `research/panorama-live/`，不修改用户原有桌宠设置。

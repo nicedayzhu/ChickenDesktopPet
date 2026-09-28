@@ -24,11 +24,14 @@ internal sealed class PetCatalog
     public const string DefaultAppearanceId = "chick";
 
     private readonly (string Directory, string Name, string Path)[] clips;
+    private readonly PetUiResources ui;
 
     public IReadOnlyList<PetAppearance> Appearances { get; }
+    public IReadOnlyList<PetActivity> Activities => ui.Activities;
 
-    public PetCatalog(Package package, GameFileLoader loader)
+    public PetCatalog(Package package, GameFileLoader loader, PetUiResources? uiResources = null)
     {
+        ui = uiResources ?? new PetUiResources();
         var appearances = new List<PetAppearance>();
         if (package.Entries is { } entries && entries.TryGetValue("vmdl_c", out var models))
         {
@@ -83,6 +86,32 @@ internal sealed class PetCatalog
     public IEnumerable<string> ClipCandidates(PetAppearance appearance, string action)
     {
         if (appearance.Kind == PetKind.Static) yield break;
+
+        if (ui.Activities.Any(activity => activity.Id == action))
+        {
+            if (appearance.Kind != PetKind.Chicken) yield break;
+            if (ui.GraphClips.TryGetValue(action, out var paths))
+            {
+                foreach (var path in paths) yield return path;
+                yield break;
+            }
+            // Exact, verified names only: a different trick is not a semantic fallback.
+            var names = action switch
+            {
+                "sit" => new[] { "chick_trick03" },
+                "panic" => ["chick_react01", "chick_react02"],
+                "wag" => ["chick_trick10"],
+                "moonwalk" => ["chick_trick06"],
+                "jump" => ["chick_trick12"],
+                "kick" => ["chick_trick13"],
+                "fly" => ["chick_trick02"],
+                _ => [],
+            };
+            foreach (var name in names)
+                foreach (var clip in clips.Where(clip => clip.Directory == "animation/anims/chicken/world" && clip.Name == name))
+                    yield return clip.Path;
+            yield break;
+        }
 
         var isEgg = appearance.Kind == PetKind.Egg;
         var folder = isEgg ? "animation/anims/egg" : action == "feed"
