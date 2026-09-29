@@ -28,6 +28,8 @@ New-Item -ItemType Directory -Force .nuget/feed | Out-Null
 
 [build_release.ps1](../scripts/build_release.ps1) verifies the resource bundle's SHA256, restores and publishes `Pet3D/ChickenDesktopPet3D.csproj` for Windows x64, and verifies `dist3d/ChickenDesktopPet3D.exe` plus `dist3d/Resources/`. It creates `ChickenDesktopPet3D-v<version>-win-x64.zip` containing both, plus `SHA256SUMS.txt`, under `dist/releases/v<version>/`. The EXE uses a separately installed .NET Desktop Runtime.
 
+To keep an existing pet running, build to a separate directory with `./scripts/build_release.ps1 -OutputDirectory ./dist3d-v1.2.0`. The script checks whether the selected output directory is in use by a running pet.
+
 [NuGet.Config](../Pet3D/NuGet.Config) declares the local `.nuget/feed/` source and nuget.org. Creating the empty local source allows restoration from a clean checkout; for offline builds, populate it with the required packages. The build script uses `.nuget/packages/` as its package cache. Both locations are ignored by Git. Exact dependency versions are listed in the [project manifest](../Pet3D/ChickenDesktopPet3D.csproj).
 
 The tray icon, environment lighting texture, and license texts are embedded in the EXE. At first launch, .NET extracts bundled native libraries to a user temporary location. Models, materials, animations, and official UI data are read from the bundled `Resources/pet_assets.vpk`. Only asset maintenance requires a game installation; see [asset maintenance](ASSETS.md) (Chinese).

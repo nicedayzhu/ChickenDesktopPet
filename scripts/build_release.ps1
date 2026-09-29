@@ -1,3 +1,5 @@
+param([string]$OutputDirectory)
+
 $ErrorActionPreference = 'Stop'
 
 $root = [System.IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
@@ -7,7 +9,11 @@ $version = [string]$projectXml.Project.PropertyGroup.Version
 if ($version -notmatch '^\d+\.\d+\.\d+$') {
     throw 'The desktop project must declare a stable MAJOR.MINOR.PATCH release version.'
 }
-$output = Join-Path $root 'dist3d'
+$output = if ([string]::IsNullOrWhiteSpace($OutputDirectory)) {
+    Join-Path $root 'dist3d'
+} else {
+    [System.IO.Path]::GetFullPath($OutputDirectory)
+}
 $executable = Join-Path $output 'ChickenDesktopPet3D.exe'
 $env:NUGET_PACKAGES = Join-Path $root '.nuget\packages'
 New-Item -ItemType Directory -Force -Path (Join-Path $root '.nuget\feed') | Out-Null

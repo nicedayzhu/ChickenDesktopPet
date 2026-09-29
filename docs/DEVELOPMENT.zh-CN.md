@@ -28,6 +28,8 @@ New-Item -ItemType Directory -Force .nuget/feed | Out-Null
 
 [build_release.ps1](../scripts/build_release.ps1) 校验资源包 SHA256，还原并发布 `Pet3D/ChickenDesktopPet3D.csproj`，目标为 Windows x64。输出为 `dist3d/ChickenDesktopPet3D.exe` 和 `dist3d/Resources/`，并在 `dist/releases/v<版本>/` 生成包含二者的 `ChickenDesktopPet3D-v<版本>-win-x64.zip` 和 `SHA256SUMS.txt`。EXE 是依赖框架的单文件程序，需要单独安装 .NET Desktop Runtime。
 
+已有桌宠正在运行时，可用 `./scripts/build_release.ps1 -OutputDirectory ./dist3d-v1.2.0` 构建到独立目录，保留正在运行的版本。脚本仍会检查所选输出目录是否被运行中的桌宠占用。
+
 [NuGet.Config](../Pet3D/NuGet.Config) 配置了本地 `.nuget/feed/` 源及 nuget.org。新克隆先创建空的本地源目录，即可进行还原；离线构建需自行填充所需包。构建脚本使用 `.nuget/packages/` 作为包缓存，两者均由 Git 忽略。具体依赖版本见 [项目文件](../Pet3D/ChickenDesktopPet3D.csproj)。
 
 托盘图标、环境光照贴图和许可文本已嵌入 EXE；首次启动时 .NET 会将打包的原生库提取到用户临时目录。模型、材质、动画和官方 UI 数据从自带的 `Resources/pet_assets.vpk` 读取。资源更新仅需开发机安装游戏，参见[资源包维护](ASSETS.md)。
