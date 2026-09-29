@@ -3,8 +3,8 @@
     <OutputType>WinExe</OutputType>
     <Authors>niceday_zhu</Authors>
     <Product>CS2 鸡桌宠</Product>
-    <Version>1.1.0</Version>
-    <Description>使用本机 CS2 资源的实时 3D 桌面宠物</Description>
+    <Version>1.2.0</Version>
+    <Description>自带资源的实时 3D 小鸡桌面宠物</Description>
     <Copyright>Copyright (c) 2026 niceday_zhu</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <TargetFramework>net10.0-windows</TargetFramework>
@@ -27,9 +27,19 @@
     <PackageReference Include="OpenTK.Windowing.Desktop" Version="4.9.4" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Resources\pet_assets.vpk;Assets\Resources\manifest.json">
+      <Link>Resources\%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </Content>
     <EmbeddedResource Include="Assets\industrial_sunset_puresky.vtex_c" LogicalName="ChickLighting" />
     <EmbeddedResource Include="LICENSE-ValveResourceFormat.txt" LogicalName="ValveResourceFormatLicense" />
     <EmbeddedResource Include="..\LICENSE" LogicalName="ProjectLicense" />
     <EmbeddedResource Include="..\THIRD_PARTY_NOTICES.md" LogicalName="ThirdPartyNotices" />
   </ItemGroup>
+  <Target Name="RequirePetAssetBundle" BeforeTargets="PrepareForBuild">
+    <Error Condition="!Exists('Assets\Resources\pet_assets.vpk') Or !Exists('Assets\Resources\manifest.json')"
+           Text="Missing bundled pet resources. Run scripts/update_pet_assets.ps1 on the asset maintenance machine, or restore Pet3D/Assets/Resources from the project." />
+  </Target>
 </Project>

@@ -1,0 +1,2951 @@
+{
+  "schemaVersion": 1,
+  "bundleFile": "pet_assets.vpk",
+  "bundleSha256": "75197e8b801951a196bf5b975182dc8fc817cb077767b7cd2b34bbde77d61f86",
+  "source": "Counter-Strike 2",
+  "sourceBuild": "ClientVersion=2000918",
+  "extractorVersion": "20.0.0.0",
+  "fileCount": 335,
+  "totalBytes": 71810501,
+  "roots": [
+    "animation/anims/chicken/snapshot/chick_snapshots_01.vnmclip_c",
+    "animation/anims/chicken/snapshot/chick_snapshots_01_adolescent.vnmclip_c",
+    "animation/anims/chicken/snapshot/chick_snapshots_02.vnmclip_c",
+    "animation/anims/chicken/snapshot/chick_snapshots_02_adolescent.vnmclip_c",
+    "animation/anims/chicken/snapshot/chick_snapshots_03.vnmclip_c",
+    "animation/anims/chicken/snapshot/chick_snapshots_04.vnmclip_c",
+    "animation/anims/chicken/snapshot/chick_snapshots_04_adolescent.vnmclip_c",
+    "animation/anims/chicken/snapshot/chick_snapshots_05.vnmclip_c",
+    "animation/anims/chicken/snapshot/chick_snapshots_05_adolescent.vnmclip_c",
+    "animation/anims/chicken/snapshot/chick_snapshots_06.vnmclip_c",
+    "animation/anims/chicken/snapshot/chick_snapshots_07.vnmclip_c",
+    "animation/anims/chicken/snapshot/chick_snapshots_08_baby.vnmclip_c",
+    "animation/anims/chicken/snapshot/chick_snapshots_09_baby.vnmclip_c",
+    "animation/anims/chicken/snapshot/chick_snapshots_10_baby.vnmclip_c",
+    "animation/anims/chicken/snapshot/chick_snapshots_char01.vnmclip_c",
+    "animation/anims/chicken/snapshot/chick_snapshots_char01_adolescent.vnmclip_c",
+    "animation/anims/chicken/snapshot/chick_snapshots_char02.vnmclip_c",
+    "animation/anims/chicken/snapshot/chick_snapshots_char02_adolescent.vnmclip_c",
+    "animation/anims/chicken/snapshot/chick_snapshots_char03.vnmclip_c",
+    "animation/anims/chicken/snapshot/chick_snapshots_char04.vnmclip_c",
+    "animation/anims/chicken/snapshot/chick_snapshots_char04_adolescent.vnmclip_c",
+    "animation/anims/chicken/snapshot/chick_snapshots_char05.vnmclip_c",
+    "animation/anims/chicken/snapshot/chick_snapshots_char05_adolescent.vnmclip_c",
+    "animation/anims/chicken/snapshot/chick_snapshots_char06.vnmclip_c",
+    "animation/anims/chicken/snapshot/chick_snapshots_char07.vnmclip_c",
+    "animation/anims/chicken/snapshot/chick_snapshots_char08_baby.vnmclip_c",
+    "animation/anims/chicken/snapshot/chick_snapshots_char09_baby.vnmclip_c",
+    "animation/anims/chicken/snapshot/chick_snapshots_char10_baby.vnmclip_c",
+    "animation/anims/chicken/ui/chick_feed01.vnmclip_c",
+    "animation/anims/chicken/ui/chick_feed01_loop.vnmclip_c",
+    "animation/anims/chicken/ui/chick_feed_to_sad01.vnmclip_c",
+    "animation/anims/chicken/ui/chick_feed_to_sad01_loop.vnmclip_c",
+    "animation/anims/chicken/ui/chick_retirement01.vnmclip_c",
+    "animation/anims/chicken/ui/chick_retirement02.vnmclip_c",
+    "animation/anims/chicken/ui/chick_retirement02_baby.vnmclip_c",
+    "animation/anims/chicken/ui/chick_reveal.vnmclip_c",
+    "animation/anims/chicken/ui/chick_reveal02.vnmclip_c",
+    "animation/anims/chicken/ui/chick_reveal02_loop.vnmclip_c",
+    "animation/anims/chicken/ui/chick_reveal_loop.vnmclip_c",
+    "animation/anims/chicken/ui/chick_shoulder_01.vnmclip_c",
+    "animation/anims/chicken/ui/chick_shoulder_02.vnmclip_c",
+    "animation/anims/chicken/ui/chick_shoulder_03.vnmclip_c",
+    "animation/anims/chicken/ui/chickbaby_egg_hatch01.vnmclip_c",
+    "animation/anims/chicken/ui/chickbaby_egg_hatch01alt.vnmclip_c",
+    "animation/anims/chicken/ui/chickbaby_egg_hatch01alt_loop.vnmclip_c",
+    "animation/anims/chicken/ui/chickbaby_egg_hatch02.vnmclip_c",
+    "animation/anims/chicken/ui/chickbaby_egg_hatch02_loop.vnmclip_c",
+    "animation/anims/chicken/ui/chickbaby_feed02.vnmclip_c",
+    "animation/anims/chicken/ui/chickbaby_feed02_loop.vnmclip_c",
+    "animation/anims/chicken/ui/chickbaby_feed_to_sad02.vnmclip_c",
+    "animation/anims/chicken/ui/chickbaby_feed_to_sad02_loop.vnmclip_c",
+    "animation/anims/chicken/world/chick_0lr.vnmclip_c",
+    "animation/anims/chicken/world/chick_135l.vnmclip_c",
+    "animation/anims/chicken/world/chick_135r.vnmclip_c",
+    "animation/anims/chicken/world/chick_180.vnmclip_c",
+    "animation/anims/chicken/world/chick_180r.vnmclip_c",
+    "animation/anims/chicken/world/chick_45l.vnmclip_c",
+    "animation/anims/chicken/world/chick_45r.vnmclip_c",
+    "animation/anims/chicken/world/chick_90l.vnmclip_c",
+    "animation/anims/chicken/world/chick_90r.vnmclip_c",
+    "animation/anims/chicken/world/chick_fall_flap.vnmclip_c",
+    "animation/anims/chicken/world/chick_hop.vnmclip_c",
+    "animation/anims/chicken/world/chick_idle01.vnmclip_c",
+    "animation/anims/chicken/world/chick_idle01_water.vnmclip_c",
+    "animation/anims/chicken/world/chick_idle02.vnmclip_c",
+    "animation/anims/chicken/world/chick_idle03.vnmclip_c",
+    "animation/anims/chicken/world/chick_idle03alt.vnmclip_c",
+    "animation/anims/chicken/world/chick_idle04.vnmclip_c",
+    "animation/anims/chicken/world/chick_idle05.vnmclip_c",
+    "animation/anims/chicken/world/chick_idle06.vnmclip_c",
+    "animation/anims/chicken/world/chick_idle07.vnmclip_c",
+    "animation/anims/chicken/world/chick_land.vnmclip_c",
+    "animation/anims/chicken/world/chick_land_water.vnmclip_c",
+    "animation/anims/chicken/world/chick_react01.vnmclip_c",
+    "animation/anims/chicken/world/chick_react02.vnmclip_c",
+    "animation/anims/chicken/world/chick_react03.vnmclip_c",
+    "animation/anims/chicken/world/chick_react04.vnmclip_c",
+    "animation/anims/chicken/world/chick_react05.vnmclip_c",
+    "animation/anims/chicken/world/chick_run.vnmclip_c",
+    "animation/anims/chicken/world/chick_run_swim.vnmclip_c",
+    "animation/anims/chicken/world/chick_runflap.vnmclip_c",
+    "animation/anims/chicken/world/chick_scared01.vnmclip_c",
+    "animation/anims/chicken/world/chick_scared02.vnmclip_c",
+    "animation/anims/chicken/world/chick_sleep_flinch01.vnmclip\u002Bnon_additive.vnmclip_c",
+    "animation/anims/chicken/world/chick_sleep_flinch01.vnmclip_c",
+    "animation/anims/chicken/world/chick_sleep_flinch02.vnmclip\u002Bnon_additive.vnmclip_c",
+    "animation/anims/chicken/world/chick_sleep_flinch02.vnmclip_c",
+    "animation/anims/chicken/world/chick_sleep_flinch03.vnmclip\u002Bnon_additive.vnmclip_c",
+    "animation/anims/chicken/world/chick_sleep_flinch03.vnmclip_c",
+    "animation/anims/chicken/world/chick_sleep_loop01.vnmclip_c",
+    "animation/anims/chicken/world/chick_squat_loop01.vnmclip_c",
+    "animation/anims/chicken/world/chick_squat_loop02.vnmclip_c",
+    "animation/anims/chicken/world/chick_squat_loop03.vnmclip_c",
+    "animation/anims/chicken/world/chick_squat_loop04.vnmclip_c",
+    "animation/anims/chicken/world/chick_squat_stand.vnmclip_c",
+    "animation/anims/chicken/world/chick_squat_start.vnmclip_c",
+    "animation/anims/chicken/world/chick_start_walk.vnmclip_c",
+    "animation/anims/chicken/world/chick_trick01.vnmclip_c",
+    "animation/anims/chicken/world/chick_trick02.vnmclip_c",
+    "animation/anims/chicken/world/chick_trick03.vnmclip_c",
+    "animation/anims/chicken/world/chick_trick04.vnmclip_c",
+    "animation/anims/chicken/world/chick_trick05.vnmclip_c",
+    "animation/anims/chicken/world/chick_trick06.vnmclip_c",
+    "animation/anims/chicken/world/chick_trick07.vnmclip_c",
+    "animation/anims/chicken/world/chick_trick08.vnmclip_c",
+    "animation/anims/chicken/world/chick_trick09.vnmclip_c",
+    "animation/anims/chicken/world/chick_trick10.vnmclip_c",
+    "animation/anims/chicken/world/chick_trick11.vnmclip_c",
+    "animation/anims/chicken/world/chick_trick12.vnmclip_c",
+    "animation/anims/chicken/world/chick_trick13.vnmclip_c",
+    "animation/anims/chicken/world/chick_walk.vnmclip_c",
+    "animation/anims/chicken/world/chick_walk_swim.vnmclip_c",
+    "animation/anims/egg/chick_egg_idle_phase01_still.vnmclip_c",
+    "animation/anims/egg/chick_egg_idle_phase02.vnmclip_c",
+    "animation/anims/egg/chick_egg_idle_phase03.vnmclip_c",
+    "animation/anims/egg/chick_egg_idle_phase04.vnmclip_c",
+    "animation/anims/egg/chick_egg_reaction01.vnmclip_c",
+    "animation/anims/egg/chick_egg_reaction02.vnmclip_c",
+    "animation/anims/egg/chick_egg_reaction03.vnmclip_c",
+    "animation/anims/egg/chick_egg_reaction04.vnmclip_c",
+    "animation/anims/egg/chick_egg_reaction05.vnmclip_c",
+    "animation/anims/egg/chick_egg_reaction06.vnmclip_c",
+    "animation/anims/egg/chick_egg_reaction07.vnmclip_c",
+    "animation/anims/egg/chick_egg_reaction08.vnmclip_c",
+    "animation/graphs/chicken/chicken.vnmgraph_c",
+    "models/chicken/chick.vmdl_c",
+    "models/chicken/chicken.vmdl_c",
+    "models/chicken/chicken_polish.vmdl_c",
+    "models/chicken/chicken_silkie.vmdl_c",
+    "models/chicken/chicknegg.vmdl_c",
+    "models/chicken/egg_pristine.vmdl_c",
+    "panorama/images/icons/ui/edit_label.vsvg_c",
+    "panorama/images/icons/ui/expand_video.vsvg_c",
+    "panorama/images/icons/ui/pet_activity_dance.vsvg_c",
+    "panorama/images/icons/ui/pet_activity_fly.vsvg_c",
+    "panorama/images/icons/ui/pet_activity_jump.vsvg_c",
+    "panorama/images/icons/ui/pet_activity_kick.vsvg_c",
+    "panorama/images/icons/ui/pet_activity_panic.vsvg_c",
+    "panorama/images/icons/ui/pet_activity_sit.vsvg_c",
+    "panorama/images/icons/ui/pet_activity_sleep.vsvg_c",
+    "panorama/images/icons/ui/pet_activity_squat.vsvg_c",
+    "panorama/images/icons/ui/pet_activity_trick.vsvg_c",
+    "panorama/images/icons/ui/pet_activity_wag.vsvg_c",
+    "panorama/images/icons/ui/pet_adult.vsvg_c",
+    "panorama/images/icons/ui/pet_book.vsvg_c",
+    "panorama/images/icons/ui/pet_chick.vsvg_c",
+    "panorama/images/icons/ui/pet_effect_beam.vsvg_c",
+    "panorama/images/icons/ui/pet_effect_bubbles.vsvg_c",
+    "panorama/images/icons/ui/pet_effect_confetti.vsvg_c",
+    "panorama/images/icons/ui/pet_effect_explosion.vsvg_c",
+    "panorama/images/icons/ui/pet_effect_feather.vsvg_c",
+    "panorama/images/icons/ui/pet_effect_fire.vsvg_c",
+    "panorama/images/icons/ui/pet_effect_laser.vsvg_c",
+    "panorama/images/icons/ui/pet_effect_lightning.vsvg_c",
+    "panorama/images/icons/ui/pet_effect_smoke.vsvg_c",
+    "panorama/images/icons/ui/pet_effect_sparks.vsvg_c",
+    "panorama/images/icons/ui/pet_egg.vsvg_c",
+    "panorama/images/icons/ui/pet_feed.vsvg_c",
+    "panorama/images/icons/ui/pet_field_report.vsvg_c",
+    "panorama/images/icons/ui/pet_hen.vsvg_c",
+    "panorama/images/icons/ui/pet_id_card.vsvg_c",
+    "panorama/images/icons/ui/pet_kid.vsvg_c",
+    "panorama/images/icons/ui/pet_molt.vsvg_c",
+    "panorama/images/icons/ui/pet_pullet.vsvg_c",
+    "panorama/images/icons/ui/pet_retire.vsvg_c",
+    "panorama/images/icons/ui/photo.vsvg_c",
+    "panorama/images/icons/ui/shrink_video.vsvg_c",
+    "panorama/images/icons/ui/zoom_in.vsvg_c",
+    "panorama/scripts/popups/pet_photo_tag.vts_c",
+    "textures/dev/blue_noise_256.vtex_c",
+    "textures/dev/brdf_lut.vtex_c"
+  ],
+  "omittedGpuMorphReferences": [
+    "models/chicken/chick.vgcxdata",
+    "models/chicken/chicken.vgcxdata",
+    "models/chicken/chicken_polish.vgcxdata",
+    "models/chicken/chicken_silkie.vgcxdata",
+    "models/chicken/chicknegg.vgcxdata",
+    "models/chicken/egg_pristine.vgcxdata"
+  ],
+  "files": [
+    {
+      "path": "animation/anims/chicken/snapshot/chick_snapshots_01.vnmclip_c",
+      "bytes": 4576,
+      "sha256": "fb86af55d90bb9d3e822152cfa989d67d4cbf859acfa3c24467c84b2ade03ee7",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/snapshot/chick_snapshots_01_adolescent.vnmclip_c",
+      "bytes": 4675,
+      "sha256": "d27985694359523db947633aa414b9aaedd30cda3edaac428092b7aa90dc5a4e",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/snapshot/chick_snapshots_02.vnmclip_c",
+      "bytes": 4598,
+      "sha256": "95d9cac9ccedb979726edc55351baab354011406540ead491d4ea47b1e479dcd",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/snapshot/chick_snapshots_02_adolescent.vnmclip_c",
+      "bytes": 4644,
+      "sha256": "dafc0c4033f0751cb45453045c3391bb2fd8e01281158c94c6ae8f940dd91443",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/snapshot/chick_snapshots_03.vnmclip_c",
+      "bytes": 4664,
+      "sha256": "670a6e33be2ca857968a54d49404c3eecdbe189cf1a45f2badc78c40dcde94d5",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/snapshot/chick_snapshots_04.vnmclip_c",
+      "bytes": 4557,
+      "sha256": "80237c056e33a0fb7d9fea22552a6452be7b2c83489fba37495c6ba42b4e60be",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/snapshot/chick_snapshots_04_adolescent.vnmclip_c",
+      "bytes": 4626,
+      "sha256": "c88c85bade73c81942444365db3612ee20019d501ea19c7ddacaf0e1094ad184",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/snapshot/chick_snapshots_05.vnmclip_c",
+      "bytes": 4702,
+      "sha256": "46d699430a6ec08e2d97d12dfa896e707ed4ba159ce583ce2c535dd534162032",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/snapshot/chick_snapshots_05_adolescent.vnmclip_c",
+      "bytes": 4716,
+      "sha256": "9be7bbb0cffde252357e8f5512739bf0071b6dd99f8dfcf60d3baa84e5c609c5",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/snapshot/chick_snapshots_06.vnmclip_c",
+      "bytes": 4620,
+      "sha256": "b1254ec4bab9e2d54e43b90b7047a6c04f1979bab79f83319fca3ad7cbd2f878",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/snapshot/chick_snapshots_07.vnmclip_c",
+      "bytes": 4619,
+      "sha256": "5e01aeb7562a3218849f9d51b21beb97ae48388ac37839b0ecbf5bccbb8119f5",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/snapshot/chick_snapshots_08_baby.vnmclip_c",
+      "bytes": 4560,
+      "sha256": "6e483cf148d51cf78725657b25c98151e594653a257e0319bb1549dbbf98659d",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/snapshot/chick_snapshots_09_baby.vnmclip_c",
+      "bytes": 4628,
+      "sha256": "716e2b4452550b0cdd503ab293c0b019a4636dc182c4784d8745f06ea8dd4c83",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/snapshot/chick_snapshots_10_baby.vnmclip_c",
+      "bytes": 4688,
+      "sha256": "08fdc4876f83f03355300cbb37504ce344641c3e44b132bcb5ef664f7c742b19",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/snapshot/chick_snapshots_char01.vnmclip_c",
+      "bytes": 4582,
+      "sha256": "9750862574f4f15bd45cdaebd16f7dd6e5ae15e4a50823444b19de1d6862f7b7",
+      "dependencies": [
+        "animation/skeletons/characters/worldmodel.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/snapshot/chick_snapshots_char01_adolescent.vnmclip_c",
+      "bytes": 4587,
+      "sha256": "0331832ff1427f28a84fa5bf7d9ce708da7e24484f3ce3dc1e2d1ec4768ec867",
+      "dependencies": [
+        "animation/skeletons/characters/worldmodel.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/snapshot/chick_snapshots_char02.vnmclip_c",
+      "bytes": 4618,
+      "sha256": "75c9be6cad3bb527dca5f45fd00f8f55e9aa61e623829a105ef11c12a3f8a7d7",
+      "dependencies": [
+        "animation/skeletons/characters/worldmodel.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/snapshot/chick_snapshots_char02_adolescent.vnmclip_c",
+      "bytes": 4629,
+      "sha256": "a8b3d193dbb370254ac61dd21f8a12ba8964ad5727f037ec53bb86f3e70fb7b7",
+      "dependencies": [
+        "animation/skeletons/characters/worldmodel.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/snapshot/chick_snapshots_char03.vnmclip_c",
+      "bytes": 4601,
+      "sha256": "b6a698d19dcfc53c50152e6441fd55d11a3d42ad5f832ea3cbce0cbb103d818a",
+      "dependencies": [
+        "animation/skeletons/characters/worldmodel.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/snapshot/chick_snapshots_char04.vnmclip_c",
+      "bytes": 4604,
+      "sha256": "16aad2f1b6e1b22d6f561c9c7dfc3a08a814ba36266d0d8f24cbfd9614d9526a",
+      "dependencies": [
+        "animation/skeletons/characters/worldmodel.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/snapshot/chick_snapshots_char04_adolescent.vnmclip_c",
+      "bytes": 4622,
+      "sha256": "5a38699b4018a12056ab829579d5c33715eaacc037f49eb0a9ec07512cff2367",
+      "dependencies": [
+        "animation/skeletons/characters/worldmodel.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/snapshot/chick_snapshots_char05.vnmclip_c",
+      "bytes": 4609,
+      "sha256": "ae57cf0657c5dc526252eb5e77c3bd0cfcf9cbeac7088d968d3d3d28993d3840",
+      "dependencies": [
+        "animation/skeletons/characters/worldmodel.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/snapshot/chick_snapshots_char05_adolescent.vnmclip_c",
+      "bytes": 4625,
+      "sha256": "17e2b5e7c8ea02fa831f1993a476c227a26e1539826d8400646fb1afcea87ad0",
+      "dependencies": [
+        "animation/skeletons/characters/worldmodel.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/snapshot/chick_snapshots_char06.vnmclip_c",
+      "bytes": 4613,
+      "sha256": "35367773424f66b9a908bc719f3e4ec48867633d0214620d9c010835c665c0e4",
+      "dependencies": [
+        "animation/skeletons/characters/worldmodel.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/snapshot/chick_snapshots_char07.vnmclip_c",
+      "bytes": 4607,
+      "sha256": "9beaac8e1098359ac36d9a84aea6497ede35ff9dcb2262ce0127625a9cfb12a2",
+      "dependencies": [
+        "animation/skeletons/characters/worldmodel.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/snapshot/chick_snapshots_char08_baby.vnmclip_c",
+      "bytes": 4560,
+      "sha256": "163d80b8eef4f8671cc79033114f7f1bdaec8eeecd34d6cf09873f19e02c91cc",
+      "dependencies": [
+        "animation/skeletons/characters/worldmodel.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/snapshot/chick_snapshots_char09_baby.vnmclip_c",
+      "bytes": 4644,
+      "sha256": "a2ccab2bf61863d1752aa8e62666eeeed407490ee5bf28be1a139874a404f01d",
+      "dependencies": [
+        "animation/skeletons/characters/worldmodel.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/snapshot/chick_snapshots_char10_baby.vnmclip_c",
+      "bytes": 4640,
+      "sha256": "924c591070c5f9c7997275099cdaf4905221906d9f1d6228dcb79cfbdab2748c",
+      "dependencies": [
+        "animation/skeletons/characters/worldmodel.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/ui/chick_feed01.vnmclip_c",
+      "bytes": 149349,
+      "sha256": "d512d944d4321227afce89b9cea20a8840b205978ef8a14a406539c8d7ef6b4e",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/ui/chick_feed01_loop.vnmclip_c",
+      "bytes": 92394,
+      "sha256": "8bcfc35d4a592c970095f2c8de47e466c6cf1cbe1957bfabd63052e5504b5828",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/ui/chick_feed_to_sad01.vnmclip_c",
+      "bytes": 218006,
+      "sha256": "cfed390d0187f33941bf680713b3a2e6a6c76fdc6de0d95e2089958f5d00e247",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/ui/chick_feed_to_sad01_loop.vnmclip_c",
+      "bytes": 23822,
+      "sha256": "4da8f83eb281b2685c04357000e9e4fbfe2a7f267e492b8459ca7b7348fb9fd8",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/ui/chick_retirement01.vnmclip_c",
+      "bytes": 69408,
+      "sha256": "1b0bfcc1e70a4deee6fafe3eef99e637ff0fa9d69012e13df0b5771e3696d59e",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/ui/chick_retirement02.vnmclip_c",
+      "bytes": 50766,
+      "sha256": "d805ae3ea96ff2722259ac9eafdc31d9846eee336502e8b30e1637b2fb03fbc4",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/ui/chick_retirement02_baby.vnmclip_c",
+      "bytes": 50701,
+      "sha256": "985ef7c1400bf24082e74137d6ed343778d0f0e031446970d158825b12d15d3a",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/ui/chick_reveal.vnmclip_c",
+      "bytes": 121057,
+      "sha256": "2f4aaf124fcc02c5c37d13b56ec24f7e13acda280df36f7e64a5b1b9c9e8c66a",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/ui/chick_reveal02.vnmclip_c",
+      "bytes": 123350,
+      "sha256": "e38bcf21a592f00793bb70a4b087ddd0ba3d30029a7499bbb3930c3e6cf69cb3",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/ui/chick_reveal02_loop.vnmclip_c",
+      "bytes": 82418,
+      "sha256": "0e0b362e172a6157553320ece51e9ee5af32bd3353c52c35fb7c25febee342c1",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/ui/chick_reveal_loop.vnmclip_c",
+      "bytes": 66817,
+      "sha256": "25b92c3797bf6f37aa586d66bd5631fe84b099806bf815e3782cc567398bdf53",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/ui/chick_shoulder_01.vnmclip_c",
+      "bytes": 68007,
+      "sha256": "ef37eebbfa6dd8dfe2dfa5caf2ad77cd4cde6e9b8a941fe9048b80b558c56522",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/ui/chick_shoulder_02.vnmclip_c",
+      "bytes": 65068,
+      "sha256": "bfc05bef6f56eaacd12e01eb5071e14c04c9492b621c0abb1371422ff9100ea2",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/ui/chick_shoulder_03.vnmclip_c",
+      "bytes": 82935,
+      "sha256": "5c404d509da29b7af302e7c746255c8fb28f635d72d718457d1ee7943d6643c8",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/ui/chickbaby_egg_hatch01.vnmclip_c",
+      "bytes": 55954,
+      "sha256": "c017a757a9303a041f36660bf5e0151ff2288ae45db3f1ec14fe23d9105b2520",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/ui/chickbaby_egg_hatch01alt.vnmclip_c",
+      "bytes": 195511,
+      "sha256": "9119024816801bb2044f1816595ef9859464730fe6fabc7dcb65f4283eef0d32",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/ui/chickbaby_egg_hatch01alt_loop.vnmclip_c",
+      "bytes": 114327,
+      "sha256": "b2c263b5e948c2c71d87cc4168ef1bebf394cbecfca0a8a28dabc6f87173d3e3",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/ui/chickbaby_egg_hatch02.vnmclip_c",
+      "bytes": 108713,
+      "sha256": "b196b4eb64ebb22633dd695803bd0f02a82495d177bae2cde8e32ac4dd032727",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/ui/chickbaby_egg_hatch02_loop.vnmclip_c",
+      "bytes": 58004,
+      "sha256": "3f3a459d30c6c8bb188043139f7b2c286a30f4f03626b871042b879b358911ed",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/ui/chickbaby_feed02.vnmclip_c",
+      "bytes": 116861,
+      "sha256": "bcac9f8887ad67fbf0700fbcd3a98ca098f297629242b758562d0eb52edd3134",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/ui/chickbaby_feed02_loop.vnmclip_c",
+      "bytes": 50905,
+      "sha256": "818800726a38928f5280ab5dc3048a6cb606c523fc842058a19e3bff905d38ae",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/ui/chickbaby_feed_to_sad02.vnmclip_c",
+      "bytes": 192818,
+      "sha256": "4e59d097eb8c1ba5a6a601109c05823be90ed28402750859383119f940bcb322",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/ui/chickbaby_feed_to_sad02_loop.vnmclip_c",
+      "bytes": 17025,
+      "sha256": "818a9c9c2b9b6d6eea016a8ec746a1b1ef8257d9ff5b3b345e5d8a0589ad70e8",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_0lr.vnmclip_c",
+      "bytes": 4472,
+      "sha256": "e1d11bbf8322ac9df3c13ea64ed78f84ca3b9acbc511507743ab0dcc1661ba20",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_135l.vnmclip_c",
+      "bytes": 8336,
+      "sha256": "b53e592c12d6e561f34d8efdb11c0d13e43e7eac4b3171464f08d5ce0852982e",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_135r.vnmclip_c",
+      "bytes": 8669,
+      "sha256": "69a4dcbc546c04060ecdf4c5a3ffdbed4760cdaf4af59ce71d555354834f35d3",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_180.vnmclip_c",
+      "bytes": 10787,
+      "sha256": "c8a891f2dd04e88ad6a0cc6ea06b02a2f6fe0fa7ab275ec4dac4a368ba192b3f",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_180r.vnmclip_c",
+      "bytes": 10717,
+      "sha256": "2ced4a9593c47a89eba80481b16370cc207760bf3c7f34859393e5da5a44f355",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_45l.vnmclip_c",
+      "bytes": 6275,
+      "sha256": "3b11d640520757bde675ed1e074bbe29488ed985fe5fae0b2974bdad247f522f",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_45r.vnmclip_c",
+      "bytes": 6284,
+      "sha256": "b924277ec874ec17c22505b40d6c5b80d3369556438b9bba5ccb4db40701a22a",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_90l.vnmclip_c",
+      "bytes": 7188,
+      "sha256": "8e9b18f6bd0b7cee2d6372825b7749fec9d8c04232d8808e9ce461ae6ce426bf",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_90r.vnmclip_c",
+      "bytes": 7624,
+      "sha256": "4a3540471cc58591e1a6c49a89cd8e9643c8005e996b314474f8ddf3a30d389f",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_fall_flap.vnmclip_c",
+      "bytes": 11305,
+      "sha256": "8ca1d75223752b20437d4de47c2cecf8aea6bef491edec18ca51d730afe9e963",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_hop.vnmclip_c",
+      "bytes": 9919,
+      "sha256": "30e65daaa7f0bcac0915fafbd2deb884f7b563492d09354a2060d1ecb150c7d0",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_idle01.vnmclip_c",
+      "bytes": 49864,
+      "sha256": "7b9ef9ba1bd36ff9bf148ccd7d0da0a66bd9f74b957228216d8ca5626d9e95ea",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_idle01_water.vnmclip_c",
+      "bytes": 73751,
+      "sha256": "35c5bf49c42c5cf5e2f7a6754a59ad3484b85860a7baa57dc8047a45277ae3c2",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_idle02.vnmclip_c",
+      "bytes": 72547,
+      "sha256": "66b88b377b71cbd6d54acc8905e1e7548ec4d6e8df5395182810cb3b3bf1eb11",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_idle03.vnmclip_c",
+      "bytes": 47846,
+      "sha256": "676f193499d461af922e2ac007a63c608e47718af00a1805dd4d1ee64cf40ffe",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_idle03alt.vnmclip_c",
+      "bytes": 141116,
+      "sha256": "acfb675e6907fcaa7a36cc51b5a751f6c5a79e6c171e2d5ccbbaa7e04d939a35",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_idle04.vnmclip_c",
+      "bytes": 58759,
+      "sha256": "57029c3de3067f5abee8265aed3de57cbe7dde5308f5d15ef82d451640293437",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_idle05.vnmclip_c",
+      "bytes": 72481,
+      "sha256": "75d6feb064197891fca4185e3040d03bba073735a23391249821d103c8a3fbbc",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_idle06.vnmclip_c",
+      "bytes": 51799,
+      "sha256": "6a420386c540df513377c9174d3c1649857f9f1f4b138df460d2d686922c0805",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_idle07.vnmclip_c",
+      "bytes": 33154,
+      "sha256": "7e927efc03d45a4d8cc51ef4d07f8cf49f213a3d295aea1c6f31e0e8fa8aae5c",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_land.vnmclip_c",
+      "bytes": 11737,
+      "sha256": "74a649e3f27ef0a10498d5e00b94e53302679442dbcd4d9d392c3b32cd17a840",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_land_water.vnmclip_c",
+      "bytes": 12617,
+      "sha256": "a4ba62b1bf8d5c8a8563b169cf245490806b15cd332f5ca662fc4793b5653997",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_react01.vnmclip_c",
+      "bytes": 18192,
+      "sha256": "96a16a7d00f79c577bded42a5e6983201a9ecbe22466feb7dc8b0cfdec47111d",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_react02.vnmclip_c",
+      "bytes": 20122,
+      "sha256": "1c369110da9509836286f352c5f40c9a62db13ac28529471a5c12393fb18607e",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_react03.vnmclip_c",
+      "bytes": 20929,
+      "sha256": "b46cb8034279be5503c65899cfb8c420274625bfedb16b6fcb9f6c74d53f6b43",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_react04.vnmclip_c",
+      "bytes": 14490,
+      "sha256": "53dc55b0d14ea3eb5347bd7b9f96d29ce4ef1bdb2138697e551d7ade09fb881e",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_react05.vnmclip_c",
+      "bytes": 14625,
+      "sha256": "e7639879782d650dc3fa47d39bff8adad8954dda300fd8ea9d6036669ffcb208",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_run.vnmclip_c",
+      "bytes": 15674,
+      "sha256": "83f420bc86ba66f72ce5b5ad82905b896cd91ecf04e507d363414391f218f265",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_run_swim.vnmclip_c",
+      "bytes": 15887,
+      "sha256": "24962762de2b9c2daa5509ce1daad134ec1875ddbca4cb02539a9ff8cd055e2d",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_runflap.vnmclip_c",
+      "bytes": 16324,
+      "sha256": "be14156dea1cf090903007d9dabd5c3be218e7fefc503d0ca95eeb0c6a2a92b7",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_scared01.vnmclip_c",
+      "bytes": 16475,
+      "sha256": "13b9c094e72728c50aa0c6c180629ba10d8713ba1e1557d9383c61f7941ead08",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_scared02.vnmclip_c",
+      "bytes": 13816,
+      "sha256": "373b4c618187767290b5baf420de6a774e0296e07e077b7e34368d047fcde1e4",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_sleep_flinch01.vnmclip\u002Bnon_additive.vnmclip_c",
+      "bytes": 7895,
+      "sha256": "8cd94700114927660ad0d9ab2a956732934c540f72d2d5605270df6e22caa7f0",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_sleep_flinch01.vnmclip_c",
+      "bytes": 6414,
+      "sha256": "f7bafdd80b97aa108a8774d99a0ca2fed2f9d41901543e2734bbf3bd0026db69",
+      "dependencies": [
+        "animation/anims/chicken/world/chick_sleep_flinch01.vnmclip\u002Bnon_additive.vnmclip_c",
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_sleep_flinch02.vnmclip\u002Bnon_additive.vnmclip_c",
+      "bytes": 6837,
+      "sha256": "332b05c9c4923b4d380c7258e22f3d60a0dd7d9a99fa96e1483fc4f0e498fc67",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_sleep_flinch02.vnmclip_c",
+      "bytes": 5458,
+      "sha256": "cf996e6cec12517c4c78180a626e69e37ac325f4f27562c741ec62406a098084",
+      "dependencies": [
+        "animation/anims/chicken/world/chick_sleep_flinch02.vnmclip\u002Bnon_additive.vnmclip_c",
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_sleep_flinch03.vnmclip\u002Bnon_additive.vnmclip_c",
+      "bytes": 7529,
+      "sha256": "79e3c6b2e1183760df6b99d88df7be570bebeee716d1f151429ba2ae54281b7f",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_sleep_flinch03.vnmclip_c",
+      "bytes": 5981,
+      "sha256": "6d3fc8f0743fea3202f5bf664d934aefa4b55f201fa5ebbba24a8748e62684f2",
+      "dependencies": [
+        "animation/anims/chicken/world/chick_sleep_flinch03.vnmclip\u002Bnon_additive.vnmclip_c",
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_sleep_loop01.vnmclip_c",
+      "bytes": 45220,
+      "sha256": "e4afe2b2f906cd2fdf61620b328bad675b84c4d6f2f0dface0d7472bfd99ebc6",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_squat_loop01.vnmclip_c",
+      "bytes": 31370,
+      "sha256": "80110f8faba07d088549adb8760722df2e990fb7d53e65b0bb815e2e6347b0bd",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_squat_loop02.vnmclip_c",
+      "bytes": 45259,
+      "sha256": "a1684466e6b71bed617302b6be2070e6fa06e4c6f1443ef94c4803cfaa0a66c3",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_squat_loop03.vnmclip_c",
+      "bytes": 51167,
+      "sha256": "7b95e2ef509575e5562048646eb826e0d2f8ea04bcaff49327be12388eae2257",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_squat_loop04.vnmclip_c",
+      "bytes": 56197,
+      "sha256": "6c657bccf2eff9258b4b87724e535b256bff545fc60b9c6bacc8e6c4a4add7d5",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_squat_stand.vnmclip_c",
+      "bytes": 13038,
+      "sha256": "1a43dfd9de6af21fd9791fe66d7668cee66cec2e43dca30e9525fa58f35c20bf",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_squat_start.vnmclip_c",
+      "bytes": 10325,
+      "sha256": "0553ee87e6b5bc5e26f84df5e82cf4b35969b3232cf016c580a55aeffaefe635",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_start_walk.vnmclip_c",
+      "bytes": 9745,
+      "sha256": "e9cf9108ca078a547c2575c202a13bda27fd112850630605c88a922a1399fdd6",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_trick01.vnmclip_c",
+      "bytes": 23485,
+      "sha256": "0a7d471065ee6a8a5864e14bb1732faf6ec953284b700fc542b03617b6f57e97",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_trick02.vnmclip_c",
+      "bytes": 32592,
+      "sha256": "9559640f9ee70fc464b3cb327080bc03baa90664ed72ae4a5e4c0b742af00f3f",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_trick03.vnmclip_c",
+      "bytes": 39031,
+      "sha256": "94c9517e04156ddb6934b0f0222084936174554d31b6fbcb5174a89a5aff5a32",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_trick04.vnmclip_c",
+      "bytes": 38696,
+      "sha256": "aa54377052f2f2bbe4ab6ee091edcad7ce2bad26673c991b5b7f04a37e24cbe5",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_trick05.vnmclip_c",
+      "bytes": 24650,
+      "sha256": "9ec334a66a8142b9079c4186b3bdd62e678d2800758215da222cd5f293359d0e",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_trick06.vnmclip_c",
+      "bytes": 45635,
+      "sha256": "ea1217065ed758d569daed2922a54e290115b08a226997363eba99a3b81eef95",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_trick07.vnmclip_c",
+      "bytes": 49698,
+      "sha256": "f96b830a703ec902a2f54e772a079783ca479194da8ea6aab91a04c58c93c0d1",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_trick08.vnmclip_c",
+      "bytes": 32860,
+      "sha256": "ee63cb9a99558e541b56d5df8ded69204d87fa890ea88fd5f057596fba4be1c8",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_trick09.vnmclip_c",
+      "bytes": 29070,
+      "sha256": "f3812433f2dbbb18ffcf3ec3b7703e4909dc0afce3479224005ef1b481dfcb3e",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_trick10.vnmclip_c",
+      "bytes": 64091,
+      "sha256": "b7cbaff2adc61802f21a3480731d4e68ff546e672787c17c48c62dedd04a1652",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_trick11.vnmclip_c",
+      "bytes": 103547,
+      "sha256": "f3d464ccfcb0d64e163786a6783fc107719711ac750318d78886f7207ffff4f1",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_trick12.vnmclip_c",
+      "bytes": 31387,
+      "sha256": "e54a5683e16abdb7c1b8e1d6f3463accaa3ede8281091d38f319009b1df447db",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_trick13.vnmclip_c",
+      "bytes": 32211,
+      "sha256": "5438494b5b048313ad54703de9214e3f02633fbeb207a57a872c3c927bb8336e",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_walk.vnmclip_c",
+      "bytes": 16264,
+      "sha256": "e1341162b9ff4be1b806f6b028765eb803f0150c385f7347d05c3513906b13f7",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/chicken/world/chick_walk_swim.vnmclip_c",
+      "bytes": 10715,
+      "sha256": "d9ca29ec047c221654a94ed99b9e4a9ff0323d770c3179d759f28a45eff4f3da",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/egg/chick_egg_idle_phase01_still.vnmclip_c",
+      "bytes": 2138,
+      "sha256": "0255015ed4f3ff5ddb31261f941ad7aea8cf0a0fbcf511022f3ce9c16fd17374",
+      "dependencies": [
+        "animation/skeletons/egg/pristine_egg_world.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/egg/chick_egg_idle_phase02.vnmclip_c",
+      "bytes": 4366,
+      "sha256": "a2a18b023def0c4c624a7036df69051dae68205b2a2b409311d056424073ac2b",
+      "dependencies": [
+        "animation/skeletons/egg/pristine_egg_world.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/egg/chick_egg_idle_phase03.vnmclip_c",
+      "bytes": 5039,
+      "sha256": "27abe5a499df6e8c116cb98ba3fd3e7b68109d7de09645400d58412adcfb3bb9",
+      "dependencies": [
+        "animation/skeletons/egg/pristine_egg_world.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/egg/chick_egg_idle_phase04.vnmclip_c",
+      "bytes": 5364,
+      "sha256": "3e6c5a90f24964c5d597ff3b7502823972f916c59e3e7ca8d278cc89f73373b9",
+      "dependencies": [
+        "animation/skeletons/egg/pristine_egg_world.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/egg/chick_egg_reaction01.vnmclip_c",
+      "bytes": 2347,
+      "sha256": "7d65a261361bdb29946bd24e215332443bd765ff7aab4f9d9d5d5cd9dfff45e7",
+      "dependencies": [
+        "animation/skeletons/egg/pristine_egg_world.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/egg/chick_egg_reaction02.vnmclip_c",
+      "bytes": 2351,
+      "sha256": "fbc5e58104d83b4ce1caca812f6cbb5708a49d2f1d8ecc617b2a140633e5b902",
+      "dependencies": [
+        "animation/skeletons/egg/pristine_egg_world.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/egg/chick_egg_reaction03.vnmclip_c",
+      "bytes": 2665,
+      "sha256": "f8749674427531682843714bc34d6d40542ce0703ed53c9691ef3e9a6ccfb0c8",
+      "dependencies": [
+        "animation/skeletons/egg/pristine_egg_world.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/egg/chick_egg_reaction04.vnmclip_c",
+      "bytes": 2416,
+      "sha256": "54146021bd46282f878428caeefc59cda163de369710203324f04c38b1544fd2",
+      "dependencies": [
+        "animation/skeletons/egg/pristine_egg_world.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/egg/chick_egg_reaction05.vnmclip_c",
+      "bytes": 2564,
+      "sha256": "829cc57f304ccd3c21927d0baebcbb61a36cdc661542d79949f90d2263b51725",
+      "dependencies": [
+        "animation/skeletons/egg/pristine_egg_world.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/egg/chick_egg_reaction06.vnmclip_c",
+      "bytes": 2706,
+      "sha256": "78d68f243ef5e20e0c5daab255f1603c2a5349a85b31973f73516f0df8c71ec3",
+      "dependencies": [
+        "animation/skeletons/egg/pristine_egg_world.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/egg/chick_egg_reaction07.vnmclip_c",
+      "bytes": 2660,
+      "sha256": "9c4a31fa22524b3586b95b5cc413129215eed28e5751dd749f778fd028ec19c3",
+      "dependencies": [
+        "animation/skeletons/egg/pristine_egg_world.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/egg/chick_egg_reaction08.vnmclip_c",
+      "bytes": 2601,
+      "sha256": "5a65e8590cc967ca0e5cf216cc621978526abec4996f9e06c927f38450241aba",
+      "dependencies": [
+        "animation/skeletons/egg/pristine_egg_world.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/viewmodel/chicken/chick_draw.vnmclip_c",
+      "bytes": 27830,
+      "sha256": "23bbe3fce6e131bc300869a781f80f400d23993af1fb8d3abee92a86ac081c1f",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/viewmodel/chicken/chick_idle01.vnmclip_c",
+      "bytes": 38084,
+      "sha256": "86acc743650bf2ede7318040e81df82d5b2e4706eadecc9fcb26ab2c81ef3699",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/viewmodel/chicken/chick_idle02.vnmclip_c",
+      "bytes": 90720,
+      "sha256": "6cc82282ca803a68a1f410172f0e424fa6fbb5be3660593431f0de3a5978de91",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/viewmodel/chicken/chickbaby_draw.vnmclip_c",
+      "bytes": 10962,
+      "sha256": "b714eec4590d030da6272518fd0039c0a6eb0df172a3b976b4986375c6d3695b",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/viewmodel/chicken/chickbaby_idle01.vnmclip_c",
+      "bytes": 34307,
+      "sha256": "b2cd771aa97d2c29bb3ea7a4b7200c8e7ace01b7b6e57aa878a9fd5983f99791",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/viewmodel/chicken/chickbaby_idle02.vnmclip_c",
+      "bytes": 68843,
+      "sha256": "33cfbaab3993fb7a591f202873051a30a64062f3a66909dedeffde5fb07d8b5c",
+      "dependencies": [
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/viewmodel/egg/egg_draw.vnmclip_c",
+      "bytes": 3319,
+      "sha256": "e70a525007f14fbe4687881f75045bb046dab9f127b7bed32febbab6c837758c",
+      "dependencies": [
+        "animation/skeletons/egg/pristine_egg_world.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/viewmodel/egg/egg_idle01.vnmclip_c",
+      "bytes": 3979,
+      "sha256": "2e1e946697ff466a03548b2c8e3dd3cc54a76de693c924a1d9af4cade32de5e6",
+      "dependencies": [
+        "animation/skeletons/egg/pristine_egg_world.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/anims/viewmodel/egg/egg_idle02.vnmclip_c",
+      "bytes": 5638,
+      "sha256": "7cbc482f8322be4c6dec6b1d3268ede615b196d3e6ef37f44c04aab3f94b3081",
+      "dependencies": [
+        "animation/skeletons/egg/pristine_egg_world.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/graphs/chicken/chicken.vnmgraph_c",
+      "bytes": 28441,
+      "sha256": "5334a3c7d4907ca5301e55c8a119a88f7aa95def0ef7488d137d2ca8458911b9",
+      "dependencies": [
+        "animation/anims/chicken/snapshot/chick_snapshots_01.vnmclip_c",
+        "animation/anims/chicken/snapshot/chick_snapshots_01_adolescent.vnmclip_c",
+        "animation/anims/chicken/snapshot/chick_snapshots_02.vnmclip_c",
+        "animation/anims/chicken/snapshot/chick_snapshots_02_adolescent.vnmclip_c",
+        "animation/anims/chicken/snapshot/chick_snapshots_03.vnmclip_c",
+        "animation/anims/chicken/snapshot/chick_snapshots_04.vnmclip_c",
+        "animation/anims/chicken/snapshot/chick_snapshots_04_adolescent.vnmclip_c",
+        "animation/anims/chicken/snapshot/chick_snapshots_05.vnmclip_c",
+        "animation/anims/chicken/snapshot/chick_snapshots_05_adolescent.vnmclip_c",
+        "animation/anims/chicken/snapshot/chick_snapshots_06.vnmclip_c",
+        "animation/anims/chicken/snapshot/chick_snapshots_07.vnmclip_c",
+        "animation/anims/chicken/snapshot/chick_snapshots_08_baby.vnmclip_c",
+        "animation/anims/chicken/snapshot/chick_snapshots_09_baby.vnmclip_c",
+        "animation/anims/chicken/snapshot/chick_snapshots_10_baby.vnmclip_c",
+        "animation/anims/chicken/ui/chick_feed01.vnmclip_c",
+        "animation/anims/chicken/ui/chick_feed_to_sad01.vnmclip_c",
+        "animation/anims/chicken/ui/chick_feed_to_sad01_loop.vnmclip_c",
+        "animation/anims/chicken/ui/chick_retirement01.vnmclip_c",
+        "animation/anims/chicken/ui/chick_retirement02.vnmclip_c",
+        "animation/anims/chicken/ui/chick_retirement02_baby.vnmclip_c",
+        "animation/anims/chicken/ui/chick_reveal.vnmclip_c",
+        "animation/anims/chicken/ui/chick_reveal02.vnmclip_c",
+        "animation/anims/chicken/ui/chick_reveal02_loop.vnmclip_c",
+        "animation/anims/chicken/ui/chick_reveal_loop.vnmclip_c",
+        "animation/anims/chicken/ui/chick_shoulder_01.vnmclip_c",
+        "animation/anims/chicken/ui/chick_shoulder_02.vnmclip_c",
+        "animation/anims/chicken/ui/chick_shoulder_03.vnmclip_c",
+        "animation/anims/chicken/ui/chickbaby_egg_hatch01alt.vnmclip_c",
+        "animation/anims/chicken/ui/chickbaby_egg_hatch01alt_loop.vnmclip_c",
+        "animation/anims/chicken/ui/chickbaby_egg_hatch02.vnmclip_c",
+        "animation/anims/chicken/ui/chickbaby_egg_hatch02_loop.vnmclip_c",
+        "animation/anims/chicken/ui/chickbaby_feed02.vnmclip_c",
+        "animation/anims/chicken/ui/chickbaby_feed_to_sad02.vnmclip_c",
+        "animation/anims/chicken/ui/chickbaby_feed_to_sad02_loop.vnmclip_c",
+        "animation/anims/chicken/world/chick_0lr.vnmclip_c",
+        "animation/anims/chicken/world/chick_135l.vnmclip_c",
+        "animation/anims/chicken/world/chick_135r.vnmclip_c",
+        "animation/anims/chicken/world/chick_180.vnmclip_c",
+        "animation/anims/chicken/world/chick_180r.vnmclip_c",
+        "animation/anims/chicken/world/chick_45l.vnmclip_c",
+        "animation/anims/chicken/world/chick_45r.vnmclip_c",
+        "animation/anims/chicken/world/chick_90l.vnmclip_c",
+        "animation/anims/chicken/world/chick_90r.vnmclip_c",
+        "animation/anims/chicken/world/chick_fall_flap.vnmclip_c",
+        "animation/anims/chicken/world/chick_idle01.vnmclip_c",
+        "animation/anims/chicken/world/chick_idle01_water.vnmclip_c",
+        "animation/anims/chicken/world/chick_idle02.vnmclip_c",
+        "animation/anims/chicken/world/chick_idle03.vnmclip_c",
+        "animation/anims/chicken/world/chick_idle03alt.vnmclip_c",
+        "animation/anims/chicken/world/chick_land.vnmclip_c",
+        "animation/anims/chicken/world/chick_land_water.vnmclip_c",
+        "animation/anims/chicken/world/chick_react01.vnmclip_c",
+        "animation/anims/chicken/world/chick_react02.vnmclip_c",
+        "animation/anims/chicken/world/chick_run.vnmclip_c",
+        "animation/anims/chicken/world/chick_run_swim.vnmclip_c",
+        "animation/anims/chicken/world/chick_runflap.vnmclip_c",
+        "animation/anims/chicken/world/chick_sleep_flinch01.vnmclip_c",
+        "animation/anims/chicken/world/chick_sleep_flinch02.vnmclip_c",
+        "animation/anims/chicken/world/chick_sleep_flinch03.vnmclip_c",
+        "animation/anims/chicken/world/chick_sleep_loop01.vnmclip_c",
+        "animation/anims/chicken/world/chick_squat_loop01.vnmclip_c",
+        "animation/anims/chicken/world/chick_squat_loop03.vnmclip_c",
+        "animation/anims/chicken/world/chick_squat_loop04.vnmclip_c",
+        "animation/anims/chicken/world/chick_squat_stand.vnmclip_c",
+        "animation/anims/chicken/world/chick_squat_start.vnmclip_c",
+        "animation/anims/chicken/world/chick_start_walk.vnmclip_c",
+        "animation/anims/chicken/world/chick_trick01.vnmclip_c",
+        "animation/anims/chicken/world/chick_trick02.vnmclip_c",
+        "animation/anims/chicken/world/chick_trick03.vnmclip_c",
+        "animation/anims/chicken/world/chick_trick04.vnmclip_c",
+        "animation/anims/chicken/world/chick_trick05.vnmclip_c",
+        "animation/anims/chicken/world/chick_trick06.vnmclip_c",
+        "animation/anims/chicken/world/chick_trick07.vnmclip_c",
+        "animation/anims/chicken/world/chick_trick08.vnmclip_c",
+        "animation/anims/chicken/world/chick_trick09.vnmclip_c",
+        "animation/anims/chicken/world/chick_trick10.vnmclip_c",
+        "animation/anims/chicken/world/chick_trick11.vnmclip_c",
+        "animation/anims/chicken/world/chick_trick12.vnmclip_c",
+        "animation/anims/chicken/world/chick_trick13.vnmclip_c",
+        "animation/anims/chicken/world/chick_walk.vnmclip_c",
+        "animation/anims/chicken/world/chick_walk_swim.vnmclip_c",
+        "animation/anims/viewmodel/chicken/chick_draw.vnmclip_c",
+        "animation/anims/viewmodel/chicken/chick_idle01.vnmclip_c",
+        "animation/anims/viewmodel/chicken/chick_idle02.vnmclip_c",
+        "animation/anims/viewmodel/chicken/chickbaby_draw.vnmclip_c",
+        "animation/anims/viewmodel/chicken/chickbaby_idle01.vnmclip_c",
+        "animation/anims/viewmodel/chicken/chickbaby_idle02.vnmclip_c",
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/graphs/chicken/egg_pristine_world.vnmgraph_c",
+      "bytes": 5477,
+      "sha256": "4af21aad3a81a179d8788d66350b0e8407062dff12604641962f402269aa278d",
+      "dependencies": [
+        "animation/anims/egg/chick_egg_idle_phase01_still.vnmclip_c",
+        "animation/anims/egg/chick_egg_idle_phase02.vnmclip_c",
+        "animation/anims/egg/chick_egg_idle_phase03.vnmclip_c",
+        "animation/anims/egg/chick_egg_idle_phase04.vnmclip_c",
+        "animation/anims/egg/chick_egg_reaction01.vnmclip_c",
+        "animation/anims/egg/chick_egg_reaction02.vnmclip_c",
+        "animation/anims/egg/chick_egg_reaction03.vnmclip_c",
+        "animation/anims/egg/chick_egg_reaction04.vnmclip_c",
+        "animation/anims/egg/chick_egg_reaction05.vnmclip_c",
+        "animation/anims/egg/chick_egg_reaction06.vnmclip_c",
+        "animation/anims/egg/chick_egg_reaction07.vnmclip_c",
+        "animation/anims/egg/chick_egg_reaction08.vnmclip_c",
+        "animation/anims/viewmodel/egg/egg_draw.vnmclip_c",
+        "animation/anims/viewmodel/egg/egg_idle01.vnmclip_c",
+        "animation/anims/viewmodel/egg/egg_idle02.vnmclip_c",
+        "animation/skeletons/egg/pristine_egg_world.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/skeletons/characters/chicken/chicken.vnmskel_c",
+      "bytes": 8205,
+      "sha256": "a3434a0fb79e5ad322ebffd214a76c5bd24762f28a4f6b2be5f65f48084c0cd8",
+      "dependencies": []
+    },
+    {
+      "path": "animation/skeletons/characters/worldmodel.vnmskel_c",
+      "bytes": 7596,
+      "sha256": "ed57c20e5636aa13c87e212b32ce0aa7dbd0268d8a2786f8ddab56673680b82f",
+      "dependencies": [
+        "animation/skeletons/weapons/elite.vnmskel_c"
+      ]
+    },
+    {
+      "path": "animation/skeletons/egg/pristine_egg_world.vnmskel_c",
+      "bytes": 1435,
+      "sha256": "0ba28bed7c11a6e48730155880eb4811c09b838d68d91de731ca3d7c052d3ffd",
+      "dependencies": []
+    },
+    {
+      "path": "animation/skeletons/weapons/elite.vnmskel_c",
+      "bytes": 2015,
+      "sha256": "bd3cb3349a735a68f4ef6ffb8476be3d17c1860e2dfa43900f08e90c2413776a",
+      "dependencies": []
+    },
+    {
+      "path": "materials/default/default_ao_tga_559f1ac6.vtex_c",
+      "bytes": 2136,
+      "sha256": "e0b83fe25f7950a35126785af19a9b89edf78d8bfbba184e13185f84ec4a9795",
+      "dependencies": []
+    },
+    {
+      "path": "materials/default/default_detail_tga_7a7467a1.vtex_c",
+      "bytes": 2176,
+      "sha256": "c8ae2f1690720cda6abfcc6735f8158af093d7078a03fbb00a0bfd6ad569269f",
+      "dependencies": []
+    },
+    {
+      "path": "materials/default/default_metal_tga_dbfb4d6e.vtex_c",
+      "bytes": 2560,
+      "sha256": "f5bfb8b944db40f30a02fb7fbbff94d406d352515b4dddffac223bb82747ecc4",
+      "dependencies": []
+    },
+    {
+      "path": "materials/default/default_normal_tga_7be61377.vtex_c",
+      "bytes": 2272,
+      "sha256": "1e88a992f5fdbf738a76dc77f3be21117618113a9cc14ddc982ae65e3d1157e8",
+      "dependencies": []
+    },
+    {
+      "path": "materials/default/default_tga_41fbd748.vtex_c",
+      "bytes": 2224,
+      "sha256": "5ec7e58692a142041c59718d6b8e1aecc135991fc8a96de1c7bf78344e74033b",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chick_tint_mask_psd_e4322026.vtex_c",
+      "bytes": 54564,
+      "sha256": "0d729795a110b97d7823190bddce4b6c5bad6dba09772a8a0b9b2b364e127220",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chick_yellow.vmat_c",
+      "bytes": 4927,
+      "sha256": "6049f35bcc001278fe86642be2a4cb0e47a05b6c2d35813e3d73fdbe5ebe54a3",
+      "dependencies": [
+        "materials/default/default_detail_tga_7a7467a1.vtex_c",
+        "materials/models/chicken/chick_tint_mask_psd_e4322026.vtex_c",
+        "materials/models/chicken/chick_yellow_ao_psd_37bae21e.vtex_c",
+        "materials/models/chicken/chick_yellow_cloth_psd_50877ead.vtex_c",
+        "materials/models/chicken/chick_yellow_color_psd_94e69b9b.vtex_c",
+        "materials/models/chicken/chick_yellow_normal_psd_8a70e735.vtex_c"
+      ]
+    },
+    {
+      "path": "materials/models/chicken/chick_yellow_ao_psd_37bae21e.vtex_c",
+      "bytes": 116242,
+      "sha256": "9fabd5b09705c1c0d677fb0986f8d31de9492082facd4a45389112d1e7d08597",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chick_yellow_cloth_psd_50877ead.vtex_c",
+      "bytes": 42906,
+      "sha256": "b33856ef4bb6d8ecbe02ec689e63948f93e0ca6f5ee251e50e89d10ad87c4ff0",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chick_yellow_color_psd_94e69b9b.vtex_c",
+      "bytes": 71585,
+      "sha256": "d78955fa33fbeaec950b7be378dfa8532122ab40cee36f9d5e648504173120bb",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chick_yellow_fur.vmat_c",
+      "bytes": 5071,
+      "sha256": "51af97b25c7ac837a695a6e7fd2a09d6dafbd018d3c7d52b6cec2c18e0d86a7d",
+      "dependencies": [
+        "materials/default/default_detail_tga_7a7467a1.vtex_c",
+        "materials/models/chicken/chick_yellow_fur_cloth_psd_366b8d3.vtex_c",
+        "materials/models/chicken/chick_yellow_fur_color_psd_e1db1d33.vtex_c",
+        "materials/models/chicken/chick_yellow_fur_vmat_g_tambientocclusion_9782fd5c.vtex_c",
+        "materials/models/chicken/chick_yellow_fur_vmat_g_tnormal_a4abff7d.vtex_c"
+      ]
+    },
+    {
+      "path": "materials/models/chicken/chick_yellow_fur_cloth_psd_366b8d3.vtex_c",
+      "bytes": 58066,
+      "sha256": "f14d8d3f1340c7cc1418762157452bbae009be9db3b3426d91f6c65285b23500",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chick_yellow_fur_color_psd_e1db1d33.vtex_c",
+      "bytes": 85010,
+      "sha256": "98c2a04e5a347e2888dab696cfb0312ea8c66bb4c99a3e547358d3d0101d238b",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chick_yellow_fur_vmat_g_tambientocclusion_9782fd5c.vtex_c",
+      "bytes": 1992,
+      "sha256": "1efe59028acca1d0574cad5e09f1be0b4fdd60788c42d04e4e721fa6df0323f1",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chick_yellow_fur_vmat_g_tnormal_a4abff7d.vtex_c",
+      "bytes": 2288,
+      "sha256": "65d99ab713e3f3e0405d56c8edb745a6c34f653b2e4641d4bccb33bc559c4f76",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chick_yellow_normal_psd_8a70e735.vtex_c",
+      "bytes": 278943,
+      "sha256": "3ffeb24b925883e211ec55ce14604661938efa356cc09dc1c8f1f2e8e6246dab",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_ao_psd_2176d656.vtex_c",
+      "bytes": 564751,
+      "sha256": "2ce11f8241df8c447ec84456683cea6306951e8f3b9cde303152b7aa0bf447a7",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_catalan_01_iridescence_mask_psd_bbb1dbbb.vtex_c",
+      "bytes": 897740,
+      "sha256": "eac1fcb135bfa70919bb358363abb36f65ce515672821dfac81202857c3e7b90",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_catalan_01_tint_mask_psd_77e82222.vtex_c",
+      "bytes": 2884428,
+      "sha256": "d03ea676e6d88420ee348e2cc1b52fbbe85a085c73f27870eadaffae5ea59216",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_catalan_01_tint_mask_psd_e296063b.vtex_c",
+      "bytes": 586010,
+      "sha256": "e4d7d86059ebcf0b2643e46084111b5322adc3279277da5ba0adcb13f39f4d22",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_catalan_02_tint_mask_psd_2083dd8d.vtex_c",
+      "bytes": 578518,
+      "sha256": "95d2fca1d34afde0487905744730043c11f0e6ddbc6ea918b7c11ba3e12ccdad",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_catalan_03_tint_mask_psd_3631fbea.vtex_c",
+      "bytes": 142838,
+      "sha256": "88776a3f91ae9fc9d7b81ab910c22f52fb206a50825a503e29976e354ed3ec1d",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_catalan_03_tint_mask_psd_dd314fc1.vtex_c",
+      "bytes": 164812,
+      "sha256": "f0e15123da7969da37e23d085f924d83b7b3428e8fbe9d64f6050beee10c8f01",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_catalan_04_tint_mask_psd_5abd4086.vtex_c",
+      "bytes": 493302,
+      "sha256": "81751c7d547a31d4d87808990113d6fcc18900d600a7debac76768dcd4ceeab5",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_catalan_04_tint_mask_psd_efeceb65.vtex_c",
+      "bytes": 619049,
+      "sha256": "397b19127491f25af18e42b3f4dc35030ba8ee8daa265ac26914bcbf72b7d7e0",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_catalan_black.vmat_c",
+      "bytes": 5695,
+      "sha256": "dcfa1c316ad4b02cfcff1495009e6ea2df320b1c2aaf95e3d465f2c9b0aaf89c",
+      "dependencies": [
+        "materials/models/chicken/chicken_ao_psd_2176d656.vtex_c",
+        "materials/models/chicken/chicken_catalan_01_iridescence_mask_psd_bbb1dbbb.vtex_c",
+        "materials/models/chicken/chicken_catalan_01_tint_mask_psd_e296063b.vtex_c",
+        "materials/models/chicken/chicken_catalan_black_color_psd_d30b6043.vtex_c",
+        "materials/models/chicken/chicken_catalan_black_vmat_g_tmetalness_b99de324.vtex_c",
+        "materials/models/chicken/chicken_catalan_face_detail_psd_e423e3ee.vtex_c",
+        "materials/models/chicken/chicken_normal_psd_b7863629.vtex_c",
+        "materials/models/chicken/chicken_normal_psd_d4ebb280.vtex_c"
+      ]
+    },
+    {
+      "path": "materials/models/chicken/chicken_catalan_black_color_psd_d30b6043.vtex_c",
+      "bytes": 622233,
+      "sha256": "846f1a991695a567cf88d1a6162a555289d7f66bb828ae5e79998bab7e2d806f",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_catalan_black_vmat_g_tmetalness_b99de324.vtex_c",
+      "bytes": 2480,
+      "sha256": "2b251a368cf654d3236aaff9aed1e186e28148318dc03a7f63db11d3b08d175a",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_catalan_black_white_head.vmat_c",
+      "bytes": 5199,
+      "sha256": "623a79441f343e294520ae521b3980450ed0cb49fbbcb3d8e4b3f56ff13b487c",
+      "dependencies": [
+        "materials/models/chicken/chicken_ao_psd_2176d656.vtex_c",
+        "materials/models/chicken/chicken_catalan_black_white_head_color_psd_ca1f1bdc.vtex_c",
+        "materials/models/chicken/chicken_catalan_black_white_head_vmat_g_tmetalness_b70f8f59.vtex_c",
+        "materials/models/chicken/chicken_catalan_face_detail_psd_e423e3ee.vtex_c",
+        "materials/models/chicken/chicken_normal_psd_b7863629.vtex_c",
+        "materials/models/chicken/chicken_normal_psd_d4ebb280.vtex_c"
+      ]
+    },
+    {
+      "path": "materials/models/chicken/chicken_catalan_black_white_head_color_psd_ca1f1bdc.vtex_c",
+      "bytes": 663417,
+      "sha256": "35c8d6d0ab0cf2c6b4227719d09e1670304c12342c31d765808f65717ba6a54d",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_catalan_black_white_head_vmat_g_tmetalness_b70f8f59.vtex_c",
+      "bytes": 2528,
+      "sha256": "0ca4ae591cea92009754bba274ec33c416eed84aa633dd22a51207749e061e5c",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_catalan_black_with_red_head.vmat_c",
+      "bytes": 5423,
+      "sha256": "c2455763afbe65ec31db9cddb36a9d7d025a9dd025a20ce21fc9cf913717e1d3",
+      "dependencies": [
+        "materials/default/default_metal_tga_dbfb4d6e.vtex_c",
+        "materials/models/chicken/chicken_ao_psd_2176d656.vtex_c",
+        "materials/models/chicken/chicken_catalan_02_tint_mask_psd_2083dd8d.vtex_c",
+        "materials/models/chicken/chicken_catalan_black_with_red_head_color_psd_49bea1a1.vtex_c",
+        "materials/models/chicken/chicken_catalan_face_detail_psd_e423e3ee.vtex_c",
+        "materials/models/chicken/chicken_normal_psd_b7863629.vtex_c",
+        "materials/models/chicken/chicken_normal_psd_d4ebb280.vtex_c"
+      ]
+    },
+    {
+      "path": "materials/models/chicken/chicken_catalan_black_with_red_head_color_psd_49bea1a1.vtex_c",
+      "bytes": 461292,
+      "sha256": "e98198bfe40d6497d7b74d99ecb6937a73b59a2c643ad1ffb2dc3c88fb055fd4",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_catalan_blue.vmat_c",
+      "bytes": 5423,
+      "sha256": "a23aabd9de330396ff0da2df173728bf64f73fce69c9139a0e3ecf8412cad459",
+      "dependencies": [
+        "materials/default/default_metal_tga_dbfb4d6e.vtex_c",
+        "materials/models/chicken/chicken_ao_psd_2176d656.vtex_c",
+        "materials/models/chicken/chicken_catalan_04_tint_mask_psd_5abd4086.vtex_c",
+        "materials/models/chicken/chicken_catalan_face_detail_psd_e423e3ee.vtex_c",
+        "materials/models/chicken/chicken_catalana_blue_color_psd_8e2e2aea.vtex_c",
+        "materials/models/chicken/chicken_normal_psd_b7863629.vtex_c",
+        "materials/models/chicken/chicken_normal_psd_d4ebb280.vtex_c"
+      ]
+    },
+    {
+      "path": "materials/models/chicken/chicken_catalan_dark_orange.vmat_c",
+      "bytes": 5391,
+      "sha256": "92b986dd1e15936a75a266af11ee8905247fc83dead6a6c87157d88a0217921c",
+      "dependencies": [
+        "materials/default/default_metal_tga_dbfb4d6e.vtex_c",
+        "materials/models/chicken/chicken_ao_psd_2176d656.vtex_c",
+        "materials/models/chicken/chicken_catalan_01_tint_mask_psd_e296063b.vtex_c",
+        "materials/models/chicken/chicken_catalan_face_detail_psd_e423e3ee.vtex_c",
+        "materials/models/chicken/chicken_catalana_dark_orange_color_psd_a258623.vtex_c",
+        "materials/models/chicken/chicken_normal_psd_b7863629.vtex_c",
+        "materials/models/chicken/chicken_normal_psd_d4ebb280.vtex_c"
+      ]
+    },
+    {
+      "path": "materials/models/chicken/chicken_catalan_face_detail_psd_e423e3ee.vtex_c",
+      "bytes": 1601848,
+      "sha256": "7891f63f7d139bfcd75d31fdcf2acbd33a4f6ba28416e91005e6735e18f5a3c9",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_catalan_grey.vmat_c",
+      "bytes": 5679,
+      "sha256": "0d2883ae36481e4134037cc5e108b5a1781b82cdf1ad9e7208c0455244957157",
+      "dependencies": [
+        "materials/models/chicken/chicken_ao_psd_2176d656.vtex_c",
+        "materials/models/chicken/chicken_catalan_01_iridescence_mask_psd_bbb1dbbb.vtex_c",
+        "materials/models/chicken/chicken_catalan_01_tint_mask_psd_e296063b.vtex_c",
+        "materials/models/chicken/chicken_catalan_face_detail_psd_e423e3ee.vtex_c",
+        "materials/models/chicken/chicken_catalan_grey_color_psd_b238d37d.vtex_c",
+        "materials/models/chicken/chicken_catalan_grey_vmat_g_tmetalness_b99de324.vtex_c",
+        "materials/models/chicken/chicken_normal_psd_b7863629.vtex_c",
+        "materials/models/chicken/chicken_normal_psd_d4ebb280.vtex_c"
+      ]
+    },
+    {
+      "path": "materials/models/chicken/chicken_catalan_grey_color_psd_b238d37d.vtex_c",
+      "bytes": 430281,
+      "sha256": "bca624c97764c5c38c4593a37d06bd7837a0da6c108a94ef9281d90608cc883a",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_catalan_grey_vmat_g_tmetalness_b99de324.vtex_c",
+      "bytes": 2544,
+      "sha256": "abbda68d069afdcc562de528b9b058f3359aeb4b8bbe3cb0b00f763332911f45",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_catalan_light_blue_and_red.vmat_c",
+      "bytes": 5375,
+      "sha256": "c65d200c17e82d9260aca1ad00ab330ee3c9ab003abb2f37968343f9ccc3b62a",
+      "dependencies": [
+        "materials/models/chicken/chicken_ao_psd_2176d656.vtex_c",
+        "materials/models/chicken/chicken_catalan_01_tint_mask_psd_e296063b.vtex_c",
+        "materials/models/chicken/chicken_catalan_face_detail_psd_e423e3ee.vtex_c",
+        "materials/models/chicken/chicken_catalan_light_blue_and_red_color_psd_9a50fa6b.vtex_c",
+        "materials/models/chicken/chicken_catalan_light_blue_and_red_vmat_g_tmetalness_b70f8f59.vtex_c",
+        "materials/models/chicken/chicken_normal_psd_b7863629.vtex_c",
+        "materials/models/chicken/chicken_normal_psd_d4ebb280.vtex_c"
+      ]
+    },
+    {
+      "path": "materials/models/chicken/chicken_catalan_light_blue_and_red_color_psd_9a50fa6b.vtex_c",
+      "bytes": 531918,
+      "sha256": "25025d0149667240f4c91f4937168f61e0455dd9f796cc6cc282d33baf597ac0",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_catalan_light_blue_and_red_vmat_g_tmetalness_b70f8f59.vtex_c",
+      "bytes": 2592,
+      "sha256": "4a9695c3d82603a88e43c2a07bb11f4e01958e728c89ee115f1c6f45c58a8033",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_catalan_orange_blue_neck.vmat_c",
+      "bytes": 5711,
+      "sha256": "d93e043a8cda58e909891739616658cbbcafb54df90c0067833dd09de54f2107",
+      "dependencies": [
+        "materials/models/chicken/chicken_ao_psd_2176d656.vtex_c",
+        "materials/models/chicken/chicken_catalan_03_tint_mask_psd_3631fbea.vtex_c",
+        "materials/models/chicken/chicken_catalan_03_tint_mask_psd_dd314fc1.vtex_c",
+        "materials/models/chicken/chicken_catalan_face_detail_psd_e423e3ee.vtex_c",
+        "materials/models/chicken/chicken_catalan_orange_blue_neck_color_psd_480e14af.vtex_c",
+        "materials/models/chicken/chicken_catalan_orange_blue_neck_vmat_g_tmetalness_b99de324.vtex_c",
+        "materials/models/chicken/chicken_normal_psd_b7863629.vtex_c",
+        "materials/models/chicken/chicken_normal_psd_d4ebb280.vtex_c"
+      ]
+    },
+    {
+      "path": "materials/models/chicken/chicken_catalan_orange_blue_neck_color_psd_480e14af.vtex_c",
+      "bytes": 544540,
+      "sha256": "f73eaa598c9c4da089daa361bcf2d033c4ba7ede14148025b6df53335b77f79a",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_catalan_orange_blue_neck_vmat_g_tmetalness_b99de324.vtex_c",
+      "bytes": 2544,
+      "sha256": "abbda68d069afdcc562de528b9b058f3359aeb4b8bbe3cb0b00f763332911f45",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_catalan_tan.vmat_c",
+      "bytes": 5407,
+      "sha256": "bc4fa227d6d3f827b84bfe12f6d6840e07e7c6a26a52299a3c4b3b38b027ef68",
+      "dependencies": [
+        "materials/default/default_metal_tga_dbfb4d6e.vtex_c",
+        "materials/models/chicken/chicken_ao_psd_2176d656.vtex_c",
+        "materials/models/chicken/chicken_catalan_01_tint_mask_psd_e296063b.vtex_c",
+        "materials/models/chicken/chicken_catalan_face_detail_psd_e423e3ee.vtex_c",
+        "materials/models/chicken/chicken_catalan_tan_color_psd_37a4e69b.vtex_c",
+        "materials/models/chicken/chicken_normal_psd_b7863629.vtex_c",
+        "materials/models/chicken/chicken_normal_psd_d4ebb280.vtex_c"
+      ]
+    },
+    {
+      "path": "materials/models/chicken/chicken_catalan_tan_color_psd_37a4e69b.vtex_c",
+      "bytes": 634925,
+      "sha256": "06ab30ee01b646b999c64c9bf6e68673ac47ebfd97574d50877decde987d5870",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_catalan_white.vmat_c",
+      "bytes": 5407,
+      "sha256": "b42868c1858c76d60161030fe4ce93fa9d58b2aea5fda37ee4bc501a80b65786",
+      "dependencies": [
+        "materials/default/default_tga_41fbd748.vtex_c",
+        "materials/models/chicken/chicken_ao_psd_2176d656.vtex_c",
+        "materials/models/chicken/chicken_catalan_face_detail_psd_e423e3ee.vtex_c",
+        "materials/models/chicken/chicken_catalan_white_color_psd_e3bed0f3.vtex_c",
+        "materials/models/chicken/chicken_catalan_white_vmat_g_tmetalness_b70f8f59.vtex_c",
+        "materials/models/chicken/chicken_normal_psd_b7863629.vtex_c",
+        "materials/models/chicken/chicken_normal_psd_d4ebb280.vtex_c"
+      ]
+    },
+    {
+      "path": "materials/models/chicken/chicken_catalan_white_color_psd_e3bed0f3.vtex_c",
+      "bytes": 591308,
+      "sha256": "e98d986390225d14aa6baeb23d403daf02698f30db23e1efdde25830dd1db8d6",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_catalan_white_vmat_g_tmetalness_b70f8f59.vtex_c",
+      "bytes": 2528,
+      "sha256": "0ca4ae591cea92009754bba274ec33c416eed84aa633dd22a51207749e061e5c",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_catalan_yellow_and_red.vmat_c",
+      "bytes": 5679,
+      "sha256": "fc380a0555cfa71bb18ba2a9e3f25193e1166daa099561142c1123abac272ce4",
+      "dependencies": [
+        "materials/models/chicken/chicken_ao_psd_2176d656.vtex_c",
+        "materials/models/chicken/chicken_catalan_01_tint_mask_psd_77e82222.vtex_c",
+        "materials/models/chicken/chicken_catalan_01_tint_mask_psd_e296063b.vtex_c",
+        "materials/models/chicken/chicken_catalan_face_detail_psd_e423e3ee.vtex_c",
+        "materials/models/chicken/chicken_catalan_yellow_and_red_color_psd_1e83f16c.vtex_c",
+        "materials/models/chicken/chicken_catalan_yellow_and_red_metal_psd_53b5798e.vtex_c",
+        "materials/models/chicken/chicken_normal_psd_b7863629.vtex_c",
+        "materials/models/chicken/chicken_normal_psd_d4ebb280.vtex_c"
+      ]
+    },
+    {
+      "path": "materials/models/chicken/chicken_catalan_yellow_and_red_color_psd_1e83f16c.vtex_c",
+      "bytes": 448577,
+      "sha256": "4e4303a57964f8f806d67e88d485b0b12b8d619964941e305d93e9fc1c744d18",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_catalan_yellow_and_red_metal_psd_53b5798e.vtex_c",
+      "bytes": 252196,
+      "sha256": "41273bd504f632388c195f164d6f629350cb883f8822b84f37f3611cc8e85d5b",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_catalan_yellow_red_gradient.vmat_c",
+      "bytes": 5375,
+      "sha256": "38899990c938e2cf57b2a2642ff7f078dcd284ddfc2c906fb54ff361c72a6905",
+      "dependencies": [
+        "materials/default/default_metal_tga_dbfb4d6e.vtex_c",
+        "materials/default/default_tga_41fbd748.vtex_c",
+        "materials/models/chicken/chicken_ao_psd_2176d656.vtex_c",
+        "materials/models/chicken/chicken_catalan_face_detail_psd_e423e3ee.vtex_c",
+        "materials/models/chicken/chicken_catalan_yellow_red_gradient_color_psd_4292ff9b.vtex_c",
+        "materials/models/chicken/chicken_normal_psd_b7863629.vtex_c",
+        "materials/models/chicken/chicken_normal_psd_d4ebb280.vtex_c"
+      ]
+    },
+    {
+      "path": "materials/models/chicken/chicken_catalan_yellow_red_gradient_color_psd_4292ff9b.vtex_c",
+      "bytes": 481546,
+      "sha256": "7e5a9ac00427ae9e9121a2d9e54e47171bcc0d86dc3e6eb160fcaf5b4c26d5e9",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_catalana_blue_and_light_orange.vmat_c",
+      "bytes": 5711,
+      "sha256": "bafcac3ce2c634f4fa8eb32038560feff5fe023a727ab04e030338d0ecb46aec",
+      "dependencies": [
+        "materials/models/chicken/chicken_ao_psd_2176d656.vtex_c",
+        "materials/models/chicken/chicken_catalan_01_tint_mask_psd_e296063b.vtex_c",
+        "materials/models/chicken/chicken_catalan_04_tint_mask_psd_efeceb65.vtex_c",
+        "materials/models/chicken/chicken_catalan_face_detail_psd_e423e3ee.vtex_c",
+        "materials/models/chicken/chicken_catalana_blue_and_light_orange_color_psd_a89aa9f1.vtex_c",
+        "materials/models/chicken/chicken_catalana_blue_and_light_orange_vmat_g_tmetalness_b99de324.vtex_c",
+        "materials/models/chicken/chicken_normal_psd_b7863629.vtex_c",
+        "materials/models/chicken/chicken_normal_psd_d4ebb280.vtex_c"
+      ]
+    },
+    {
+      "path": "materials/models/chicken/chicken_catalana_blue_and_light_orange_color_psd_a89aa9f1.vtex_c",
+      "bytes": 429179,
+      "sha256": "0b03a5589de56698cd7f23ad1692f97df8eb47aee4509c342ab34f697e60094e",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_catalana_blue_and_light_orange_vmat_g_tmetalness_b99de324.vtex_c",
+      "bytes": 2544,
+      "sha256": "abbda68d069afdcc562de528b9b058f3359aeb4b8bbe3cb0b00f763332911f45",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_catalana_blue_color_psd_8e2e2aea.vtex_c",
+      "bytes": 477461,
+      "sha256": "569515667a97547b9a76697c3ba4b13cd40765715c6b1ef560b62d52657fb914",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_catalana_dark_orange_color_psd_a258623.vtex_c",
+      "bytes": 539709,
+      "sha256": "63100638483f8e93db152fc3a7a181e3b5a7aeabbb16c78e2e9ea181061186a3",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_normal_psd_b7863629.vtex_c",
+      "bytes": 1260442,
+      "sha256": "a9b27e7908b68d02f57745091e87daa31c6a5cc644996b66fdff91333240a309",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_normal_psd_d4ebb280.vtex_c",
+      "bytes": 1290704,
+      "sha256": "b6596054b4f6bc00f8fc9ac5d6fde11dd4becb6291a000e9476f2a767cffa9a1",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_polish_ao_psd_ec5e19c4.vtex_c",
+      "bytes": 595131,
+      "sha256": "e01fb599f6a466b18011793f1113ad958c58c6a0658cc78888ed4a9843784ca3",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_polish_black_with_white_head.vmat_c",
+      "bytes": 5855,
+      "sha256": "0235bf8d7884c1ccb8640be693502e04db297a0fae8ce5f9c92230f2863b2432",
+      "dependencies": [
+        "materials/default/default_metal_tga_dbfb4d6e.vtex_c",
+        "materials/models/chicken/chicken_polish_ao_psd_ec5e19c4.vtex_c",
+        "materials/models/chicken/chicken_polish_black_with_white_head_color_psd_70861845.vtex_c",
+        "materials/models/chicken/chicken_polish_brown_tint_mask_psd_945fed9a.vtex_c",
+        "materials/models/chicken/chicken_polish_face_detail_psd_8eb4c7a5.vtex_c",
+        "materials/models/chicken/chicken_polish_iridescence_psd_11c59da3.vtex_c",
+        "materials/models/chicken/chicken_polish_normal_psd_6109d04.vtex_c",
+        "materials/models/chicken/chicken_polish_normal_psd_be930d53.vtex_c"
+      ]
+    },
+    {
+      "path": "materials/models/chicken/chicken_polish_black_with_white_head_color_psd_70861845.vtex_c",
+      "bytes": 470034,
+      "sha256": "091fd8f6e6a6596ddd8df43842bd4f193846666070de8aa8cf834684b8fa8f4b",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_polish_blue.vmat_c",
+      "bytes": 5791,
+      "sha256": "bff190f32a87b1586b788096996b4df9c7b8340bd3ec331d5d5e357d1bba0c83",
+      "dependencies": [
+        "materials/default/default_metal_tga_dbfb4d6e.vtex_c",
+        "materials/models/chicken/chicken_polish_ao_psd_ec5e19c4.vtex_c",
+        "materials/models/chicken/chicken_polish_blue_color_psd_fd185392.vtex_c",
+        "materials/models/chicken/chicken_polish_blue_vmat_g_ttintmask_2b2ebb3f.vtex_c",
+        "materials/models/chicken/chicken_polish_face_detail_psd_8eb4c7a5.vtex_c",
+        "materials/models/chicken/chicken_polish_iridescence_psd_11c59da3.vtex_c",
+        "materials/models/chicken/chicken_polish_normal_psd_6109d04.vtex_c",
+        "materials/models/chicken/chicken_polish_normal_psd_be930d53.vtex_c"
+      ]
+    },
+    {
+      "path": "materials/models/chicken/chicken_polish_blue_color_psd_fd185392.vtex_c",
+      "bytes": 578040,
+      "sha256": "9fd1ba07253fd29b1a732c59eb6e631a90138087e6c12af356f8774d2b08f3a4",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_polish_blue_vmat_g_ttintmask_2b2ebb3f.vtex_c",
+      "bytes": 1992,
+      "sha256": "513c18f546035ea7d505ac532aab37ea385d660e27ebba8e0a589d75922a6796",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_polish_blue_yellow.vmat_c",
+      "bytes": 5631,
+      "sha256": "74ada62341aab5933b862c75efeedef4c74e77fe2952d5c13b618a82a79119ed",
+      "dependencies": [
+        "materials/default/default_detail_tga_7a7467a1.vtex_c",
+        "materials/models/chicken/chicken_polish_ao_psd_ec5e19c4.vtex_c",
+        "materials/models/chicken/chicken_polish_blue_yellow_color_psd_a82ed1b5.vtex_c",
+        "materials/models/chicken/chicken_polish_blue_yellow_metal_psd_27dee31b.vtex_c",
+        "materials/models/chicken/chicken_polish_iridescence_psd_11c59da3.vtex_c",
+        "materials/models/chicken/chicken_polish_normal_psd_6109d04.vtex_c",
+        "materials/models/chicken/chicken_polish_normal_psd_be930d53.vtex_c",
+        "materials/models/chicken/chicken_polish_solid_tint_mask_psd_d0ebecc7.vtex_c"
+      ]
+    },
+    {
+      "path": "materials/models/chicken/chicken_polish_blue_yellow_color_psd_a82ed1b5.vtex_c",
+      "bytes": 444104,
+      "sha256": "725f23624fe9b51ec529b5c7a18f70de09529b11a2dfa805ec02429c374f1622",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_polish_blue_yellow_metal_psd_27dee31b.vtex_c",
+      "bytes": 814886,
+      "sha256": "eca00fb162c3cb1a35a45bd428615fb476d09a33f72b0fa0f6ed78f7344de00e",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_polish_brown.vmat_c",
+      "bytes": 5519,
+      "sha256": "faca2b5541081bd456e4f8ac315cbfda2feb73d5d8dbf19532eece1f762053d5",
+      "dependencies": [
+        "materials/default/default_metal_tga_dbfb4d6e.vtex_c",
+        "materials/models/chicken/chicken_polish_ao_psd_ec5e19c4.vtex_c",
+        "materials/models/chicken/chicken_polish_brown_color_psd_1fbf6413.vtex_c",
+        "materials/models/chicken/chicken_polish_brown_tint_mask_psd_945fed9a.vtex_c",
+        "materials/models/chicken/chicken_polish_face_detail_psd_8eb4c7a5.vtex_c",
+        "materials/models/chicken/chicken_polish_normal_psd_6109d04.vtex_c",
+        "materials/models/chicken/chicken_polish_normal_psd_be930d53.vtex_c"
+      ]
+    },
+    {
+      "path": "materials/models/chicken/chicken_polish_brown_color_psd_1fbf6413.vtex_c",
+      "bytes": 553467,
+      "sha256": "d8bbba5f57085474d822f13e89290e6b1861e1c055d53c02c692481828907e8d",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_polish_brown_tint_mask_psd_945fed9a.vtex_c",
+      "bytes": 557970,
+      "sha256": "ab637811110812932451f2a2f188c00e7b65256318a586b9926e4c835d28feca",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_polish_brown_with_black_wing_tips.vmat_c",
+      "bytes": 5695,
+      "sha256": "0c1075f4c3d5ae072dea90d1183ef8616c90f105b0a9b3348e5753ee6a13c4f1",
+      "dependencies": [
+        "materials/default/default_detail_tga_7a7467a1.vtex_c",
+        "materials/default/default_metal_tga_dbfb4d6e.vtex_c",
+        "materials/models/chicken/chicken_polish_ao_psd_ec5e19c4.vtex_c",
+        "materials/models/chicken/chicken_polish_brown_tint_mask_psd_945fed9a.vtex_c",
+        "materials/models/chicken/chicken_polish_brown_with_black_wing_tips_color_psd_3b22ced8.vtex_c",
+        "materials/models/chicken/chicken_polish_iridescence_psd_11c59da3.vtex_c",
+        "materials/models/chicken/chicken_polish_normal_psd_6109d04.vtex_c",
+        "materials/models/chicken/chicken_polish_normal_psd_be930d53.vtex_c"
+      ]
+    },
+    {
+      "path": "materials/models/chicken/chicken_polish_brown_with_black_wing_tips_color_psd_3b22ced8.vtex_c",
+      "bytes": 530886,
+      "sha256": "219cc747297c36a11b68a017668516840ddd51af505676d65220cc278cf3ffa6",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_polish_brown_with_black_wing_tips_color_psd_b1196678.vtex_c",
+      "bytes": 598826,
+      "sha256": "e2523c4ca824e054a1b7be147654f2d2241391189d86c613e7605f5ee8913150",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_polish_face_detail_psd_8eb4c7a5.vtex_c",
+      "bytes": 1041593,
+      "sha256": "e726cb1fa81c4b19a162581ce9e34549b9cea97131ceb1e93ae77f7cc4f8011b",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_polish_green.vmat_c",
+      "bytes": 5375,
+      "sha256": "bc430d956f47e775eddbe72d9195a3ead75e1dd24855e3a3ea11e2d24aa12d0f",
+      "dependencies": [
+        "materials/default/default_metal_tga_dbfb4d6e.vtex_c",
+        "materials/models/chicken/chicken_polish_ao_psd_ec5e19c4.vtex_c",
+        "materials/models/chicken/chicken_polish_green_color_psd_565243d5.vtex_c",
+        "materials/models/chicken/chicken_polish_green_tint_mask_psd_33147cd0.vtex_c",
+        "materials/models/chicken/chicken_polish_normal_psd_6109d04.vtex_c",
+        "materials/models/chicken/chicken_polish_normal_psd_be930d53.vtex_c",
+        "materials/models/chicken/chicken_polish_red_color_psd_b19b4655.vtex_c"
+      ]
+    },
+    {
+      "path": "materials/models/chicken/chicken_polish_green_color_psd_565243d5.vtex_c",
+      "bytes": 576333,
+      "sha256": "05b8905866b1323993320750bc117d0e8187d55780bf8d9763605874cf3e51e1",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_polish_green_tint_mask_psd_33147cd0.vtex_c",
+      "bytes": 418241,
+      "sha256": "efaf4d25dbada4265aa88358218a147e33b1ccd2cf96b474c78d7f9da4bfea10",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_polish_green_with_red_head.vmat_c",
+      "bytes": 5807,
+      "sha256": "7eb1d39492787f6fb5d9b5b63d9df305de04b46ed0bb0bab2e266458d2971956",
+      "dependencies": [
+        "materials/default/default_metal_tga_dbfb4d6e.vtex_c",
+        "materials/models/chicken/chicken_polish_ao_psd_ec5e19c4.vtex_c",
+        "materials/models/chicken/chicken_polish_brown_with_black_wing_tips_color_psd_b1196678.vtex_c",
+        "materials/models/chicken/chicken_polish_green_with_red_head_color_psd_515b70a9.vtex_c",
+        "materials/models/chicken/chicken_polish_green_with_red_head_vmat_g_tdetail_8219bad5.vtex_c",
+        "materials/models/chicken/chicken_polish_iridescence_psd_11c59da3.vtex_c",
+        "materials/models/chicken/chicken_polish_normal_psd_6109d04.vtex_c",
+        "materials/models/chicken/chicken_polish_normal_psd_be930d53.vtex_c"
+      ]
+    },
+    {
+      "path": "materials/models/chicken/chicken_polish_green_with_red_head_color_psd_515b70a9.vtex_c",
+      "bytes": 551322,
+      "sha256": "f3c11104d11977be0497d8f3a81651db1d8a2d80992cdbef1027504719b5be54",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_polish_green_with_red_head_vmat_g_tdetail_8219bad5.vtex_c",
+      "bytes": 2000,
+      "sha256": "e744b602df3912d8abce9d75dd77602df74b535795db27f16aa0b1f456be8edd",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_polish_iridescence_psd_11c59da3.vtex_c",
+      "bytes": 3005132,
+      "sha256": "3b51023081bf8348ade2e2e63a2019a3e82f907b26b1129e6b8e930176ebe159",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_polish_normal_psd_6109d04.vtex_c",
+      "bytes": 1285480,
+      "sha256": "86861e0a7cf93db3ee453c0c53a54e0bd816c6ebfe293f7b9fc0d6df8b50c88e",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_polish_normal_psd_be930d53.vtex_c",
+      "bytes": 1266878,
+      "sha256": "af5dd12cd1f7b7f82ec07fadee31c1fcc44f941df53f9f5e2d61617aff95fa19",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_polish_orange_white_blue.vmat_c",
+      "bytes": 5743,
+      "sha256": "cb7fb40ab2987f30ff00badc2194fd4c35ea1b598938e11a49c86828f3c1929e",
+      "dependencies": [
+        "materials/default/default_metal_tga_dbfb4d6e.vtex_c",
+        "materials/models/chicken/chicken_polish_ao_psd_ec5e19c4.vtex_c",
+        "materials/models/chicken/chicken_polish_green_tint_mask_psd_33147cd0.vtex_c",
+        "materials/models/chicken/chicken_polish_iridescence_psd_11c59da3.vtex_c",
+        "materials/models/chicken/chicken_polish_normal_psd_6109d04.vtex_c",
+        "materials/models/chicken/chicken_polish_normal_psd_be930d53.vtex_c",
+        "materials/models/chicken/chicken_polish_orange_white_blue_color_psd_daa773c6.vtex_c",
+        "materials/models/chicken/chicken_polish_red_color_psd_b19b4655.vtex_c"
+      ]
+    },
+    {
+      "path": "materials/models/chicken/chicken_polish_orange_white_blue_color_psd_daa773c6.vtex_c",
+      "bytes": 1835631,
+      "sha256": "8bbc1d549855bc0ab0e4c67a1fe4bd099bccdf3b461879249f586e1bdd1cd1af",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_polish_orange_with_black_stripes.vmat_c",
+      "bytes": 5503,
+      "sha256": "7a1dd1d664ac2e6230cfb94714d01d96c2c542659905b70428012f9cc2e33d8e",
+      "dependencies": [
+        "materials/default/default_metal_tga_dbfb4d6e.vtex_c",
+        "materials/models/chicken/chicken_polish_ao_psd_ec5e19c4.vtex_c",
+        "materials/models/chicken/chicken_polish_normal_psd_6109d04.vtex_c",
+        "materials/models/chicken/chicken_polish_normal_psd_be930d53.vtex_c",
+        "materials/models/chicken/chicken_polish_orange_with_black_stripes_color_psd_93ee3ae9.vtex_c",
+        "materials/models/chicken/chicken_polish_red_color_psd_b19b4655.vtex_c",
+        "materials/models/chicken/chicken_polish_white_with_black_wing_tips_color_psd_4a60c4e4.vtex_c"
+      ]
+    },
+    {
+      "path": "materials/models/chicken/chicken_polish_orange_with_black_stripes_color_psd_93ee3ae9.vtex_c",
+      "bytes": 526559,
+      "sha256": "1edc84f894e558e0c7d4ce86c9f8ae233824e919270f2f580966b208c16b1936",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_polish_pink.vmat_c",
+      "bytes": 5215,
+      "sha256": "de786b9382d070cfe698bf51f6482674151ddec08aa5eeaea02fa3d54fe7c515",
+      "dependencies": [
+        "materials/default/default_detail_tga_7a7467a1.vtex_c",
+        "materials/default/default_metal_tga_dbfb4d6e.vtex_c",
+        "materials/models/chicken/chicken_polish_ao_psd_ec5e19c4.vtex_c",
+        "materials/models/chicken/chicken_polish_normal_psd_6109d04.vtex_c",
+        "materials/models/chicken/chicken_polish_normal_psd_be930d53.vtex_c",
+        "materials/models/chicken/chicken_polish_pink_color_psd_a297fcda.vtex_c",
+        "materials/models/chicken/chicken_polish_solid_tint_mask_psd_d0ebecc7.vtex_c"
+      ]
+    },
+    {
+      "path": "materials/models/chicken/chicken_polish_pink_color_psd_a297fcda.vtex_c",
+      "bytes": 2102959,
+      "sha256": "20e737fc6ace0828d3e426f4295540b3e7886ad970e2ea57193671db04452269",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_polish_red_color_psd_b19b4655.vtex_c",
+      "bytes": 1072541,
+      "sha256": "645290f1d52bf8c1a93ee781c7331d29b69922be19c000a27173dd0c3822798b",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_polish_solid_tint_mask_psd_d0ebecc7.vtex_c",
+      "bytes": 90576,
+      "sha256": "c82b5a385ddeaf7f1aaa254b6571a7a2bd4b7ae58c971d6bada7b73e00c5c3c2",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_polish_white_black_head_color.vmat_c",
+      "bytes": 5327,
+      "sha256": "7a551b562e1fe7b857ae2046dd48cfdfbd83ef519e13449ed13a236777354996",
+      "dependencies": [
+        "materials/default/default_detail_tga_7a7467a1.vtex_c",
+        "materials/default/default_metal_tga_dbfb4d6e.vtex_c",
+        "materials/models/chicken/chicken_polish_ao_psd_ec5e19c4.vtex_c",
+        "materials/models/chicken/chicken_polish_iridescence_psd_11c59da3.vtex_c",
+        "materials/models/chicken/chicken_polish_normal_psd_6109d04.vtex_c",
+        "materials/models/chicken/chicken_polish_normal_psd_be930d53.vtex_c",
+        "materials/models/chicken/chicken_polish_white_black_head_color_psd_293dc4d3.vtex_c"
+      ]
+    },
+    {
+      "path": "materials/models/chicken/chicken_polish_white_black_head_color_psd_293dc4d3.vtex_c",
+      "bytes": 511545,
+      "sha256": "eef8a0c2846324316d0ebba07a0bd01fe97da0b5fc29dd5cf0f3e5cd5c74e96d",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_polish_white_with_black_wing_tips.vmat_c",
+      "bytes": 5615,
+      "sha256": "ab207135b8b2bde09b7710a66301ebdde344f25d2ddc5652c5ed98b6f6686b40",
+      "dependencies": [
+        "materials/default/default_metal_tga_dbfb4d6e.vtex_c",
+        "materials/models/chicken/chicken_polish_ao_psd_ec5e19c4.vtex_c",
+        "materials/models/chicken/chicken_polish_brown_tint_mask_psd_945fed9a.vtex_c",
+        "materials/models/chicken/chicken_polish_face_detail_psd_8eb4c7a5.vtex_c",
+        "materials/models/chicken/chicken_polish_iridescence_psd_11c59da3.vtex_c",
+        "materials/models/chicken/chicken_polish_normal_psd_6109d04.vtex_c",
+        "materials/models/chicken/chicken_polish_normal_psd_be930d53.vtex_c",
+        "materials/models/chicken/chicken_polish_white_with_black_wing_tips_color_psd_903ffd15.vtex_c"
+      ]
+    },
+    {
+      "path": "materials/models/chicken/chicken_polish_white_with_black_wing_tips_color_psd_4a60c4e4.vtex_c",
+      "bytes": 592126,
+      "sha256": "df92d359036ef3672af26ef1a862b9cc00dcf58e83f8ee2abf373fc4511d78f8",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_polish_white_with_black_wing_tips_color_psd_903ffd15.vtex_c",
+      "bytes": 524254,
+      "sha256": "d275235a7f12879cfe0dac7aeb3902c53be2b17af0ee643b03c9a8908bb88681",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_silkie_1_detail_psd_28afe873.vtex_c",
+      "bytes": 3915633,
+      "sha256": "cd3d3401b77b8853792bdbfcd0db06b533d62dc353a89b36ee95aefec247d3a1",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_silkie_2_detail_psd_d7ef9f43.vtex_c",
+      "bytes": 2302342,
+      "sha256": "847882c4e618c4fc2fe454d6d513082fc332ff0f67990dcc2890d0d81341fc35",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_silkie_ao_psd_90d0a19d.vtex_c",
+      "bytes": 582911,
+      "sha256": "516b3e894b55274f85fe4edfc247eea9c30ba0fe7008ef5a172512fc5ba509a1",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_silkie_aqua_with_yellow.vmat_c",
+      "bytes": 5503,
+      "sha256": "a82fe9cad76ceadc72d99f13bcbddf22b543f856f9d955e282a02671cf41f331",
+      "dependencies": [
+        "materials/models/chicken/chicken_silkie_ao_psd_90d0a19d.vtex_c",
+        "materials/models/chicken/chicken_silkie_aqua_with_yellow_color_psd_b8ec8580.vtex_c",
+        "materials/models/chicken/chicken_silkie_aqua_with_yellow_detail_psd_5c9d4f18.vtex_c",
+        "materials/models/chicken/chicken_silkie_aqua_with_yellow_vmat_g_tmetalness_b70f8f59.vtex_c",
+        "materials/models/chicken/chicken_silkie_iridescence_psd_4b04eed3.vtex_c",
+        "materials/models/chicken/chicken_silkie_normal_psd_594664fe.vtex_c",
+        "materials/models/chicken/chicken_silkie_normal_psd_88e714a8.vtex_c"
+      ]
+    },
+    {
+      "path": "materials/models/chicken/chicken_silkie_aqua_with_yellow_color_psd_b8ec8580.vtex_c",
+      "bytes": 567178,
+      "sha256": "5cdede2af7cedb43a3c878c9edb938687c1db3bb2b98770a8b4a765749184344",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_silkie_aqua_with_yellow_detail_psd_5c9d4f18.vtex_c",
+      "bytes": 810398,
+      "sha256": "d0ec3d9f263fba3715096ff6333c03a21b596a2b8f3a074bff75d8129e3b8e26",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_silkie_aqua_with_yellow_vmat_g_tmetalness_b70f8f59.vtex_c",
+      "bytes": 2592,
+      "sha256": "4a9695c3d82603a88e43c2a07bb11f4e01958e728c89ee115f1c6f45c58a8033",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_silkie_blue_with_red_beard.vmat_c",
+      "bytes": 5423,
+      "sha256": "07c754586816ee36ca21943d433ca19e85f713bbe2d20bbaac0823c46e8e31f0",
+      "dependencies": [
+        "materials/models/chicken/chicken_silkie_ao_psd_90d0a19d.vtex_c",
+        "materials/models/chicken/chicken_silkie_blue_with_red_beard_color_psd_92c0589b.vtex_c",
+        "materials/models/chicken/chicken_silkie_blue_with_red_beard_color_psd_bbbbb5aa.vtex_c",
+        "materials/models/chicken/chicken_silkie_blue_with_red_beard_vmat_g_tmetalness_b70f8f59.vtex_c",
+        "materials/models/chicken/chicken_silkie_normal_psd_594664fe.vtex_c",
+        "materials/models/chicken/chicken_silkie_normal_psd_88e714a8.vtex_c",
+        "materials/models/chicken/chicken_silkie_tint_2_mask_psd_90e4f59e.vtex_c"
+      ]
+    },
+    {
+      "path": "materials/models/chicken/chicken_silkie_blue_with_red_beard_color_psd_92c0589b.vtex_c",
+      "bytes": 588835,
+      "sha256": "5132a5104eab889d19f6b23d9011ee9cbcf707ffaa9a877cdca105da529c2961",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_silkie_blue_with_red_beard_color_psd_bbbbb5aa.vtex_c",
+      "bytes": 1134863,
+      "sha256": "630d0ce18a85d2bd0530408247ec9dcdb9970de2d487bdad74a8341944b784af",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_silkie_blue_with_red_beard_vmat_g_tmetalness_b70f8f59.vtex_c",
+      "bytes": 2592,
+      "sha256": "4a9695c3d82603a88e43c2a07bb11f4e01958e728c89ee115f1c6f45c58a8033",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_silkie_iridescence_psd_4b04eed3.vtex_c",
+      "bytes": 1426506,
+      "sha256": "eed31b367df6eacd60c936c41a2eb7bd9a1a8998725d4684101d3d82c7e839cb",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_silkie_leopard.vmat_c",
+      "bytes": 5519,
+      "sha256": "2fa8b0a6be2d8dbc6f200fe8cf3f0cca15382ed87a7663aa612af9090f2b0e2d",
+      "dependencies": [
+        "materials/models/chicken/chicken_silkie_2_detail_psd_d7ef9f43.vtex_c",
+        "materials/models/chicken/chicken_silkie_ao_psd_90d0a19d.vtex_c",
+        "materials/models/chicken/chicken_silkie_leopard_color_psd_14ebdf5a.vtex_c",
+        "materials/models/chicken/chicken_silkie_leopard_vmat_g_tmetalness_b70f8f59.vtex_c",
+        "materials/models/chicken/chicken_silkie_normal_psd_594664fe.vtex_c",
+        "materials/models/chicken/chicken_silkie_normal_psd_88e714a8.vtex_c",
+        "materials/models/chicken/chicken_silkie_tint_4_mask_psd_436faddf.vtex_c"
+      ]
+    },
+    {
+      "path": "materials/models/chicken/chicken_silkie_leopard_color_psd_14ebdf5a.vtex_c",
+      "bytes": 500211,
+      "sha256": "bc3a64d43651c781c1227d5129539bc7eee91879f892f0b3bec84ec36bcef77e",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_silkie_leopard_vmat_g_tmetalness_b70f8f59.vtex_c",
+      "bytes": 2592,
+      "sha256": "4a9695c3d82603a88e43c2a07bb11f4e01958e728c89ee115f1c6f45c58a8033",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_silkie_normal_psd_594664fe.vtex_c",
+      "bytes": 1261870,
+      "sha256": "b077ab3649d2d68e1e853fc3d64c7cbb80f9bd95d2faca61d083b2ba7114d6e5",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_silkie_normal_psd_88e714a8.vtex_c",
+      "bytes": 1250470,
+      "sha256": "4faf5b280273970ed3c12889cbd4c366bf97dae9443b565dd1e1d63271c1bfac",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_silkie_orange.vmat_c",
+      "bytes": 5791,
+      "sha256": "82d45b58099d9d0b536dd674a1de91c5086cf8b3e3de11deda411abfe3967573",
+      "dependencies": [
+        "materials/models/chicken/chicken_silkie_2_detail_psd_d7ef9f43.vtex_c",
+        "materials/models/chicken/chicken_silkie_ao_psd_90d0a19d.vtex_c",
+        "materials/models/chicken/chicken_silkie_iridescence_psd_4b04eed3.vtex_c",
+        "materials/models/chicken/chicken_silkie_normal_psd_594664fe.vtex_c",
+        "materials/models/chicken/chicken_silkie_normal_psd_88e714a8.vtex_c",
+        "materials/models/chicken/chicken_silkie_orange_color_psd_58e3da9.vtex_c",
+        "materials/models/chicken/chicken_silkie_orange_vmat_g_tmetalness_b70f8f59.vtex_c",
+        "materials/models/chicken/chicken_silkie_tint_mask_psd_f811b929.vtex_c"
+      ]
+    },
+    {
+      "path": "materials/models/chicken/chicken_silkie_orange_color_psd_58e3da9.vtex_c",
+      "bytes": 555477,
+      "sha256": "30b4024812606977347069a6f4bd333557e0ee482ac5693b752ad408dd4087d9",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_silkie_orange_vmat_g_tmetalness_b70f8f59.vtex_c",
+      "bytes": 2592,
+      "sha256": "4a9695c3d82603a88e43c2a07bb11f4e01958e728c89ee115f1c6f45c58a8033",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_silkie_purple.vmat_c",
+      "bytes": 5759,
+      "sha256": "5d24f81edcf38f75fd498e68ea0e509d305a62b48462c8d44d8160e1b5d5296c",
+      "dependencies": [
+        "materials/models/chicken/chicken_silkie_ao_psd_90d0a19d.vtex_c",
+        "materials/models/chicken/chicken_silkie_iridescence_psd_4b04eed3.vtex_c",
+        "materials/models/chicken/chicken_silkie_normal_psd_594664fe.vtex_c",
+        "materials/models/chicken/chicken_silkie_normal_psd_88e714a8.vtex_c",
+        "materials/models/chicken/chicken_silkie_purple_color_psd_b27d05f9.vtex_c",
+        "materials/models/chicken/chicken_silkie_purple_color_psd_d2e80ac7.vtex_c",
+        "materials/models/chicken/chicken_silkie_purple_vmat_g_tmetalness_b70f8f59.vtex_c",
+        "materials/models/chicken/chicken_silkie_tint_2_mask_psd_90e4f59e.vtex_c"
+      ]
+    },
+    {
+      "path": "materials/models/chicken/chicken_silkie_purple_color_psd_b27d05f9.vtex_c",
+      "bytes": 455006,
+      "sha256": "bed15f7d2ab08ce70f1ea8091a30e0e38723a980e3ac33e8d50541653cce4300",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_silkie_purple_color_psd_d2e80ac7.vtex_c",
+      "bytes": 964445,
+      "sha256": "c45138ea4fd694de1d2e8f0afb49d2e4ea7a1be8c0c6ce3400e9bfb6d1df4db7",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_silkie_purple_vmat_g_tmetalness_b70f8f59.vtex_c",
+      "bytes": 2592,
+      "sha256": "4a9695c3d82603a88e43c2a07bb11f4e01958e728c89ee115f1c6f45c58a8033",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_silkie_red.vmat_c",
+      "bytes": 5439,
+      "sha256": "ac1c4e8ac58d1b8d4ba82e79843e6f56fbd600425fe57e62c28c2b545cb0cbd8",
+      "dependencies": [
+        "materials/models/chicken/chicken_silkie_ao_psd_90d0a19d.vtex_c",
+        "materials/models/chicken/chicken_silkie_blue_with_red_beard_color_psd_bbbbb5aa.vtex_c",
+        "materials/models/chicken/chicken_silkie_normal_psd_594664fe.vtex_c",
+        "materials/models/chicken/chicken_silkie_normal_psd_88e714a8.vtex_c",
+        "materials/models/chicken/chicken_silkie_red_color_psd_f8a097be.vtex_c",
+        "materials/models/chicken/chicken_silkie_red_vmat_g_tmetalness_b70f8f59.vtex_c",
+        "materials/models/chicken/chicken_silkie_tint_3_mask_psd_168b3f34.vtex_c"
+      ]
+    },
+    {
+      "path": "materials/models/chicken/chicken_silkie_red_beetle.vmat_c",
+      "bytes": 5791,
+      "sha256": "42227f06f264ab09a6b030b04e3c823972322429b062138a6999e432afa3f8ed",
+      "dependencies": [
+        "materials/models/chicken/chicken_silkie_2_detail_psd_d7ef9f43.vtex_c",
+        "materials/models/chicken/chicken_silkie_ao_psd_90d0a19d.vtex_c",
+        "materials/models/chicken/chicken_silkie_iridescence_psd_4b04eed3.vtex_c",
+        "materials/models/chicken/chicken_silkie_normal_psd_594664fe.vtex_c",
+        "materials/models/chicken/chicken_silkie_normal_psd_88e714a8.vtex_c",
+        "materials/models/chicken/chicken_silkie_red_beetle_color_psd_a203cc26.vtex_c",
+        "materials/models/chicken/chicken_silkie_red_beetle_vmat_g_tmetalness_b70f8f59.vtex_c",
+        "materials/models/chicken/chicken_silkie_tint_mask_psd_f811b929.vtex_c"
+      ]
+    },
+    {
+      "path": "materials/models/chicken/chicken_silkie_red_beetle_color_psd_a203cc26.vtex_c",
+      "bytes": 564422,
+      "sha256": "1cf3b1c94ca0d7a1aaf02ac5507787bcef743d159f1552fd77e3c583390a71b5",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_silkie_red_beetle_vmat_g_tmetalness_b70f8f59.vtex_c",
+      "bytes": 2592,
+      "sha256": "4a9695c3d82603a88e43c2a07bb11f4e01958e728c89ee115f1c6f45c58a8033",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_silkie_red_color_psd_f8a097be.vtex_c",
+      "bytes": 568134,
+      "sha256": "f3df1306d6e18d13149bd981fc66490d3763f9b0eaf230d704ca0cbc828b27a7",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_silkie_red_vmat_g_tmetalness_b70f8f59.vtex_c",
+      "bytes": 2592,
+      "sha256": "4a9695c3d82603a88e43c2a07bb11f4e01958e728c89ee115f1c6f45c58a8033",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_silkie_splash.vmat_c",
+      "bytes": 5423,
+      "sha256": "5ae54c7de7663849a52c73f3da65a5cf3d80fc00310de2c6f85bae89911ba2de",
+      "dependencies": [
+        "materials/models/chicken/chicken_silkie_1_detail_psd_28afe873.vtex_c",
+        "materials/models/chicken/chicken_silkie_ao_psd_90d0a19d.vtex_c",
+        "materials/models/chicken/chicken_silkie_normal_psd_594664fe.vtex_c",
+        "materials/models/chicken/chicken_silkie_normal_psd_88e714a8.vtex_c",
+        "materials/models/chicken/chicken_silkie_splash_color_psd_f9b42d2c.vtex_c",
+        "materials/models/chicken/chicken_silkie_splash_vmat_g_tmetalness_b70f8f59.vtex_c",
+        "materials/models/chicken/chicken_silkie_tint_mask_psd_f811b929.vtex_c"
+      ]
+    },
+    {
+      "path": "materials/models/chicken/chicken_silkie_splash_color_psd_f9b42d2c.vtex_c",
+      "bytes": 559599,
+      "sha256": "e10af14a4f052b0b0dcb40697ca992a81742a5539ee0990a3b28453dadc5e1f5",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_silkie_splash_vmat_g_tmetalness_b70f8f59.vtex_c",
+      "bytes": 2592,
+      "sha256": "4a9695c3d82603a88e43c2a07bb11f4e01958e728c89ee115f1c6f45c58a8033",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_silkie_tint_2_mask_psd_90e4f59e.vtex_c",
+      "bytes": 590608,
+      "sha256": "18781a28f21522fd762fdfa6a48bafefcc7a742c0314e66e35f3add54ea0a502",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_silkie_tint_3_mask_psd_168b3f34.vtex_c",
+      "bytes": 616070,
+      "sha256": "a1466d6fe3bda321f728a7cc5a8da1f1026cb82063ef7b4165ce8063bb2f5255",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_silkie_tint_4_mask_psd_436faddf.vtex_c",
+      "bytes": 464815,
+      "sha256": "964b971483f096ebc6bbdeb7d0616738f4d4b9954a390322f6f81c52aa79652d",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_silkie_tint_mask_psd_f811b929.vtex_c",
+      "bytes": 522569,
+      "sha256": "d9e4815a40f624107f8a1209f9bff1f934d8f87fabe6dc026f98335304f023a5",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_silkie_white.vmat_c",
+      "bytes": 5855,
+      "sha256": "b3d4b3077bbefecfb004e718be6c78cba79b8351d491e76ad947494d201e0d09",
+      "dependencies": [
+        "materials/models/chicken/chicken_silkie_1_detail_psd_28afe873.vtex_c",
+        "materials/models/chicken/chicken_silkie_ao_psd_90d0a19d.vtex_c",
+        "materials/models/chicken/chicken_silkie_iridescence_psd_4b04eed3.vtex_c",
+        "materials/models/chicken/chicken_silkie_normal_psd_594664fe.vtex_c",
+        "materials/models/chicken/chicken_silkie_normal_psd_88e714a8.vtex_c",
+        "materials/models/chicken/chicken_silkie_tint_mask_psd_f811b929.vtex_c",
+        "materials/models/chicken/chicken_silkie_white_color_psd_880b0ac3.vtex_c",
+        "materials/models/chicken/chicken_silkie_white_vmat_g_tmetalness_b70f8f59.vtex_c"
+      ]
+    },
+    {
+      "path": "materials/models/chicken/chicken_silkie_white_color_psd_880b0ac3.vtex_c",
+      "bytes": 595353,
+      "sha256": "6b7ddf1ca33bf342f7041803bbb65f31374b8c41eba3faaa0515772715f81a5a",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/chicken/chicken_silkie_white_vmat_g_tmetalness_b70f8f59.vtex_c",
+      "bytes": 2592,
+      "sha256": "4a9695c3d82603a88e43c2a07bb11f4e01958e728c89ee115f1c6f45c58a8033",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/egg/egg_basic.vmat_c",
+      "bytes": 5071,
+      "sha256": "e3daf648ff7c2f3e1d6f5c006dbfa693f44bf1022b6d7de43441c0d0492a184b",
+      "dependencies": [
+        "materials/models/egg/egg_basic_vmat_g_tambientocclusion_8eb2436b.vtex_c",
+        "materials/models/egg/egg_basic_vmat_g_tmetalness_b70f8f59.vtex_c",
+        "materials/models/egg/egg_color_psd_d9ad74df.vtex_c",
+        "materials/models/egg/egg_detail_psd_c097a5b.vtex_c",
+        "materials/models/egg/egg_normal_psd_aa5632c1.vtex_c",
+        "materials/models/egg/egg_tint_mask_psd_5a9a0841.vtex_c"
+      ]
+    },
+    {
+      "path": "materials/models/egg/egg_basic_vmat_g_tambientocclusion_8eb2436b.vtex_c",
+      "bytes": 1960,
+      "sha256": "b8b65cfb984a07132f0775496e660e760500d166e2e55c023c8d2ee8e4c2497e",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/egg/egg_basic_vmat_g_tmetalness_b70f8f59.vtex_c",
+      "bytes": 2608,
+      "sha256": "e09781e4559fe400e5c294203c935b757c1ce5a73d70d932839f7d7300fb890e",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/egg/egg_color_psd_d9ad74df.vtex_c",
+      "bytes": 12988,
+      "sha256": "e8fbc2530f03d39abbeffcb0cf063e2618802df305d19ae8d7a960cf0b0b3728",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/egg/egg_detail_psd_c097a5b.vtex_c",
+      "bytes": 2534590,
+      "sha256": "043868576eb2e2c72b5b31c425f0f94870f2caf959e27e037c20f00c7f8653c9",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/egg/egg_normal_psd_aa5632c1.vtex_c",
+      "bytes": 1014599,
+      "sha256": "1b3e3b9e085c6b32c2202de683377cfcefebb0258b82b210f77463547e64f6a2",
+      "dependencies": []
+    },
+    {
+      "path": "materials/models/egg/egg_tint_mask_psd_5a9a0841.vtex_c",
+      "bytes": 13052,
+      "sha256": "56ab40fed8149de88bdbf94bedf9829ed6a2fdf1a570e65dd1c58ed36756867d",
+      "dependencies": []
+    },
+    {
+      "path": "materials/tools/toolsgrey.vmat_c",
+      "bytes": 3024,
+      "sha256": "885fc13a85c60b6072fb1e9c83189ad3742eff5ab8e31896c3614835c2b3d307",
+      "dependencies": [
+        "materials/default/default_ao_tga_559f1ac6.vtex_c",
+        "materials/default/default_normal_tga_7be61377.vtex_c",
+        "materials/tools/toolsgrey_vmat_g_tcolor_175bb260.vtex_c"
+      ]
+    },
+    {
+      "path": "materials/tools/toolsgrey_vmat_g_tcolor_175bb260.vtex_c",
+      "bytes": 1944,
+      "sha256": "6914b85eb7b3c8486323050a2774b5673b8b62c526ffbf70e9cefbc96882a015",
+      "dependencies": []
+    },
+    {
+      "path": "models/chicken/chick.vmdl_c",
+      "bytes": 550689,
+      "sha256": "c39c7e2b7dccded8a8f0742b35c2ac2cc25660d6f71b6500f671430c3aa2945b",
+      "dependencies": [
+        "animation/graphs/chicken/chicken.vnmgraph_c",
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c",
+        "materials/models/chicken/chick_yellow.vmat_c",
+        "materials/models/chicken/chick_yellow_fur.vmat_c",
+        "models/chicken/chicken_animset.vmdl_c"
+      ]
+    },
+    {
+      "path": "models/chicken/chicken.vmdl_c",
+      "bytes": 123282,
+      "sha256": "8c70afad7c5d18eba3e34d344ac0b528f5ae9553d66c8f8d64a0995a58253310",
+      "dependencies": [
+        "animation/graphs/chicken/chicken.vnmgraph_c",
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c",
+        "materials/models/chicken/chicken_catalan_black.vmat_c",
+        "materials/models/chicken/chicken_catalan_black_white_head.vmat_c",
+        "materials/models/chicken/chicken_catalan_black_with_red_head.vmat_c",
+        "materials/models/chicken/chicken_catalan_blue.vmat_c",
+        "materials/models/chicken/chicken_catalan_dark_orange.vmat_c",
+        "materials/models/chicken/chicken_catalan_grey.vmat_c",
+        "materials/models/chicken/chicken_catalan_light_blue_and_red.vmat_c",
+        "materials/models/chicken/chicken_catalan_orange_blue_neck.vmat_c",
+        "materials/models/chicken/chicken_catalan_tan.vmat_c",
+        "materials/models/chicken/chicken_catalan_white.vmat_c",
+        "materials/models/chicken/chicken_catalan_yellow_and_red.vmat_c",
+        "materials/models/chicken/chicken_catalan_yellow_red_gradient.vmat_c",
+        "materials/models/chicken/chicken_catalana_blue_and_light_orange.vmat_c",
+        "models/chicken/chicken_animset.vmdl_c"
+      ]
+    },
+    {
+      "path": "models/chicken/chicken_animset.vmdl_c",
+      "bytes": 145978,
+      "sha256": "457a110ceffa6599f0581f944866491ab2124f1c7a12011de8d9bc43b8b4e4e1",
+      "dependencies": [
+        "materials/tools/toolsgrey.vmat_c"
+      ]
+    },
+    {
+      "path": "models/chicken/chicken_polish.vmdl_c",
+      "bytes": 148466,
+      "sha256": "ddf4bc52ef3ecaad9289ed9a6f5130e31d91bffa17d868f4d2fab8bbfb049586",
+      "dependencies": [
+        "animation/graphs/chicken/chicken.vnmgraph_c",
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c",
+        "materials/models/chicken/chicken_polish_black_with_white_head.vmat_c",
+        "materials/models/chicken/chicken_polish_blue.vmat_c",
+        "materials/models/chicken/chicken_polish_blue_yellow.vmat_c",
+        "materials/models/chicken/chicken_polish_brown.vmat_c",
+        "materials/models/chicken/chicken_polish_brown_with_black_wing_tips.vmat_c",
+        "materials/models/chicken/chicken_polish_green.vmat_c",
+        "materials/models/chicken/chicken_polish_green_with_red_head.vmat_c",
+        "materials/models/chicken/chicken_polish_orange_white_blue.vmat_c",
+        "materials/models/chicken/chicken_polish_orange_with_black_stripes.vmat_c",
+        "materials/models/chicken/chicken_polish_pink.vmat_c",
+        "materials/models/chicken/chicken_polish_white_black_head_color.vmat_c",
+        "materials/models/chicken/chicken_polish_white_with_black_wing_tips.vmat_c",
+        "models/chicken/chicken_animset.vmdl_c"
+      ]
+    },
+    {
+      "path": "models/chicken/chicken_silkie.vmdl_c",
+      "bytes": 227990,
+      "sha256": "1d437bb65bedfa3782e59cd67e911eb4c73406231d9a9d6bb448b3cca9dbe4d4",
+      "dependencies": [
+        "animation/graphs/chicken/chicken.vnmgraph_c",
+        "animation/skeletons/characters/chicken/chicken.vnmskel_c",
+        "materials/models/chicken/chicken_silkie_aqua_with_yellow.vmat_c",
+        "materials/models/chicken/chicken_silkie_blue_with_red_beard.vmat_c",
+        "materials/models/chicken/chicken_silkie_leopard.vmat_c",
+        "materials/models/chicken/chicken_silkie_orange.vmat_c",
+        "materials/models/chicken/chicken_silkie_purple.vmat_c",
+        "materials/models/chicken/chicken_silkie_red.vmat_c",
+        "materials/models/chicken/chicken_silkie_red_beetle.vmat_c",
+        "materials/models/chicken/chicken_silkie_splash.vmat_c",
+        "materials/models/chicken/chicken_silkie_white.vmat_c",
+        "models/chicken/chicken_animset.vmdl_c"
+      ]
+    },
+    {
+      "path": "models/chicken/chicknegg.vmdl_c",
+      "bytes": 1459617,
+      "sha256": "697f9e443bca374326503d87f7508d5369effb784e6acfbd36ad28fbdcef5397",
+      "dependencies": [
+        "materials/models/egg/egg_basic.vmat_c"
+      ]
+    },
+    {
+      "path": "models/chicken/egg_pristine.vmdl_c",
+      "bytes": 93887,
+      "sha256": "866b5a1af5f2bf347aae461321f94ac79e46f44082c820717a0154442f995a47",
+      "dependencies": [
+        "animation/graphs/chicken/egg_pristine_world.vnmgraph_c",
+        "animation/skeletons/egg/pristine_egg_world.vnmskel_c",
+        "materials/models/egg/egg_basic.vmat_c"
+      ]
+    },
+    {
+      "path": "panorama/images/icons/ui/edit_label.vsvg_c",
+      "bytes": 1700,
+      "sha256": "c1bd8386f28d653b462f3b1d5abfe0710031dad6a43f14f20a75c32f0b3e8869",
+      "dependencies": []
+    },
+    {
+      "path": "panorama/images/icons/ui/expand_video.vsvg_c",
+      "bytes": 1532,
+      "sha256": "7ce330a93cc456d8348b2c563eacbb8ed9252acb7a6c5b7922480e60f9e373d3",
+      "dependencies": []
+    },
+    {
+      "path": "panorama/images/icons/ui/pet_activity_dance.vsvg_c",
+      "bytes": 1240,
+      "sha256": "d7bc7b07e03bb55dc7de572690ece1660fb3482fcc6025c486c45e0509cab753",
+      "dependencies": []
+    },
+    {
+      "path": "panorama/images/icons/ui/pet_activity_fly.vsvg_c",
+      "bytes": 2336,
+      "sha256": "d29ff98f3113e488553ec9bf358ead3e93febf1076760b142a4ff003d3cbd86d",
+      "dependencies": []
+    },
+    {
+      "path": "panorama/images/icons/ui/pet_activity_jump.vsvg_c",
+      "bytes": 7726,
+      "sha256": "56a1a9b1e764d92854962bb1cc56b3efe75513edcfb5b6de91c9c7ff98f68ba7",
+      "dependencies": []
+    },
+    {
+      "path": "panorama/images/icons/ui/pet_activity_kick.vsvg_c",
+      "bytes": 2319,
+      "sha256": "123b8e61bf146905cac3ae965e99532eb7692bae5fe6bd47f897fbda949ae5d0",
+      "dependencies": []
+    },
+    {
+      "path": "panorama/images/icons/ui/pet_activity_panic.vsvg_c",
+      "bytes": 2627,
+      "sha256": "c8241ae1f4c5f53da711fe4aae4903b22f65730b4842062135f52b095ec1d07c",
+      "dependencies": []
+    },
+    {
+      "path": "panorama/images/icons/ui/pet_activity_sit.vsvg_c",
+      "bytes": 5624,
+      "sha256": "325f4f13f369ae2f3b4345eefed2eaca227e8ecda3674bf0d8735124e2aee188",
+      "dependencies": []
+    },
+    {
+      "path": "panorama/images/icons/ui/pet_activity_sleep.vsvg_c",
+      "bytes": 2183,
+      "sha256": "894a580c7e2864e5a6050aed19cf7eecd1fa847fe7097bc767f1f2b05824c285",
+      "dependencies": []
+    },
+    {
+      "path": "panorama/images/icons/ui/pet_activity_squat.vsvg_c",
+      "bytes": 3393,
+      "sha256": "03a5722ca54b4ab3e1977da34b481b451b585fb7d3c7c27901f232207cb4f03c",
+      "dependencies": []
+    },
+    {
+      "path": "panorama/images/icons/ui/pet_activity_trick.vsvg_c",
+      "bytes": 3174,
+      "sha256": "a260aa502fa060878c69d3b3670053050e9043c3ff260841c8c292ff8ef13e67",
+      "dependencies": []
+    },
+    {
+      "path": "panorama/images/icons/ui/pet_activity_wag.vsvg_c",
+      "bytes": 7722,
+      "sha256": "563ad6fae1f2ac42d99b9a87baeb42f262b6b9bc6453f6bc6a0955c0a44ef16a",
+      "dependencies": []
+    },
+    {
+      "path": "panorama/images/icons/ui/pet_adult.vsvg_c",
+      "bytes": 3906,
+      "sha256": "96a33ea7f71afa258188329521f667339c54db91575b9a77473c89523f91ab19",
+      "dependencies": []
+    },
+    {
+      "path": "panorama/images/icons/ui/pet_book.vsvg_c",
+      "bytes": 3603,
+      "sha256": "f9ab5b406fa69fa6005f3bd97277fb9a542ac91e27a82daf62b0f59d8b1161d8",
+      "dependencies": []
+    },
+    {
+      "path": "panorama/images/icons/ui/pet_chick.vsvg_c",
+      "bytes": 3217,
+      "sha256": "441569028a3f8b669c8b8f52c36725c586f5a42371e7333457e5c2607e453add",
+      "dependencies": []
+    },
+    {
+      "path": "panorama/images/icons/ui/pet_effect_beam.vsvg_c",
+      "bytes": 1285,
+      "sha256": "0b40131ce1d33dcab768130b2b32778dc0f47f7455d510e60c1cdf50c94dc0ea",
+      "dependencies": []
+    },
+    {
+      "path": "panorama/images/icons/ui/pet_effect_bubbles.vsvg_c",
+      "bytes": 4150,
+      "sha256": "d08c9aebf6d61e4ea84190b0bf2bfdf6a9b348335b8ff8d78278302fa101e270",
+      "dependencies": []
+    },
+    {
+      "path": "panorama/images/icons/ui/pet_effect_confetti.vsvg_c",
+      "bytes": 2345,
+      "sha256": "448832fa0b8e4752574d245529347a59b780f36e910796fae6fbfcc0b361a90d",
+      "dependencies": []
+    },
+    {
+      "path": "panorama/images/icons/ui/pet_effect_explosion.vsvg_c",
+      "bytes": 2301,
+      "sha256": "2c941659464394d9b05ad89d00ede1cd1814a6b8ba3ccf5d72c20228f25cf848",
+      "dependencies": []
+    },
+    {
+      "path": "panorama/images/icons/ui/pet_effect_feather.vsvg_c",
+      "bytes": 1822,
+      "sha256": "df219e132a8a7acce55edc531b90c823dec0b0c4b14e2cdf903d4b2c869587d2",
+      "dependencies": []
+    },
+    {
+      "path": "panorama/images/icons/ui/pet_effect_fire.vsvg_c",
+      "bytes": 4097,
+      "sha256": "b198d4c5b9f0000a98954dd4b679bc4d6f0be2a13821fe0d097a8ca1f6398605",
+      "dependencies": []
+    },
+    {
+      "path": "panorama/images/icons/ui/pet_effect_laser.vsvg_c",
+      "bytes": 2753,
+      "sha256": "ee3a18f88d42fc562916ee3a3f6f5f6aafc7d953a1212a7638f1afeb91020e75",
+      "dependencies": []
+    },
+    {
+      "path": "panorama/images/icons/ui/pet_effect_lightning.vsvg_c",
+      "bytes": 1104,
+      "sha256": "58359a3ffc18f2d331041240739ff1758ca8465a251de129920e4086502bbf13",
+      "dependencies": []
+    },
+    {
+      "path": "panorama/images/icons/ui/pet_effect_smoke.vsvg_c",
+      "bytes": 4524,
+      "sha256": "ff214ccf1c54d90a32ef3c5eef822217d9924d83bbfe766fc4c9dd6822f300b5",
+      "dependencies": []
+    },
+    {
+      "path": "panorama/images/icons/ui/pet_effect_sparks.vsvg_c",
+      "bytes": 2136,
+      "sha256": "70d7939f10a5bf4be4d40f0aa4a84ec12a411a1ef321964bb4a1ff5155f53c18",
+      "dependencies": []
+    },
+    {
+      "path": "panorama/images/icons/ui/pet_egg.vsvg_c",
+      "bytes": 1134,
+      "sha256": "a0b6bec96ffef2ffa68ece0aae92da3fed9d605164ca85d413883e80bd7b82db",
+      "dependencies": []
+    },
+    {
+      "path": "panorama/images/icons/ui/pet_feed.vsvg_c",
+      "bytes": 8224,
+      "sha256": "fd96e83a40e1e5ed0661b38be02bbc14559639f870eebfb1369d36ca4e8dbba5",
+      "dependencies": []
+    },
+    {
+      "path": "panorama/images/icons/ui/pet_field_report.vsvg_c",
+      "bytes": 4186,
+      "sha256": "cae8bf8b90ef355909f930bafe24de7ce0a6c26170385ac39a934c6f83984212",
+      "dependencies": []
+    },
+    {
+      "path": "panorama/images/icons/ui/pet_hen.vsvg_c",
+      "bytes": 4404,
+      "sha256": "981534f68d0b8faef8646b04e225e15f0572ed7aecaf55e2b9ed830a949dce05",
+      "dependencies": []
+    },
+    {
+      "path": "panorama/images/icons/ui/pet_id_card.vsvg_c",
+      "bytes": 4529,
+      "sha256": "0ff64b15c5ede39d9a6de2ed6b365ea0cba20151bc58e65d9350a7cac93561b5",
+      "dependencies": []
+    },
+    {
+      "path": "panorama/images/icons/ui/pet_kid.vsvg_c",
+      "bytes": 5436,
+      "sha256": "46d3f8aec199b646080bc67f953a569493c2c4bcef041c3bd68fd9b50d68fcf3",
+      "dependencies": []
+    },
+    {
+      "path": "panorama/images/icons/ui/pet_molt.vsvg_c",
+      "bytes": 2563,
+      "sha256": "c4d5469c6e4c135b3319cc9220d04ebcfb8fd828de3c634215af704cd22284ca",
+      "dependencies": []
+    },
+    {
+      "path": "panorama/images/icons/ui/pet_pullet.vsvg_c",
+      "bytes": 4398,
+      "sha256": "8ed92d5741b22034f8e700fa1efd67b06c5b61d877ce8d47fed31c90f236e771",
+      "dependencies": []
+    },
+    {
+      "path": "panorama/images/icons/ui/pet_retire.vsvg_c",
+      "bytes": 3047,
+      "sha256": "7e61848956fb9f650d90a635f3bebb6a56a9a6a04ecdcaa9c7989f76925a7082",
+      "dependencies": []
+    },
+    {
+      "path": "panorama/images/icons/ui/photo.vsvg_c",
+      "bytes": 2948,
+      "sha256": "3a535b20bebef9b4366dd7f85c28af73c3ad9a6ab7712769e7b999a7faa1c61b",
+      "dependencies": []
+    },
+    {
+      "path": "panorama/images/icons/ui/shrink_video.vsvg_c",
+      "bytes": 1213,
+      "sha256": "b1e87a5ed00cb2f282cff105cf54e0304b0ebcce80eddbf62d93187c3d22f79e",
+      "dependencies": []
+    },
+    {
+      "path": "panorama/images/icons/ui/zoom_in.vsvg_c",
+      "bytes": 2742,
+      "sha256": "cf94be8dc94a76894b89c2d09ffc6ad82ebf47de5ea82d6b52b3813c9e4af86b",
+      "dependencies": []
+    },
+    {
+      "path": "panorama/scripts/popups/pet_photo_tag.vts_c",
+      "bytes": 43390,
+      "sha256": "cd0360e5087ed45b644ff14590e36c77e58fe0f30d8636153534b4ba2a740283",
+      "dependencies": []
+    },
+    {
+      "path": "textures/dev/blue_noise_256.vtex_c",
+      "bytes": 264148,
+      "sha256": "7a342cb5116a1841e9436e8ea980315a804abb431f62ed96a8e2f46a66a69cd4",
+      "dependencies": []
+    },
+    {
+      "path": "textures/dev/brdf_lut.vtex_c",
+      "bytes": 99380,
+      "sha256": "7022e730e8e16d672e6dc038b0330cebc4f893fafd6858aedc8126c8bb91d89a",
+      "dependencies": []
+    }
+  ]
+}

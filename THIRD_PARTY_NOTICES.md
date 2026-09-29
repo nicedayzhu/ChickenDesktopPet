@@ -2,7 +2,7 @@
 
 CS2 鸡桌宠由 niceday_zhu 编写，项目源代码按根目录 `LICENSE` 中的 MIT 条款授权。程序是非官方的独立作品，与 Valve 无关联。
 
-程序运行时从用户本机安装的 Counter-Strike 2 中读取模型、材质和动画；发布包不包含这些游戏资源。Counter-Strike 2 及相关游戏内容的权利属于 Valve。项目的 MIT 许可证不授予游戏资源的使用或再分发许可。
+程序使用随项目及发布包保存的精简 Counter-Strike 2 资源快照，运行时无需用户安装游戏。资源位于 `Pet3D/Assets/Resources/pet_assets.vpk`，发布后位于 EXE 旁的 `Resources/`；对应清单记录源游戏版本、文件列表、依赖和 SHA256。Counter-Strike 2 的模型、材质、动画、图标和相关游戏内容的权利属于 Valve。项目的 MIT 许可证不授予游戏资源的使用或再分发许可。
 
 单文件程序使用以下第三方软件：
 

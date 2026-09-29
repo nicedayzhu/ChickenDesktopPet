@@ -17,10 +17,9 @@ internal static class ToolbarPreview
         var directory = Path.GetFullPath(output ?? "research/panorama-preview");
         Directory.CreateDirectory(directory);
         var app = Application.Current ?? new Application { ShutdownMode = ShutdownMode.OnExplicitShutdown };
-        var game = GameFolderLocator.FindSteamGameByAppId(730);
-        var vpk = Environment.GetEnvironmentVariable("CHICK_CS2_VPK") ?? Path.Combine(game!.Value.GamePath, "game/csgo/pak01_dir.vpk");
+        var vpk = PetAssetSource.ResolvePath();
         using var package = new Package(); package.Read(vpk);
-        using var loader = new GameFileLoader(package, vpk);
+        using var loader = PetAssetSource.CreateLoader(package);
         var resources = PetUiResources.Load(package, loader);
         var catalog = new PetCatalog(package, loader, resources);
         var icons = new PetIconStore(); icons.Load(resources);

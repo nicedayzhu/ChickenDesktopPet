@@ -2,7 +2,7 @@
 
 English | [简体中文](README.zh-CN.md)
 
-Bring the CS2 chick to your Windows desktop. This 3D pet renders the models, materials, and animations from your local Counter-Strike 2 installation in real time, using [ValveResourceFormat](https://github.com/ValveResourceFormat/ValveResourceFormat).
+Bring the CS2 chick to your Windows desktop. This 3D pet renders bundled models, materials, and animations in real time using [ValveResourceFormat](https://github.com/ValveResourceFormat/ValveResourceFormat). No CS2 or Steam installation is required.
 
 ![Inspection and photo studio](docs/assets/inspection-studio.png)
 
@@ -13,21 +13,20 @@ Bring the CS2 chick to your Windows desktop. This 3D pet renders the models, mat
 - Hover to reveal an interaction bar that closes when you move away. Unsupported actions are disabled.
 - Use the inspection and photo studio to rotate, zoom, rename your pet, switch appearances, and take photos.
 - Configure desktop roaming, staying on top, power saving, size, and rotation through a compact context menu.
-- Available pets and compatible animations are discovered from your CS2 installation at startup. If a saved appearance becomes unavailable, the app falls back to the default chick.
+- Available pets and compatible animations are discovered from the bundled resources at startup. If a saved appearance becomes unavailable, the app falls back to the default chick.
 
 ## Getting Started
 
 | Requirement | Details |
 | --- | --- |
 | System | Windows 10 or 11, x64 |
-| Game | Counter-Strike 2 installed locally |
 | Runtime | [.NET 10 Desktop Runtime for Windows x64](https://dotnet.microsoft.com/download/dotnet/10.0) |
 
 1. Download the Windows x64 archive from [GitHub Releases](https://github.com/nicedayzhu/ChickenDesktopPet/releases/latest).
-2. Extract it and run `ChickenDesktopPet3D.exe`. The release contains a single EXE.
+2. Extract the entire archive and run `ChickenDesktopPet3D.exe`. Keep the `Resources/` folder next to the EXE.
 3. Allow a few seconds for the initial load.
 
-If CS2 cannot be located automatically, set the `CHICK_CS2_VPK` environment variable to the absolute path of `pak01_dir.vpk` and restart the app. To upgrade, exit the previous version and replace the EXE. Version details and release notes are available on the [GitHub Release page](https://github.com/nicedayzhu/ChickenDesktopPet/releases).
+To upgrade, exit the previous version and replace both the EXE and `Resources/`. The resource snapshot is about 69 MiB and can be updated independently; the app does not search for an installed game. Version details and release notes are available on the [GitHub Release page](https://github.com/nicedayzhu/ChickenDesktopPet/releases).
 
 ## Desktop Controls
 
@@ -61,6 +60,7 @@ The application interface is currently in Chinese. Available interactions depend
 ## Documentation
 
 - [Development guide](docs/DEVELOPMENT.md): build, configuration, rendering, and the earlier 2D implementation.
+- [Asset bundle maintenance](docs/ASSETS.md) (Chinese): extraction, updates, manifest verification, and packaging.
 - [Renderer regression checks](tests/RendererRegression/README.md) (Chinese).
 - [CS2 Panorama pet UI research](docs/official-pet-ui-research.md) (Chinese).
 
@@ -68,4 +68,4 @@ The application interface is currently in Chinese. Available interactions depend
 
 Created by [niceday_zhu](https://github.com/nicedayzhu), with rendering powered by [Source 2 Viewer / ValveResourceFormat](https://github.com/ValveResourceFormat/ValveResourceFormat).
 
-Project source is licensed under [MIT](LICENSE). Third-party components and game content have their own terms; see [Third-Party Notices](THIRD_PARTY_NOTICES.md). CS2 models, materials, and animations belong to Valve and are loaded from your installed game. Extracted game assets should not be added to the repository or release packages.
+Project source is licensed under [MIT](LICENSE). Third-party components and game content have their own terms; see [Third-Party Notices](THIRD_PARTY_NOTICES.md). Bundled CS2 models, materials, animations, and icons belong to Valve and are not licensed under this project's MIT license.

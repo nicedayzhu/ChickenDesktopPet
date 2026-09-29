@@ -9,13 +9,15 @@
 | `Pet3D/` | 当前 Windows 3D 桌宠 |
 | `Pet/` | 早期 2D 原型 |
 | `scripts/` | 发布构建、资源提取和渲染脚本 |
-| `tests/RendererRegression/` | 使用本机 CS2 及 GPU 的集成检查 |
+| `Pet3D/Assets/Resources/` | 随项目保存的精简资源 VPK 和哈希清单 |
+| `scripts/AssetBundle/` | 独立的资源依赖提取工具 |
+| `tests/RendererRegression/` | 资源完整性及 GPU 渲染集成检查 |
 | `docs/official-pet-ui-research.md` | 官方 UI 参考与桌面适配调研 |
 | `dist3d/` | 生成的发布目录，由 Git 忽略 |
 
 ## 构建
 
-使用 Windows 和 [global.json](../global.json) 指定的 .NET 10 SDK：版本 `10.0.102`，允许 `latestPatch` 滚动。[官方 .NET 下载页面](https://dotnet.microsoft.com/download/dotnet/10.0) 提供 SDK 与 Desktop Runtime。运行程序还需本机安装 CS2，以及兼容 VRF OpenGL 渲染器的显卡。
+使用 Windows 和 [global.json](../global.json) 指定的 .NET 10 SDK：版本 `10.0.102`，允许 `latestPatch` 滚动。[官方 .NET 下载页面](https://dotnet.microsoft.com/download/dotnet/10.0) 提供 SDK 与 Desktop Runtime。运行程序需要兼容 VRF OpenGL 渲染器的显卡，无需 CS2 或 Steam。
 
 构建前退出发布目录中正在运行的桌宠，在仓库根目录执行：
 
@@ -24,20 +26,27 @@ New-Item -ItemType Directory -Force .nuget/feed | Out-Null
 ./scripts/build_release.ps1
 ```
 
-[build_release.ps1](../scripts/build_release.ps1) 还原并发布 `Pet3D/ChickenDesktopPet3D.csproj`，目标为 Windows x64，并检查 `dist3d/` 中只有 `ChickenDesktopPet3D.exe`。这是依赖框架的单文件程序，需要单独安装 .NET Desktop Runtime。
+[build_release.ps1](../scripts/build_release.ps1) 校验资源包 SHA256，还原并发布 `Pet3D/ChickenDesktopPet3D.csproj`，目标为 Windows x64。输出为 `dist3d/ChickenDesktopPet3D.exe` 和 `dist3d/Resources/`，并在 `dist/releases/v<版本>/` 生成包含二者的 `ChickenDesktopPet3D-v<版本>-win-x64.zip` 和 `SHA256SUMS.txt`。EXE 是依赖框架的单文件程序，需要单独安装 .NET Desktop Runtime。
 
 [NuGet.Config](../Pet3D/NuGet.Config) 配置了本地 `.nuget/feed/` 源及 nuget.org。新克隆先创建空的本地源目录，即可进行还原；离线构建需自行填充所需包。构建脚本使用 `.nuget/packages/` 作为包缓存，两者均由 Git 忽略。具体依赖版本见 [项目文件](../Pet3D/ChickenDesktopPet3D.csproj)。
 
-托盘图标、环境光照贴图和许可文本已嵌入 EXE；首次启动时 .NET 会将打包的原生库提取到用户临时目录。游戏模型、材质、动画和官方 UI 图标从本机 CS2 VPK 读取。
+托盘图标、环境光照贴图和许可文本已嵌入 EXE；首次启动时 .NET 会将打包的原生库提取到用户临时目录。模型、材质、动画和官方 UI 数据从自带的 `Resources/pet_assets.vpk` 读取。资源更新仅需开发机安装游戏，参见[资源包维护](ASSETS.md)。
 
 发布说明统一维护在 [GitHub Releases](https://github.com/nicedayzhu/ChickenDesktopPet/releases)。
+
+## 版本与发布
+
+以 `Pet3D/ChickenDesktopPet3D.csproj` 的 `<Version>` 为唯一程序版本来源，采用 `MAJOR.MINOR.PATCH`：功能新增递增 MINOR，兼容修复递增 PATCH，不兼容的公开接口或设置格式变化递增 MAJOR。资源清单的 `schemaVersion` 表示清单格式，与程序版本分别管理；具体资源快照由游戏版本及 SHA256 标识。
+
+发布时先修改项目版本并提交，构建和验证这个提交，再创建指向该提交的注释标签 `v<版本>`，推送分支与标签，并将构建脚本生成的版本 ZIP 和 `SHA256SUMS.txt` 上传至同名 GitHub Release。脚本会核对 EXE 内部版本；已有正式标签和发布附件不覆盖。
 
 ## 配置与本地数据
 
 | 项目 | 位置或行为 |
 | --- | --- |
-| 自动定位游戏 | 查找 Steam app ID `730` 对应的安装 |
-| `CHICK_CS2_VPK` | 用 `pak01_dir.vpk` 的绝对路径覆盖自动定位 |
+| 默认资源 | EXE 旁的 `Resources/pet_assets.vpk`，路径与当前工作目录无关 |
+| `CHICK_PET_VPK` | 覆盖资源包路径，供开发测试；路径无效时明确报错 |
+| `CHICK_CS2_VPK` | 仅资源更新脚本读取，运行程序不使用 |
 | 桌面设置 | `%APPDATA%\ChickenDesktopPet\settings3d.json` |
 | 照片 | 系统“图片”目录下的 `CS2 鸡桌宠/` |
 | `--inspect` | 启动时直接打开检视摄影棚 |
@@ -56,9 +65,9 @@ New-Item -ItemType Directory -Force .nuget/feed | Out-Null
 
 ## 兼容性与验证
 
-每次启动从本机 VPK 发现模型、羽色、兼容动画、官方 SVG 图标、动作数据和动画图。保存的外观不再存在时回退到默认小鸡；菜单按当前模型禁用不可用动作。
+每次启动从项目资源 VPK 发现模型、羽色、兼容动画、官方 SVG 图标、动作数据和动画图。VRF 文件加载器仅搜索这个包，不加载本机 `gameinfo.gi` 或其他游戏 VPK。保存的外观不再存在时回退到默认小鸡；菜单按当前模型禁用不可用动作。
 
-[渲染回归指南](../tests/RendererRegression/README.md) 提供模型切换与光照、整段动画取景、悬停互动、检视和本地拍照流程检查。检查需要 Windows、SDK、本机 CS2 资源及可用的 OpenGL 上下文，截图与隔离设置保存在 Git 忽略的 `research/` 下。新加入的游戏资源仍需目视检查。
+[渲染回归指南](../tests/RendererRegression/README.md) 提供资源哈希与依赖闭包校验、模型切换与光照、整段动画取景、悬停互动、检视和本地拍照流程检查。检查需要 Windows、SDK 和项目自带资源；渲染检查还需要可用的 OpenGL 上下文。截图与隔离设置保存在 Git 忽略的 `research/` 下。新加入的资源仍需目视检查。
 
 官方检视与互动参考、动作映射和桌面适配方案见 [Panorama UI 调研](official-pet-ui-research.md)。
 

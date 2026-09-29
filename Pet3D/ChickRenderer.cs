@@ -66,15 +66,8 @@ internal sealed class ChickRenderer : IDisposable
         try
         {
             ErrorLog.Trace("renderer thread started");
-            var path = Environment.GetEnvironmentVariable("CHICK_CS2_VPK");
-            if (string.IsNullOrWhiteSpace(path))
-            {
-                var game = GameFolderLocator.FindSteamGameByAppId(730);
-                path = game is null ? null : Path.Combine(game.Value.GamePath, "game", "csgo", "pak01_dir.vpk");
-            }
-            if (path is null || !File.Exists(path))
-                throw new FileNotFoundException("未找到 CS2 的 pak01_dir.vpk。请安装 CS2，或设置 CHICK_CS2_VPK 环境变量。", path);
-            ErrorLog.Trace("VPK path found");
+            var path = PetAssetSource.ResolvePath();
+            ErrorLog.Trace($"pet asset bundle: {path}");
 
             var native = new NativeWindowSettings
             {
@@ -131,7 +124,7 @@ internal sealed class ChickRenderer : IDisposable
         {
             this.owner = owner;
             package.Read(vpkPath);
-            loader = new GameFileLoader(package, vpkPath);
+            loader = PetAssetSource.CreateLoader(package);
             context = new RendererContext(loader, NullLogger.Instance);
         }
 
@@ -175,7 +168,7 @@ internal sealed class ChickRenderer : IDisposable
             catalog = new PetCatalog(package, loader, uiResources);
             owner.UiResourcesReady?.Invoke(uiResources);
             if (catalog.Appearances.Count == 0)
-                throw new FileNotFoundException("CS2 VPK 中没有可用的鸡宠物模型");
+                throw new InvalidDataException("小鸡资源包中没有可用的鸡宠物模型");
             owner.AppearancesReady?.Invoke(catalog.Appearances);
             var initialId = PetCatalog.DefaultAppearanceId;
             while (owner.appearanceRequests.TryDequeue(out var requestedId)) initialId = requestedId;

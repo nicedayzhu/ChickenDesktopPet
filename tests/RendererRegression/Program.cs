@@ -5,10 +5,11 @@ using ChickenDesktopPet3D;
 
 internal static class Program
 {
-    // Integration test: requires the local CS2 VPK and an OpenGL-capable desktop.
+    // Integration tests use the bundled resources; rendering requires OpenGL.
     [STAThread]
     private static int Main(string[] args)
     {
+        if (args.FirstOrDefault() == "--assets") return AssetRegression.Run();
         if (args.FirstOrDefault() == "--framing") return FramingRegression.Run(args.Skip(1).FirstOrDefault());
         if (args.FirstOrDefault() == "--toolbar") return ToolbarPreview.Run(args.Skip(1).FirstOrDefault());
         if (args.FirstOrDefault() == "--ui-live") return UiLiveRegression.Run(args.Skip(1).FirstOrDefault());

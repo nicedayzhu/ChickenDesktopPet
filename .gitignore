@@ -16,7 +16,8 @@
 *.pdb
 *.log
 
-# Extracted CS2 resources and generated 2D frames
+# Historical exports and generated 2D frames.
+# Pet3D/Assets/Resources is intentionally versioned for standalone operation.
 /assets/
 /Pet/Assets/Sprites/*/
 /Pet/Assets/Sprites/*.png

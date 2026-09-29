@@ -17,8 +17,8 @@ internal sealed record PetAppearance(
     string? Skin,
     PetKind Kind);
 
-// Read the installed game's VPK on every launch. New official models, skins and
-// clips can appear without shipping extracted game resources or a new catalog.
+// Discover models, skins and clips from the selected, self-contained bundle.
+// Updating the bundle does not require hardcoding a new catalog in the app.
 internal sealed class PetCatalog
 {
     public const string DefaultAppearanceId = "chick";

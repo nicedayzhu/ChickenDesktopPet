@@ -11,7 +11,7 @@ namespace ChickenDesktopPet3D;
 internal sealed record PetActivity(string Id, string Label, string Icon, string Activity, int? Variation);
 
 // Read data on the render thread, then hand immutable SVG bytes to WPF. No game
-// JavaScript is executed and no extracted Valve resources enter the release.
+// JavaScript is executed; the bundle contains only the data needed by this UI.
 internal sealed class PetUiResources
 {
     public static readonly PetActivity[] DefaultActivities =
